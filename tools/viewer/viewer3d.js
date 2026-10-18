@@ -76,7 +76,7 @@ export async function mount(host, { modelUrl, colors, label }) {
 
   const camera = new PerspectiveCamera(30, 1, 0.05, 60);
   const target = new Vector3(0, size.y * 0.45, 0);
-  const startDistance = size.length() * 1.75;
+  const startDistance = size.length() * 2.05;
   const controls = new OrbitControls(camera, canvas);
   controls.target.copy(target);
   controls.enableDamping = true;
