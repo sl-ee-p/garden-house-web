@@ -55,7 +55,11 @@
     <section class="configurator" aria-labelledby="cfg-title">
       <div class="configurator__inner container">
         <figure class="configurator__stage">
-          <div class="configurator__canvas">
+          <div class="view-switch" role="group" aria-label="Tipo di anteprima" data-view-switch hidden>
+            <button class="view-switch__btn" type="button" data-view="2d" aria-pressed="true">Disegno</button>
+            <button class="view-switch__btn" type="button" data-view="3d" aria-pressed="false">Modello 3D</button>
+          </div>
+          <div class="configurator__canvas" data-view-panel="2d">
             <svg class="house" viewBox="0 0 640 440" role="img" aria-labelledby="house-title house-desc" data-house style="--house-structure: #2F4F4F; --house-panel: #F5F5F5">
               <title id="house-title">Anteprima della casetta Sally</title>
               <desc id="house-desc" data-house-desc>Struttura Antracite, pannelli Bianco.</desc>
@@ -66,7 +70,8 @@
                 .house .h-light { fill: #fff; opacity: .14; }
                 .house .h-groove { stroke: #000; stroke-opacity: .12; stroke-width: 1.5; }
                 .house .h-glass { fill: url(#house-glass); }
-                .house .h-glass-side { fill: url(#house-glass); stroke: var(--house-structure); stroke-width: 6; stroke-linejoin: round; transition: stroke .35s ease; }
+                .house .h-roof { fill: #8e9496; stroke: rgba(0,0,0,.22); stroke-width: 1; }
+                .house .h-rib { stroke: #000; stroke-opacity: .18; stroke-width: 2; }
                 @media (prefers-reduced-motion: reduce) { .house * { transition: none !important; } }
               </style>
               <defs>
@@ -74,48 +79,70 @@
                   <stop offset="0" stop-color="#d9e8ee"/><stop offset=".55" stop-color="#93b5c4"/><stop offset="1" stop-color="#5a7a89"/>
                 </linearGradient>
               </defs>
-              <ellipse cx="330" cy="392" rx="290" ry="22" fill="#000" opacity=".12"/>
+              <ellipse cx="350" cy="392" rx="270" ry="20" fill="#000" opacity=".12"/>
               <!-- side wall -->
-              <polygon class="h-panel" points="420,152 540,124 540,352 420,380"/>
-              <g class="h-groove"><line x1="450" y1="145.0" x2="450" y2="373.0"/><line x1="480" y1="138.0" x2="480" y2="366.0"/><line x1="510" y1="131.0" x2="510" y2="359.0"/></g>
-              <polygon class="h-shade" points="420,152 540,124 540,352 420,380"/>
-              <polygon class="h-glass-side" points="458,191 502,181 502,231 458,241"/>
-              <polygon class="h-structure" points="530,126 540,124 540,352 530,354"/>
-              <polygon class="h-shade" points="530,126 540,124 540,352 530,354"/>
-              <!-- front wall -->
-              <rect class="h-panel" x="120" y="152" width="300" height="228"/>
-              <g class="h-groove"><line x1="150" y1="154" x2="150" y2="378"/><line x1="180" y1="154" x2="180" y2="378"/><line x1="210" y1="154" x2="210" y2="378"/><line x1="240" y1="154" x2="240" y2="378"/><line x1="270" y1="154" x2="270" y2="378"/><line x1="300" y1="154" x2="300" y2="378"/><line x1="330" y1="154" x2="330" y2="378"/><line x1="360" y1="154" x2="360" y2="378"/><line x1="390" y1="154" x2="390" y2="378"/></g>
-              <!-- plinth -->
-              <polygon class="h-structure" points="428,378 548,350 548,362 428,390"/>
-              <polygon class="h-shade" points="428,378 548,350 548,362 428,390"/>
-              <rect class="h-structure" x="112" y="378" width="316" height="12"/>
-              <!-- corner posts -->
-              <rect class="h-structure" x="120" y="152" width="12" height="228"/>
-              <rect class="h-structure" x="408" y="152" width="12" height="228"/>
+              <polygon class="h-panel" points="430.0,106.0 540.0,76.0 540.0,360.0 430.0,390.0"/>
+              <g class="h-groove"><line x1="430.0" y1="137.6" x2="540.0" y2="107.6"/><line x1="430.0" y1="169.1" x2="540.0" y2="139.1"/><line x1="430.0" y1="200.7" x2="540.0" y2="170.7"/><line x1="430.0" y1="232.2" x2="540.0" y2="202.2"/><line x1="430.0" y1="263.8" x2="540.0" y2="233.8"/><line x1="430.0" y1="295.3" x2="540.0" y2="265.3"/><line x1="430.0" y1="326.9" x2="540.0" y2="296.9"/><line x1="430.0" y1="358.4" x2="540.0" y2="328.4"/></g>
+              <polygon class="h-shade" points="430.0,106.0 540.0,76.0 540.0,360.0 430.0,390.0"/>
+              <polygon class="h-structure" points="430.0,106.0 439.9,103.3 439.9,387.3 430.0,390.0"/>
+              <polygon class="h-shade" points="430.0,106.0 439.9,103.3 439.9,387.3 430.0,390.0"/>
+              <polygon class="h-structure" points="530.1,78.7 540.0,76.0 540.0,360.0 530.1,362.7"/>
+              <polygon class="h-shade" points="530.1,78.7 540.0,76.0 540.0,360.0 530.1,362.7"/>
+              <polygon class="h-structure" points="430.0,106.0 540.0,76.0 540.0,90.2 430.0,120.2"/>
+              <polygon class="h-shade" points="430.0,106.0 540.0,76.0 540.0,90.2 430.0,120.2"/>
+              <polygon class="h-structure" points="430.0,382.9 540.0,352.9 540.0,360.0 430.0,390.0"/>
+              <polygon class="h-shade" points="430.0,382.9 540.0,352.9 540.0,360.0 430.0,390.0"/>
               <!-- roof -->
-              <polygon class="h-structure" points="104,126 436,126 556,98 224,98"/>
-              <polygon class="h-light" points="104,126 436,126 556,98 224,98"/>
-              <polygon class="h-structure" points="436,126 556,98 556,124 436,152"/>
-              <polygon class="h-shade" points="436,126 556,98 556,124 436,152"/>
-              <rect class="h-structure" x="104" y="126" width="332" height="26"/>
-              <!-- door -->
-              <rect class="h-structure" x="160" y="206" width="84" height="172"/>
-              <rect class="h-panel" x="168" y="214" width="68" height="164"/>
-              <rect class="h-shade" x="168" y="214" width="68" height="164" opacity=".08"/>
-              <rect class="h-glass" x="180" y="228" width="44" height="96" rx="2"/>
-              <rect x="224" y="300" width="5" height="22" rx="2" fill="#2b2b2b"/>
+              <polygon class="h-structure" points="130.0,106.0 430.0,106.0 540.0,76.0 240.0,76.0"/>
+              <polygon class="h-light" points="130.0,106.0 430.0,106.0 540.0,76.0 240.0,76.0"/>
+              <polygon class="h-roof" points="154.4,101.8 436.4,101.8 515.6,80.2 233.6,80.2"/>
+              <g class="h-rib"><line x1="185.7" y1="101.8" x2="264.9" y2="80.2"/><line x1="217.1" y1="101.8" x2="296.3" y2="80.2"/><line x1="248.4" y1="101.8" x2="327.6" y2="80.2"/><line x1="279.7" y1="101.8" x2="358.9" y2="80.2"/><line x1="311.1" y1="101.8" x2="390.3" y2="80.2"/><line x1="342.4" y1="101.8" x2="421.6" y2="80.2"/><line x1="373.7" y1="101.8" x2="452.9" y2="80.2"/><line x1="405.1" y1="101.8" x2="484.3" y2="80.2"/></g>
+              <!-- front wall -->
+              <rect class="h-panel" x="130.0" y="106.0" width="300.0" height="284.0"/>
+              <g class="h-groove"><line x1="130" y1="137.6" x2="430" y2="137.6"/><line x1="130" y1="169.1" x2="430" y2="169.1"/><line x1="130" y1="200.7" x2="430" y2="200.7"/><line x1="130" y1="232.2" x2="430" y2="232.2"/><line x1="130" y1="263.8" x2="430" y2="263.8"/><line x1="130" y1="295.3" x2="430" y2="295.3"/><line x1="130" y1="326.9" x2="430" y2="326.9"/><line x1="130" y1="358.4" x2="430" y2="358.4"/></g>
               <!-- window -->
-              <rect class="h-structure" x="272" y="206" width="112" height="96"/>
-              <rect class="h-glass" x="280" y="214" width="96" height="80"/>
-              <rect class="h-structure" x="325" y="214" width="6" height="80"/>
-              <polygon points="286,288 318,220 326,220 294,288" fill="#fff" opacity=".35"/>
-              <polygon points="336,288 362,232 368,232 342,288" fill="#fff" opacity=".25"/>
+              <rect class="h-structure" x="190.0" y="165.6" width="30.0" height="178.9"/>
+              <rect class="h-glass" x="197.0" y="172.6" width="16.0" height="164.9"/>
+              <polygon points="199.0,235.6 211.0,205.6 211.0,219.6 199.0,249.6" fill="#fff" opacity=".35"/>
+              <polygon points="199.0,285.6 211.0,263.6 211.0,269.6 199.0,291.6" fill="#fff" opacity=".25"/>
+              <!-- door -->
+              <rect class="h-structure" x="265.0" y="165.6" width="108.0" height="224.4"/>
+              <rect class="h-panel" x="277.0" y="177.6" width="84.0" height="212.4"/>
+              <g class="h-groove"><line x1="277.0" y1="305.9" x2="361.0" y2="305.9"/><line x1="277.0" y1="333.9" x2="361.0" y2="333.9"/><line x1="277.0" y1="362.0" x2="361.0" y2="362.0"/></g>
+              <rect class="h-glass" x="285.0" y="185.6" width="68.0" height="92.2"/>
+              <polygon points="289.0,263.8 329.0,189.6 341.0,189.6 301.0,263.8" fill="#fff" opacity=".35"/>
+              <polygon points="321.0,271.8 349.0,217.6 349.0,227.6 329.0,271.8" fill="#fff" opacity=".22"/>
+              <rect class="h-structure" x="277.0" y="277.8" width="84.0" height="6.0"/>
+              <rect x="283.0" y="295.8" width="5" height="22" rx="2" fill="#2b2b2b"/>
+              <!-- frame -->
+              <rect class="h-structure" x="130.0" y="106.0" width="300.0" height="14.0"/>
+              <rect class="h-structure" x="130.0" y="383.0" width="300.0" height="7.0"/>
+              <rect class="h-structure" x="130.0" y="106.0" width="12.0" height="284.0"/>
+              <rect class="h-structure" x="418.0" y="106.0" width="12.0" height="284.0"/>
+              <rect class="h-light" x="130.0" y="106.0" width="300.0" height="5.0"/>
               <!-- planting -->
-              <g fill="#4d7a3a"><circle cx="96" cy="372" r="22"/><circle cx="122" cy="380" r="16"/><circle cx="74" cy="384" r="14"/></g>
-              <g fill="#6f9c4c"><circle cx="102" cy="364" r="12"/><circle cx="84" cy="376" r="9"/></g>
-              <g fill="none" stroke="#5b8a3e" stroke-width="3" stroke-linecap="round"><path d="M566 360c-2-14 2-24 8-32M574 362c2-12 8-20 16-24M560 362c-6-10-14-14-22-14"/></g>
-              <rect x="176" y="390" width="56" height="8" rx="3" fill="#b9b2a5"/>
+              <g fill="#4d7a3a"><circle cx="112" cy="376" r="22"/><circle cx="138" cy="384" r="15"/><circle cx="90" cy="386" r="13"/></g>
+              <g fill="#6f9c4c"><circle cx="118" cy="368" r="12"/><circle cx="100" cy="379" r="9"/></g>
+              <g fill="none" stroke="#5b8a3e" stroke-width="3" stroke-linecap="round"><path d="M560 368c-2-14 2-24 8-32M568 370c2-12 8-20 16-24M554 370c-6-10-14-14-22-14"/></g>
+              <rect x="289.0" y="394" width="60" height="8" rx="3" fill="#b9b2a5"/>
             </svg>
+          </div>
+          <div class="configurator__viewer" data-view-panel="3d" hidden>
+            <div class="configurator__viewer-stage" data-viewer-stage></div>
+            <div class="configurator__viewer-bar">
+              <p class="configurator__viewer-status" data-viewer-status aria-live="polite"></p>
+              <div class="configurator__viewer-tools">
+                <button class="viewer-btn" type="button" data-viewer-rotate="-1" aria-label="Ruota a sinistra">
+                  <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 2.3-5.6M4 4v4h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <button class="viewer-btn" type="button" data-viewer-rotate="1" aria-label="Ruota a destra">
+                  <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M20 12a8 8 0 1 1-2.3-5.6M20 4v4h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <button class="viewer-btn" type="button" data-viewer-reset aria-label="Torna alla vista iniziale">
+                  <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 10 12 4l8 6v10H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 20v-5h4v5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+                </button>
+              </div>
+            </div>
           </div>
           <figcaption class="configurator__summary" data-summary aria-live="polite">Struttura Antracite · Pannelli Bianco</figcaption>
         </figure>
