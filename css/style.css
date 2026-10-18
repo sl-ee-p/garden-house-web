@@ -1,29 +1,59 @@
 /* ==========================================================================
-   Techs Garden House — "Signature" design (design/signature branch)
-   Art direction from the brochure: the brochure's petrol green, warm
-   off-white, Montserrat from ExtraLight to Bold, Rufina for the wordmark.
-   Quiet, architectural, generous space; real photos and real finishes only.
+   Techs Garden House — "Signature Dark" design (signature-dark branch)
+   The Signature art direction (brochure petrol green, Montserrat from
+   ExtraLight to Bold, Rufina for the wordmark, generous space) moved to
+   night: layered near-blacks with a green undertone, warm off-white type,
+   a sage-teal accent and a sparing lantern amber. Real photos only.
    ========================================================================== */
 
 @font-face { font-family: 'Montserrat'; font-style: normal; font-weight: 200 800; font-display: swap; src: url(../assets/fonts/montserrat-normal.woff2) format('woff2'); }
 @font-face { font-family: 'Rufina'; font-style: normal; font-weight: 400; font-display: swap; src: url(../assets/fonts/rufina-400.woff2) format('woff2'); }
 @font-face { font-family: 'Rufina'; font-style: normal; font-weight: 700; font-display: swap; src: url(../assets/fonts/rufina-700.woff2) format('woff2'); }
 
-/* ---------- Design tokens ---------- */
+/* ---------- Design tokens ----------
+   Every colour on the site comes from here. Text pairs are checked against
+   WCAG AA (4.5:1) on all four surfaces; UI boundaries against 3:1. */
 :root {
-  --green: #02483e;          /* brochure brand green */
-  --green-deep: #013029;
-  --green-ink: #0b2b26;
-  --sage: #b9cdc4;           /* light text on green */
+  color-scheme: dark;
+
+  /* layered near-blacks, petrol-green undertone (never pure #000) */
+  --bg: #0b100f;             /* page */
+  --surface-1: #101715;      /* hero panel, inner-page intros */
+  --surface-2: #151e1b;      /* footer, credentials strip */
+  --surface-3: #1c2724;      /* raised UI: chips, image wells */
+  --bg-rgb: 11 16 15;        /* channels for translucent layers */
+  --scrim-rgb: 6 10 9;       /* photo scrims, lightbox backdrop */
+
+  /* brochure petrol green: atmosphere and fills, not text */
+  --green: #02483e;
+  --glow: #0c3a32;           /* centre of the radial glows */
+  --glow-edge: #08201c;
+  --fill: #0e5447;           /* primary button (white text 8.8:1) */
+  --fill-hover: #136656;
+
+  /* type */
+  --text: #e8ebe6;           /* 15.9:1 on --bg */
+  --text-muted: #a2aca7;     /*  8.2:1 on --bg, 6.6:1 on --surface-3 */
+  --sage: #b9cdc4;           /* secondary light text */
   --sage-soft: #dfe8e3;
-  --paper: #f7f5f0;
-  --stone: #ece8df;
   --white: #ffffff;
-  --ink: #15211e;
-  --muted: #56615d;
-  --line: rgb(21 33 30 / .14);
-  --line-light: rgb(255 255 255 / .22);
-  --focus: #e0b862;
+
+  /* accents */
+  --accent: #86c6b4;         /* sage-teal: links, eyebrows, numbers (9.8:1) */
+  --accent-warm: #e0b862;    /* lantern amber: focus, hover hairlines (10.2:1) */
+
+  --line: rgb(232 235 230 / .12);
+  --line-strong: rgb(232 235 230 / .3);
+  --line-light: rgb(255 255 255 / .2);
+  --focus: var(--accent-warm);
+
+  /* legacy names, mapped until every component uses the tokens above */
+  --green-deep: var(--surface-2);
+  --green-ink: var(--text);
+  --paper: var(--bg);
+  --stone: var(--surface-3);
+  --ink: var(--text);
+  --muted: var(--text-muted);
 
   --font-sans: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-serif: 'Rufina', Georgia, 'Times New Roman', serif;
@@ -57,16 +87,16 @@ body {
   font-size: var(--step-0);
   font-weight: 400;
   line-height: 1.75;
-  color: var(--ink);
-  background: var(--paper);
+  color: var(--text);
+  background: var(--bg);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 img, svg { max-width: 100%; height: auto; display: block; }
 h1, h2, h3 { margin: 0 0 var(--space-2); font-weight: 300; line-height: 1.12; letter-spacing: -.01em; text-wrap: balance; }
 p { margin: 0 0 var(--space-2); text-wrap: pretty; }
-a { color: var(--green); text-underline-offset: .22em; text-decoration-thickness: 1px; }
-a:hover { text-decoration-thickness: 2px; }
+a { color: var(--accent); text-underline-offset: .22em; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; text-decoration-color: var(--accent-warm); }
 ul[role="list"] { list-style: none; margin: 0; padding: 0; }
 figure { margin: 0; }
 fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
@@ -83,7 +113,7 @@ strong { font-weight: 600; }
 
 .skip-link {
   position: absolute; left: var(--space-2); top: -100px; z-index: 100;
-  padding: var(--space-1) var(--space-2); background: var(--white); color: var(--green); font-weight: 600;
+  padding: var(--space-1) var(--space-2); background: var(--text); color: var(--bg); font-weight: 600;
 }
 .skip-link:focus { top: var(--space-1); }
 
@@ -91,21 +121,21 @@ strong { font-weight: 600; }
   display: flex; align-items: center; gap: .9rem;
   margin-bottom: var(--space-3);
   font-size: var(--step--2); font-weight: 600; letter-spacing: .32em; text-transform: uppercase;
-  color: var(--green);
+  color: var(--accent);
 }
 .eyebrow::before { content: ""; width: 2.5rem; height: 1px; background: currentColor; flex: none; }
 .eyebrow--light { color: var(--sage); }
 
-.section-title { font-size: var(--step-3); font-weight: 300; color: var(--green-ink); }
+.section-title { font-size: var(--step-3); font-weight: 300; color: var(--text); }
 .section-title strong { font-weight: 700; }
-.section-lead { max-width: 40rem; font-size: var(--step-1); font-weight: 300; line-height: 1.7; color: var(--muted); }
+.section-lead { max-width: 40rem; font-size: var(--step-1); font-weight: 300; line-height: 1.7; color: var(--text-muted); }
 
 /* ---------- Buttons ---------- */
 .btn {
   position: relative;
   display: inline-flex; align-items: center; justify-content: center; gap: .75em;
   min-height: 52px; padding: .85em 1.9em;
-  border: 1px solid var(--green); border-radius: 0;
+  border: 1px solid var(--accent); border-radius: 0;
   font: inherit; font-size: var(--step--1); font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
   text-decoration: none; cursor: pointer;
   transition: background-color .35s var(--ease), color .35s var(--ease), border-color .35s var(--ease);
@@ -116,11 +146,11 @@ strong { font-weight: 600; }
 }
 .btn:hover::after { width: 2.2em; }
 .btn--plain::after { display: none; }
-.btn--primary { background: var(--green); color: var(--white); }
-.btn--primary:hover { background: var(--green-deep); border-color: var(--green-deep); }
-.btn--secondary, .btn--ghost { background: transparent; color: var(--green); }
-.btn--secondary:hover, .btn--ghost:hover { background: var(--green); color: var(--white); }
-.btn--light { background: var(--paper); border-color: var(--paper); color: var(--green); }
+.btn--primary { background: var(--fill); color: var(--white); }
+.btn--primary:hover { background: var(--fill-hover); border-color: var(--text); }
+.btn--secondary, .btn--ghost { background: transparent; color: var(--accent); }
+.btn--secondary:hover, .btn--ghost:hover { background: var(--accent); color: var(--bg); }
+.btn--light { background: var(--text); border-color: var(--text); color: var(--bg); }
 .btn--light:hover { background: var(--white); border-color: var(--white); }
 .btn--outline-light { background: transparent; border-color: rgb(255 255 255 / .55); color: var(--white); }
 .btn--outline-light:hover { background: rgb(255 255 255 / .1); border-color: var(--white); }
