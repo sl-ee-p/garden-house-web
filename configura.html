@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Configura la tua Sally · Sally Garden House</title>
+  <meta name="description" content="Scegli il colore di struttura e pannelli della tua casetta da giardino Sally e richiedi un preventivo.">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script src="js/main.js" defer></script>
+</head>
+<body class="page-configura">
+  <a class="skip-link" href="#main">Vai al contenuto</a>
+
+  <header class="site-header" id="top" data-header>
+    <div class="site-header__inner container">
+      <a class="brand" href="index.html">
+        <svg class="brand__mark" viewBox="0 0 32 32" width="32" height="32" aria-hidden="true" focusable="false">
+          <path d="M4 14 16 5l12 9v13H4z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
+          <path d="M12 27v-7h8v7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
+          <path d="M16 15c3-4 7-4 8-3-1 4-5 5-8 3z" fill="currentColor"/>
+        </svg>
+        <span class="brand__name">Garden<span class="brand__accent">House</span></span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+        <span class="nav-toggle__icon" aria-hidden="true"><span></span></span>
+        <span class="nav-toggle__label">Menu</span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Principale" data-nav>
+        <ul class="site-nav__list">
+          <li class="site-nav__item"><a class="site-nav__link" href="index.html">Home</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="galleria.html">Galleria</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="configura.html" aria-current="page">Configura</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="contatti.html">Contatti</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-intro" aria-labelledby="page-title">
+      <div class="page-intro__inner container">
+        <p class="eyebrow">Configuratore</p>
+        <h1 class="page-intro__title" id="page-title">Configura la tua Sally</h1>
+        <p class="page-intro__lead">Scegli il colore della struttura e dei pannelli: l’anteprima si aggiorna subito. Quando ti piace, chiedici un preventivo.</p>
+      </div>
+    </section>
+
+    <section class="configurator" aria-labelledby="cfg-title">
+      <div class="configurator__inner container">
+        <figure class="configurator__stage">
+          <div class="configurator__canvas">
+            <svg class="house" viewBox="0 0 640 440" role="img" aria-labelledby="house-title house-desc" data-house style="--house-structure: #2F4F4F; --house-panel: #F5F5F5">
+              <title id="house-title">Anteprima della casetta Sally</title>
+              <desc id="house-desc" data-house-desc>Struttura Antracite, pannelli Bianco.</desc>
+              <style>
+                .house .h-structure { fill: var(--house-structure); stroke: rgba(0,0,0,.22); stroke-width: 1; transition: fill .35s ease; }
+                .house .h-panel { fill: var(--house-panel); stroke: rgba(0,0,0,.22); stroke-width: 1; transition: fill .35s ease; }
+                .house .h-shade { fill: #000; opacity: .2; }
+                .house .h-light { fill: #fff; opacity: .14; }
+                .house .h-groove { stroke: #000; stroke-opacity: .12; stroke-width: 1.5; }
+                .house .h-glass { fill: url(#house-glass); }
+                .house .h-glass-side { fill: url(#house-glass); stroke: var(--house-structure); stroke-width: 6; stroke-linejoin: round; transition: stroke .35s ease; }
+                @media (prefers-reduced-motion: reduce) { .house * { transition: none !important; } }
+              </style>
+              <defs>
+                <linearGradient id="house-glass" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#d9e8ee"/><stop offset=".55" stop-color="#93b5c4"/><stop offset="1" stop-color="#5a7a89"/>
+                </linearGradient>
+              </defs>
+              <ellipse cx="330" cy="392" rx="290" ry="22" fill="#000" opacity=".12"/>
+              <!-- side wall -->
+              <polygon class="h-panel" points="420,152 540,124 540,352 420,380"/>
+              <g class="h-groove"><line x1="450" y1="145.0" x2="450" y2="373.0"/><line x1="480" y1="138.0" x2="480" y2="366.0"/><line x1="510" y1="131.0" x2="510" y2="359.0"/></g>
+              <polygon class="h-shade" points="420,152 540,124 540,352 420,380"/>
+              <polygon class="h-glass-side" points="458,191 502,181 502,231 458,241"/>
+              <polygon class="h-structure" points="530,126 540,124 540,352 530,354"/>
+              <polygon class="h-shade" points="530,126 540,124 540,352 530,354"/>
+              <!-- front wall -->
+              <rect class="h-panel" x="120" y="152" width="300" height="228"/>
+              <g class="h-groove"><line x1="150" y1="154" x2="150" y2="378"/><line x1="180" y1="154" x2="180" y2="378"/><line x1="210" y1="154" x2="210" y2="378"/><line x1="240" y1="154" x2="240" y2="378"/><line x1="270" y1="154" x2="270" y2="378"/><line x1="300" y1="154" x2="300" y2="378"/><line x1="330" y1="154" x2="330" y2="378"/><line x1="360" y1="154" x2="360" y2="378"/><line x1="390" y1="154" x2="390" y2="378"/></g>
+              <!-- plinth -->
+              <polygon class="h-structure" points="428,378 548,350 548,362 428,390"/>
+              <polygon class="h-shade" points="428,378 548,350 548,362 428,390"/>
+              <rect class="h-structure" x="112" y="378" width="316" height="12"/>
+              <!-- corner posts -->
+              <rect class="h-structure" x="120" y="152" width="12" height="228"/>
+              <rect class="h-structure" x="408" y="152" width="12" height="228"/>
+              <!-- roof -->
+              <polygon class="h-structure" points="104,126 436,126 556,98 224,98"/>
+              <polygon class="h-light" points="104,126 436,126 556,98 224,98"/>
+              <polygon class="h-structure" points="436,126 556,98 556,124 436,152"/>
+              <polygon class="h-shade" points="436,126 556,98 556,124 436,152"/>
+              <rect class="h-structure" x="104" y="126" width="332" height="26"/>
+              <!-- door -->
+              <rect class="h-structure" x="160" y="206" width="84" height="172"/>
+              <rect class="h-panel" x="168" y="214" width="68" height="164"/>
+              <rect class="h-shade" x="168" y="214" width="68" height="164" opacity=".08"/>
+              <rect class="h-glass" x="180" y="228" width="44" height="96" rx="2"/>
+              <rect x="224" y="300" width="5" height="22" rx="2" fill="#2b2b2b"/>
+              <!-- window -->
+              <rect class="h-structure" x="272" y="206" width="112" height="96"/>
+              <rect class="h-glass" x="280" y="214" width="96" height="80"/>
+              <rect class="h-structure" x="325" y="214" width="6" height="80"/>
+              <polygon points="286,288 318,220 326,220 294,288" fill="#fff" opacity=".35"/>
+              <polygon points="336,288 362,232 368,232 342,288" fill="#fff" opacity=".25"/>
+              <!-- planting -->
+              <g fill="#4d7a3a"><circle cx="96" cy="372" r="22"/><circle cx="122" cy="380" r="16"/><circle cx="74" cy="384" r="14"/></g>
+              <g fill="#6f9c4c"><circle cx="102" cy="364" r="12"/><circle cx="84" cy="376" r="9"/></g>
+              <g fill="none" stroke="#5b8a3e" stroke-width="3" stroke-linecap="round"><path d="M566 360c-2-14 2-24 8-32M574 362c2-12 8-20 16-24M560 362c-6-10-14-14-22-14"/></g>
+              <rect x="176" y="390" width="56" height="8" rx="3" fill="#b9b2a5"/>
+            </svg>
+          </div>
+          <figcaption class="configurator__summary" data-summary aria-live="polite">Struttura Antracite · Pannelli Bianco</figcaption>
+        </figure>
+
+        <form class="configurator__panel" data-configurator action="#" aria-labelledby="cfg-title">
+          <h2 class="configurator__title" id="cfg-title">Scegli i colori</h2>
+          <fieldset class="swatches" data-part="struttura">
+            <legend class="swatches__legend">Struttura <span class="swatches__current" data-current="struttura"></span></legend>
+            <p class="swatches__hint">Telaio, profili, tetto e cornici.</p>
+            <div class="swatches__list">
+              <label class="swatch">
+                <input class="swatch__input" type="radio" name="struttura" value="marrone" data-color="#8B4513">
+                <span class="swatch__chip" style="--swatch: #8B4513" aria-hidden="true"></span>
+                <span class="swatch__name">Marrone</span>
+              </label>
+              <label class="swatch">
+                <input class="swatch__input" type="radio" name="struttura" value="verde" data-color="#178048">
+                <span class="swatch__chip" style="--swatch: #178048" aria-hidden="true"></span>
+                <span class="swatch__name">Verde</span>
+              </label>
+              <label class="swatch">
+                <input class="swatch__input" type="radio" name="struttura" value="grigio-chiaro" data-color="#9DA6A1">
+                <span class="swatch__chip" style="--swatch: #9DA6A1" aria-hidden="true"></span>
+                <span class="swatch__name">Grigio chiaro</span>
+              </label>
+              <label class="swatch">
+                <input class="swatch__input" type="radio" name="struttura" value="ocra" data-color="#F4A300">
+                <span class="swatch__chip" style="--swatch: #F4A300" aria-hidden="true"></span>
+                <span class="swatch__name">Ocra</span>
+              </label>
+              <label class="swatch">
+                <input class="swatch__input" type="radio" name="struttura" value="bianco" data-color="#F5F5F5">
+                <span class="swatch__chip" style="--swatch: #F5F5F5" aria-hidden="true"></span>
+                <span class="swatch__name">Bianco</span>
+              </label>
+              <label class="swatch">
+                <input class="swatch__input" type="radio" name="struttura" value="antracite" data-color="#2F4F4F" checked>
+                <span class="swatch__chip" style="--swatch: #2F4F4F" aria-hidden="true"></span>
+                <span class="swatch__name">Antracite</span>
+              </label>
+              <label class="swatch">
+                <input class="swatch__input" type="radio" name="struttura" value="lilla" data-color="#CFABD6">
+                <span class="swatch__chip" style="--swatch: #CFABD6" aria-hidden="true"></span>
+                <span class="swatch__name">Lilla</span>
+              </label>
+              <label class="swatch">
+                <input class="swatch__input" type="radio" name="struttura" value="rosso" data-color="#DB2612">
+                <span class="swatch__chip" style="--swatch: #DB2612" aria-hidden="true"></span>
+                <span class="swatch__name">Rosso</span>
+              </label>
+              <label class="swatch">
+                <input class="swatch__input" type="radio" name="struttura" value="azzurro" data-color="#12C0E3">
+                <span class="swatch__chip" style="--swatch: #12C0E3" aria-hidden="true"></span>
+                <span class="swatch__name">Azzurro</span>
+              </label>
+            </div>
+          </fieldset>
+          <fieldset class="swatches" data-part="pannelli">
+            <legend class="swatches__legend">Pannelli <span class="swatches__current" data-current="pannelli"></span></legend>
+            <p class="swatches__hint">Pareti e anta della porta.</p>
+            <div class="swatches__list">
+              <label class="swatch">
+                <input class="swatch__input" type="radio" name="pannelli" value="marrone" data-color="#8B4513">
+                <span class="swatch__chip" style="--swatch: #8B4513" aria-hidden="true"></span>
+                <span class="swatch__name">Marrone</span>
+              </label>
+              <label class="swatch">
+                <input class="swatch__input" type="radio" name="pannelli" value="verde" data-color="#178048">
+                <span class="swatch__chip" style="--swatch: #178048" aria-hidden="true"></span>
+                <span class="swatch__name">Verde</span>
+              </label>
+              <label class="swatch">
+                <input class="swatch__input" type="radio" name="pannelli" value="grigio-chiaro" data-color="#9DA6A1">
+                <span class="swatch__chip" style="--swatch: #9DA6A1" aria-hidden="true"></span>
+                <span class="swatch__name">Grigio chiaro</span>
+              </label>
+              <label class="swatch">
+                <input class="swatch__input" type="radio" name="pannelli" value="ocra" data-color="#F4A300">
+                <span class="swatch__chip" style="--swatch: #F4A300" aria-hidden="true"></span>
+                <span class="swatch__name">Ocra</span>
+              </label>
+              <label class="swatch">
+                <input class="swatch__input" type="radio" name="pannelli" value="bianco" data-color="#F5F5F5" checked>
+                <span class="swatch__chip" style="--swatch: #F5F5F5" aria-hidden="true"></span>
+                <span class="swatch__name">Bianco</span>
+              </label>
+              <label class="swatch">
+                <input class="swatch__input" type="radio" name="pannelli" value="antracite" data-color="#2F4F4F">
+                <span class="swatch__chip" style="--swatch: #2F4F4F" aria-hidden="true"></span>
+                <span class="swatch__name">Antracite</span>
+              </label>
+              <label class="swatch">
+                <input class="swatch__input" type="radio" name="pannelli" value="lilla" data-color="#CFABD6">
+                <span class="swatch__chip" style="--swatch: #CFABD6" aria-hidden="true"></span>
+                <span class="swatch__name">Lilla</span>
+              </label>
+              <label class="swatch">
+                <input class="swatch__input" type="radio" name="pannelli" value="rosso" data-color="#DB2612">
+                <span class="swatch__chip" style="--swatch: #DB2612" aria-hidden="true"></span>
+                <span class="swatch__name">Rosso</span>
+              </label>
+              <label class="swatch">
+                <input class="swatch__input" type="radio" name="pannelli" value="azzurro" data-color="#12C0E3">
+                <span class="swatch__chip" style="--swatch: #12C0E3" aria-hidden="true"></span>
+                <span class="swatch__name">Azzurro</span>
+              </label>
+            </div>
+          </fieldset>
+          <div class="configurator__actions">
+            <a class="btn btn--primary" href="mailto:vailfabio05@gmail.com?subject=Preventivo%20Sally&amp;body=Struttura%3A%20Antracite%0APannelli%3A%20Bianco" data-quote>Richiedi preventivo</a>
+            <button class="btn btn--ghost" type="reset" data-reset>Ripristina</button>
+          </div>
+          <p class="configurator__note">I colori a schermo sono indicativi. Altre tinte e finiture sono disponibili su richiesta.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner container">
+      <div class="site-footer__brand">
+        <a class="brand brand--footer" href="index.html">
+          <svg class="brand__mark" viewBox="0 0 32 32" width="32" height="32" aria-hidden="true" focusable="false">
+            <path d="M4 14 16 5l12 9v13H4z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
+            <path d="M12 27v-7h8v7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
+            <path d="M16 15c3-4 7-4 8-3-1 4-5 5-8 3z" fill="currentColor"/>
+          </svg>
+          <span class="brand__name">Garden<span class="brand__accent">House</span></span>
+        </a>
+        <p class="site-footer__pitch">Scegli la tua casetta da giardino, dalle i tuoi colori e immaginala nel tuo spazio verde prima ancora di ordinarla.</p>
+        <p class="site-footer__contact"><a href="mailto:vailfabio05@gmail.com">vailfabio05@gmail.com</a></p>
+      </div>
+
+      <nav class="site-footer__nav" aria-labelledby="footer-links-title">
+        <h2 class="site-footer__title" id="footer-links-title">Link utili</h2>
+        <ul class="site-footer__list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="galleria.html">Galleria</a></li>
+          <li><a href="configura.html">Configura</a></li>
+          <li><a href="contatti.html">Contatti</a></li>
+        </ul>
+      </nav>
+
+      <div class="site-footer__adi">
+        <h2 class="site-footer__title">Design registrato</h2>
+        <p>Il progetto Sally è depositato presso l’ADI, Associazione per il Disegno Industriale, nel Registro dei progetti con prot. n. 3880.</p>
+      </div>
+    </div>
+
+    <div class="site-footer__bottom container">
+      <p class="site-footer__copy">© <span data-year>2026</span> GardenHouse. Tutti i diritti riservati.</p>
+      <a class="site-footer__top" href="#top">Torna su</a>
+    </div>
+  </footer>
+</body>
+</html>
