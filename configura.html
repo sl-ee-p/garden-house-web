@@ -3,26 +3,25 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Configura la tua Sally · Sally Garden House</title>
-  <meta name="description" content="Scegli il colore di struttura e pannelli della tua casetta da giardino Sally e richiedi un preventivo.">
-  <meta name="theme-color" content="#ffffff">
+  <title>Configura la tua Sally · Techs Garden House</title>
+  <meta name="description" content="Configura Sally di Techs Garden House: scegli il colore del telaio e una delle 16 finiture dei pannelli, guarda il modello 3D e richiedi un preventivo.">
+  <meta name="theme-color" content="#02483e">
   <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="preload" href="assets/fonts/montserrat-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/rufina-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
   <script>document.documentElement.classList.add('js');</script>
   <script src="js/main.js" defer></script>
+  <script src="js/signature.js" defer></script>
 </head>
 <body class="page-configura">
   <a class="skip-link" href="#main">Vai al contenuto</a>
 
   <header class="site-header" id="top" data-header>
     <div class="site-header__inner container">
-      <a class="brand" href="index.html">
-        <svg class="brand__mark" viewBox="0 0 32 32" width="32" height="32" aria-hidden="true" focusable="false">
-          <path d="M4 14 16 5l12 9v13H4z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
-          <path d="M12 27v-7h8v7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
-          <path d="M16 15c3-4 7-4 8-3-1 4-5 5-8 3z" fill="currentColor"/>
-        </svg>
-        <span class="brand__name">Garden<span class="brand__accent">House</span></span>
+      <a class="brand" href="index.html" aria-label="Techs Garden House, home">
+        <span class="brand__name" aria-hidden="true">TECHS-<span class="brand__over">GARDENHOUSE</span></span>
+        <span class="brand__sub" aria-hidden="true">Sally · Outdoor living</span>
       </a>
 
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
@@ -34,19 +33,19 @@
         <ul class="site-nav__list">
           <li class="site-nav__item"><a class="site-nav__link" href="index.html">Home</a></li>
           <li class="site-nav__item"><a class="site-nav__link" href="galleria.html">Galleria</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="configura.html" aria-current="page">Configura</a></li>
           <li class="site-nav__item"><a class="site-nav__link" href="contatti.html">Contatti</a></li>
+          <li class="site-nav__item site-nav__item--cta"><a class="site-nav__link" href="configura.html" aria-current="page">Configura</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
   <main id="main">
-    <section class="page-intro" aria-labelledby="page-title">
+    <section class="page-intro page-intro--compact" aria-labelledby="page-title">
       <div class="page-intro__inner container">
-        <p class="eyebrow">Configuratore</p>
-        <h1 class="page-intro__title" id="page-title">Configura la tua Sally</h1>
-        <p class="page-intro__lead">Scegli il colore della struttura e dei pannelli: l’anteprima si aggiorna subito. Quando ti piace, chiedici un preventivo.</p>
+        <p class="eyebrow eyebrow--light">Configuratore</p>
+        <h1 class="page-intro__title" id="page-title"><span>Configura la</span> tua Sally</h1>
+        <p class="page-intro__lead">Scegli il telaio e una delle sedici finiture dei pannelli: il modello si aggiorna subito. Quando ti piace, chiedici un preventivo.</p>
       </div>
     </section>
 
@@ -54,13 +53,13 @@
       <div class="configurator__inner container">
         <figure class="configurator__stage">
           <div class="view-switch" role="group" aria-label="Tipo di anteprima" data-view-switch hidden>
-            <button class="view-switch__btn" type="button" data-view="2d" aria-pressed="true">Disegno</button>
             <button class="view-switch__btn" type="button" data-view="3d" aria-pressed="false">Modello 3D</button>
+            <button class="view-switch__btn" type="button" data-view="2d" aria-pressed="true">Disegno</button>
           </div>
           <div class="configurator__canvas" data-view-panel="2d">
-            <svg class="house" viewBox="0 0 640 440" role="img" aria-labelledby="house-title house-desc" data-house style="--house-structure: #2F4F4F; --house-panel: #F5F5F5">
+            <svg class="house" viewBox="0 0 640 440" role="img" aria-labelledby="house-title house-desc" data-house style="--house-structure: #F5F5F5; --house-panel: #e9e4db">
               <title id="house-title">Anteprima della casetta Sally</title>
-              <desc id="house-desc" data-house-desc>Struttura Antracite, pannelli Bianco.</desc>
+              <desc id="house-desc" data-house-desc>Struttura Bianco, pannelli Doga centrale goffrato RAL 9010.</desc>
               <style>
                 .house .h-structure { fill: var(--house-structure); stroke: rgba(0,0,0,.22); stroke-width: 1; transition: fill .35s ease; }
                 .house .h-panel { fill: var(--house-panel); stroke: rgba(0,0,0,.22); stroke-width: 1; transition: fill .35s ease; }
@@ -142,24 +141,24 @@
               </div>
             </div>
           </div>
-          <figcaption class="configurator__summary" data-summary aria-live="polite">Struttura Antracite · Pannelli Bianco</figcaption>
+          <figcaption class="configurator__summary" data-summary aria-live="polite">Struttura Bianco · Pannelli Doga centrale goffrato RAL 9010</figcaption>
         </figure>
 
         <form class="configurator__panel" data-configurator action="#" aria-labelledby="cfg-title">
-          <h2 class="configurator__title" id="cfg-title">Scegli i colori</h2>
+          <h2 class="configurator__title" id="cfg-title">Scegli struttura e pannelli</h2>
           <fieldset class="swatches" data-part="struttura">
             <legend class="swatches__legend">Struttura <span class="swatches__current" data-current="struttura"></span></legend>
-            <p class="swatches__hint">Telaio, profili, tetto e cornici.</p>
+            <p class="swatches__hint">Struttura, profili, tetto e cornici di porta e finestra.</p>
             <div class="swatches__list">
               <label class="swatch">
-                <input class="swatch__input" type="radio" name="struttura" value="marrone" data-color="#8B4513">
-                <span class="swatch__chip" style="--swatch: #8B4513" aria-hidden="true"></span>
-                <span class="swatch__name">Marrone</span>
+                <input class="swatch__input" type="radio" name="struttura" value="bianco" data-color="#F5F5F5" checked>
+                <span class="swatch__chip" style="--swatch: #F5F5F5" aria-hidden="true"></span>
+                <span class="swatch__name">Bianco</span>
               </label>
               <label class="swatch">
-                <input class="swatch__input" type="radio" name="struttura" value="verde" data-color="#178048">
-                <span class="swatch__chip" style="--swatch: #178048" aria-hidden="true"></span>
-                <span class="swatch__name">Verde</span>
+                <input class="swatch__input" type="radio" name="struttura" value="antracite" data-color="#2F4F4F">
+                <span class="swatch__chip" style="--swatch: #2F4F4F" aria-hidden="true"></span>
+                <span class="swatch__name">Antracite</span>
               </label>
               <label class="swatch">
                 <input class="swatch__input" type="radio" name="struttura" value="grigio-chiaro" data-color="#9DA6A1">
@@ -167,24 +166,19 @@
                 <span class="swatch__name">Grigio chiaro</span>
               </label>
               <label class="swatch">
+                <input class="swatch__input" type="radio" name="struttura" value="verde" data-color="#178048">
+                <span class="swatch__chip" style="--swatch: #178048" aria-hidden="true"></span>
+                <span class="swatch__name">Verde</span>
+              </label>
+              <label class="swatch">
+                <input class="swatch__input" type="radio" name="struttura" value="marrone" data-color="#8B4513">
+                <span class="swatch__chip" style="--swatch: #8B4513" aria-hidden="true"></span>
+                <span class="swatch__name">Marrone</span>
+              </label>
+              <label class="swatch">
                 <input class="swatch__input" type="radio" name="struttura" value="ocra" data-color="#F4A300">
                 <span class="swatch__chip" style="--swatch: #F4A300" aria-hidden="true"></span>
                 <span class="swatch__name">Ocra</span>
-              </label>
-              <label class="swatch">
-                <input class="swatch__input" type="radio" name="struttura" value="bianco" data-color="#F5F5F5">
-                <span class="swatch__chip" style="--swatch: #F5F5F5" aria-hidden="true"></span>
-                <span class="swatch__name">Bianco</span>
-              </label>
-              <label class="swatch">
-                <input class="swatch__input" type="radio" name="struttura" value="antracite" data-color="#2F4F4F" checked>
-                <span class="swatch__chip" style="--swatch: #2F4F4F" aria-hidden="true"></span>
-                <span class="swatch__name">Antracite</span>
-              </label>
-              <label class="swatch">
-                <input class="swatch__input" type="radio" name="struttura" value="lilla" data-color="#CFABD6">
-                <span class="swatch__chip" style="--swatch: #CFABD6" aria-hidden="true"></span>
-                <span class="swatch__name">Lilla</span>
               </label>
               <label class="swatch">
                 <input class="swatch__input" type="radio" name="struttura" value="rosso" data-color="#DB2612">
@@ -196,64 +190,104 @@
                 <span class="swatch__chip" style="--swatch: #12C0E3" aria-hidden="true"></span>
                 <span class="swatch__name">Azzurro</span>
               </label>
-            </div>
-          </fieldset>
-          <fieldset class="swatches" data-part="pannelli">
-            <legend class="swatches__legend">Pannelli <span class="swatches__current" data-current="pannelli"></span></legend>
-            <p class="swatches__hint">Pareti e anta della porta.</p>
-            <div class="swatches__list">
               <label class="swatch">
-                <input class="swatch__input" type="radio" name="pannelli" value="marrone" data-color="#8B4513">
-                <span class="swatch__chip" style="--swatch: #8B4513" aria-hidden="true"></span>
-                <span class="swatch__name">Marrone</span>
-              </label>
-              <label class="swatch">
-                <input class="swatch__input" type="radio" name="pannelli" value="verde" data-color="#178048">
-                <span class="swatch__chip" style="--swatch: #178048" aria-hidden="true"></span>
-                <span class="swatch__name">Verde</span>
-              </label>
-              <label class="swatch">
-                <input class="swatch__input" type="radio" name="pannelli" value="grigio-chiaro" data-color="#9DA6A1">
-                <span class="swatch__chip" style="--swatch: #9DA6A1" aria-hidden="true"></span>
-                <span class="swatch__name">Grigio chiaro</span>
-              </label>
-              <label class="swatch">
-                <input class="swatch__input" type="radio" name="pannelli" value="ocra" data-color="#F4A300">
-                <span class="swatch__chip" style="--swatch: #F4A300" aria-hidden="true"></span>
-                <span class="swatch__name">Ocra</span>
-              </label>
-              <label class="swatch">
-                <input class="swatch__input" type="radio" name="pannelli" value="bianco" data-color="#F5F5F5" checked>
-                <span class="swatch__chip" style="--swatch: #F5F5F5" aria-hidden="true"></span>
-                <span class="swatch__name">Bianco</span>
-              </label>
-              <label class="swatch">
-                <input class="swatch__input" type="radio" name="pannelli" value="antracite" data-color="#2F4F4F">
-                <span class="swatch__chip" style="--swatch: #2F4F4F" aria-hidden="true"></span>
-                <span class="swatch__name">Antracite</span>
-              </label>
-              <label class="swatch">
-                <input class="swatch__input" type="radio" name="pannelli" value="lilla" data-color="#CFABD6">
+                <input class="swatch__input" type="radio" name="struttura" value="lilla" data-color="#CFABD6">
                 <span class="swatch__chip" style="--swatch: #CFABD6" aria-hidden="true"></span>
                 <span class="swatch__name">Lilla</span>
               </label>
+            </div>
+          </fieldset>
+          <fieldset class="swatches swatches--finish" data-part="pannelli">
+            <legend class="swatches__legend">Pannelli <span class="swatches__current" data-current="pannelli"></span></legend>
+            <p class="swatches__hint">Le 16 finiture della brochure: doga centrale (passo 250) o piano (passo 500).</p>
+            <div class="swatches__list">
               <label class="swatch">
-                <input class="swatch__input" type="radio" name="pannelli" value="rosso" data-color="#DB2612">
-                <span class="swatch__chip" style="--swatch: #DB2612" aria-hidden="true"></span>
-                <span class="swatch__name">Rosso</span>
+                <input class="swatch__input" type="radio" name="pannelli" value="piano-goffrato-ral9010" data-color="#f0ece2">
+                <span class="swatch__chip" style="--swatch-img: url(../assets/img/finiture/piano-goffrato-ral9010-160.webp)" aria-hidden="true"></span>
+                <span class="swatch__name">Piano goffrato RAL 9010</span>
               </label>
               <label class="swatch">
-                <input class="swatch__input" type="radio" name="pannelli" value="azzurro" data-color="#12C0E3">
-                <span class="swatch__chip" style="--swatch: #12C0E3" aria-hidden="true"></span>
-                <span class="swatch__name">Azzurro</span>
+                <input class="swatch__input" type="radio" name="pannelli" value="doga-goffrato-ral9010" data-color="#e9e4db" checked>
+                <span class="swatch__chip" style="--swatch-img: url(../assets/img/finiture/doga-goffrato-ral9010-160.webp)" aria-hidden="true"></span>
+                <span class="swatch__name">Doga centrale goffrato RAL 9010</span>
+              </label>
+              <label class="swatch">
+                <input class="swatch__input" type="radio" name="pannelli" value="doga-liscio-ral9010" data-color="#f2eee4">
+                <span class="swatch__chip" style="--swatch-img: url(../assets/img/finiture/doga-liscio-ral9010-160.webp)" aria-hidden="true"></span>
+                <span class="swatch__name">Doga centrale liscio RAL 9010</span>
+              </label>
+              <label class="swatch">
+                <input class="swatch__input" type="radio" name="pannelli" value="doga-liscio-ral1013" data-color="#e1d8c2">
+                <span class="swatch__chip" style="--swatch-img: url(../assets/img/finiture/doga-liscio-ral1013-160.webp)" aria-hidden="true"></span>
+                <span class="swatch__name">Doga centrale liscio RAL 1013</span>
+              </label>
+              <label class="swatch">
+                <input class="swatch__input" type="radio" name="pannelli" value="doga-liscio-ral7035" data-color="#c4cdca">
+                <span class="swatch__chip" style="--swatch-img: url(../assets/img/finiture/doga-liscio-ral7035-160.webp)" aria-hidden="true"></span>
+                <span class="swatch__name">Doga centrale liscio RAL 7035</span>
+              </label>
+              <label class="swatch">
+                <input class="swatch__input" type="radio" name="pannelli" value="doga-liscio-ral9006" data-color="#a09d9c">
+                <span class="swatch__chip" style="--swatch-img: url(../assets/img/finiture/doga-liscio-ral9006-160.webp)" aria-hidden="true"></span>
+                <span class="swatch__name">Doga centrale liscio RAL 9006</span>
+              </label>
+              <label class="swatch">
+                <input class="swatch__input" type="radio" name="pannelli" value="piano-liscio-ral9006" data-color="#a09d9c">
+                <span class="swatch__chip" style="--swatch-img: url(../assets/img/finiture/piano-liscio-ral9006-160.webp)" aria-hidden="true"></span>
+                <span class="swatch__name">Piano liscio RAL 9006</span>
+              </label>
+              <label class="swatch">
+                <input class="swatch__input" type="radio" name="pannelli" value="doga-polygrain-ral7016" data-color="#3c3d3b">
+                <span class="swatch__chip" style="--swatch-img: url(../assets/img/finiture/doga-polygrain-ral7016-160.webp)" aria-hidden="true"></span>
+                <span class="swatch__name">Doga centrale polygrain RAL 7016</span>
+              </label>
+              <label class="swatch">
+                <input class="swatch__input" type="radio" name="pannelli" value="piano-polygrain-ral7016" data-color="#3c3d3b">
+                <span class="swatch__chip" style="--swatch-img: url(../assets/img/finiture/piano-polygrain-ral7016-160.webp)" aria-hidden="true"></span>
+                <span class="swatch__name">Piano polygrain RAL 7016</span>
+              </label>
+              <label class="swatch">
+                <input class="swatch__input" type="radio" name="pannelli" value="doga-goffrato-ral6005" data-color="#1a4539">
+                <span class="swatch__chip" style="--swatch-img: url(../assets/img/finiture/doga-goffrato-ral6005-160.webp)" aria-hidden="true"></span>
+                <span class="swatch__name">Doga centrale goffrato RAL 6005</span>
+              </label>
+              <label class="swatch">
+                <input class="swatch__input" type="radio" name="pannelli" value="doga-goffrato-ral6009" data-color="#183020">
+                <span class="swatch__chip" style="--swatch-img: url(../assets/img/finiture/doga-goffrato-ral6009-160.webp)" aria-hidden="true"></span>
+                <span class="swatch__name">Doga centrale goffrato RAL 6009</span>
+              </label>
+              <label class="swatch">
+                <input class="swatch__input" type="radio" name="pannelli" value="piano-liscio-noce-chiaro" data-color="#6d4324">
+                <span class="swatch__chip" style="--swatch-img: url(../assets/img/finiture/piano-liscio-noce-chiaro-160.webp)" aria-hidden="true"></span>
+                <span class="swatch__name">Piano liscio Noce chiaro</span>
+              </label>
+              <label class="swatch">
+                <input class="swatch__input" type="radio" name="pannelli" value="doga-liscio-noce-chiaro" data-color="#6e4325">
+                <span class="swatch__chip" style="--swatch-img: url(../assets/img/finiture/doga-liscio-noce-chiaro-160.webp)" aria-hidden="true"></span>
+                <span class="swatch__name">Doga centrale liscio Noce chiaro</span>
+              </label>
+              <label class="swatch">
+                <input class="swatch__input" type="radio" name="pannelli" value="piano-liscio-noce-scuro" data-color="#573f27">
+                <span class="swatch__chip" style="--swatch-img: url(../assets/img/finiture/piano-liscio-noce-scuro-160.webp)" aria-hidden="true"></span>
+                <span class="swatch__name">Piano liscio Noce scuro</span>
+              </label>
+              <label class="swatch">
+                <input class="swatch__input" type="radio" name="pannelli" value="doga-liscio-noce-scuro" data-color="#4c351f">
+                <span class="swatch__chip" style="--swatch-img: url(../assets/img/finiture/doga-liscio-noce-scuro-160.webp)" aria-hidden="true"></span>
+                <span class="swatch__name">Doga centrale liscio Noce scuro</span>
+              </label>
+              <label class="swatch">
+                <input class="swatch__input" type="radio" name="pannelli" value="doga-goffrato-ral8014" data-color="#302214">
+                <span class="swatch__chip" style="--swatch-img: url(../assets/img/finiture/doga-goffrato-ral8014-160.webp)" aria-hidden="true"></span>
+                <span class="swatch__name">Doga centrale goffrato RAL 8014</span>
               </label>
             </div>
           </fieldset>
           <div class="configurator__actions">
-            <a class="btn btn--primary" href="mailto:vailfabio05@gmail.com?subject=Preventivo%20Sally&amp;body=Struttura%3A%20Antracite%0APannelli%3A%20Bianco" data-quote>Richiedi preventivo</a>
-            <button class="btn btn--ghost" type="reset" data-reset>Ripristina</button>
+            <a class="btn btn--primary" href="mailto:vailfabio05@gmail.com?subject=Preventivo%20Sally" data-quote>Richiedi preventivo</a>
+            <button class="btn btn--ghost btn--plain" type="reset" data-reset>Ripristina</button>
           </div>
-          <p class="configurator__note">I colori a schermo sono indicativi. Altre tinte e finiture sono disponibili su richiesta.</p>
+          <p class="configurator__note">I colori a schermo sono indicativi: su richiesta ti inviamo i campioni dei pannelli. Dimensioni, accessori e altre tinte si definiscono insieme nel preventivo.</p>
         </form>
       </div>
     </section>
@@ -262,37 +296,42 @@
   <footer class="site-footer">
     <div class="site-footer__inner container">
       <div class="site-footer__brand">
-        <a class="brand brand--footer" href="index.html">
-          <svg class="brand__mark" viewBox="0 0 32 32" width="32" height="32" aria-hidden="true" focusable="false">
-            <path d="M4 14 16 5l12 9v13H4z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
-            <path d="M12 27v-7h8v7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
-            <path d="M16 15c3-4 7-4 8-3-1 4-5 5-8 3z" fill="currentColor"/>
-          </svg>
-          <span class="brand__name">Garden<span class="brand__accent">House</span></span>
-        </a>
-        <p class="site-footer__pitch">Scegli la tua casetta da giardino, dalle i tuoi colori e immaginala nel tuo spazio verde prima ancora di ordinarla.</p>
-        <p class="site-footer__contact"><a href="mailto:vailfabio05@gmail.com">vailfabio05@gmail.com</a></p>
+        <a class="brand brand--footer" href="index.html" aria-label="Techs Garden House, home">
+        <span class="brand__name" aria-hidden="true">TECHS-<span class="brand__over">GARDENHOUSE</span></span>
+        <span class="brand__sub" aria-hidden="true">Sally · Outdoor living</span>
+      </a>
+        <p class="site-footer__pitch">Techs Garden House è una nuova concezione di spazio outdoor: una struttura di design che unisce tecnologia, comfort e integrazione con l’ambiente.</p>
+        <p class="site-footer__contact">
+          <a href="mailto:vailfabio05@gmail.com">vailfabio05@gmail.com</a>
+          <a href="https://www.techs-gardenhouse.com/">www.techs-gardenhouse.com</a>
+        </p>
       </div>
 
       <nav class="site-footer__nav" aria-labelledby="footer-links-title">
-        <h2 class="site-footer__title" id="footer-links-title">Link utili</h2>
+        <h2 class="site-footer__title" id="footer-links-title">Esplora</h2>
         <ul class="site-footer__list">
           <li><a href="index.html">Home</a></li>
           <li><a href="galleria.html">Galleria</a></li>
           <li><a href="configura.html">Configura</a></li>
           <li><a href="contatti.html">Contatti</a></li>
+          <li><a href="assets/download/brochure.pdf" download>Brochure (PDF)</a></li>
+          <li><a href="assets/download/scheda-tecnica.pdf" download>Scheda tecnica (PDF)</a></li>
         </ul>
       </nav>
 
-      <div class="site-footer__adi">
-        <h2 class="site-footer__title">Design registrato</h2>
-        <p>Il progetto Sally è depositato presso l’ADI, Associazione per il Disegno Industriale, nel Registro dei progetti con prot. n. 3880.</p>
+      <div>
+        <div class="site-footer__adi">
+          <h2 class="site-footer__title">Design registrato</h2>
+          <img src="assets/img/marchi/adi.webp" width="252" height="258" alt="ADI, Associazione per il Disegno Industriale" loading="lazy" decoding="async">
+          <p>Il progetto Sally è depositato presso l’ADI, Associazione per il Disegno Industriale, nel Registro dei progetti con prot. n. 3880.</p>
+        </div>
+        <p class="site-footer__partner">Powered by <img src="assets/img/marchi/fvl-servizi.webp" width="510" height="166" alt="FVL Servizi SRL" loading="lazy" decoding="async"></p>
       </div>
     </div>
 
     <div class="site-footer__bottom container">
-      <p class="site-footer__copy">© <span data-year>2026</span> GardenHouse. Tutti i diritti riservati.</p>
-      <a class="site-footer__top" href="#top">Torna su</a>
+      <p class="site-footer__copy">© <span data-year>2026</span> Techs Garden House. Tutti i diritti riservati.</p>
+      <a class="site-footer__top" href="#top">Torna su ↑</a>
     </div>
   </footer>
 </body>

@@ -3,11 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Galleria · Sally Garden House</title>
-  <meta name="description" content="Foto e ispirazioni: la casetta da giardino Sally dentro e fuori, in giardino e come studio.">
-  <meta name="theme-color" content="#ffffff">
+  <title>Galleria · Sally · Techs Garden House</title>
+  <meta name="description" content="Le foto di Sally di Techs Garden House: bordo piscina, in giardino, sul patio e gli interni a pannelli coibentati.">
+  <meta name="theme-color" content="#02483e">
   <link rel="icon" href="assets/favicon.png" type="image/png">
-  <link rel="preload" as="image" href="assets/img/esterno-720.webp" imagesrcset="assets/img/esterno-480.webp 480w, assets/img/esterno-720.webp 720w, assets/img/esterno-960.webp 960w" imagesizes="(min-width: 64em) 33vw, (min-width: 40em) 50vw, calc(100vw - 2.5rem)" fetchpriority="high">
+  <link rel="preload" href="assets/fonts/montserrat-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/rufina-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
   <script>document.documentElement.classList.add('js');</script>
   <script src="js/main.js" defer></script>
@@ -17,13 +18,9 @@
 
   <header class="site-header" id="top" data-header>
     <div class="site-header__inner container">
-      <a class="brand" href="index.html">
-        <svg class="brand__mark" viewBox="0 0 32 32" width="32" height="32" aria-hidden="true" focusable="false">
-          <path d="M4 14 16 5l12 9v13H4z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
-          <path d="M12 27v-7h8v7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
-          <path d="M16 15c3-4 7-4 8-3-1 4-5 5-8 3z" fill="currentColor"/>
-        </svg>
-        <span class="brand__name">Garden<span class="brand__accent">House</span></span>
+      <a class="brand" href="index.html" aria-label="Techs Garden House, home">
+        <span class="brand__name" aria-hidden="true">TECHS-<span class="brand__over">GARDENHOUSE</span></span>
+        <span class="brand__sub" aria-hidden="true">Sally · Outdoor living</span>
       </a>
 
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
@@ -35,8 +32,8 @@
         <ul class="site-nav__list">
           <li class="site-nav__item"><a class="site-nav__link" href="index.html">Home</a></li>
           <li class="site-nav__item"><a class="site-nav__link" href="galleria.html" aria-current="page">Galleria</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="configura.html">Configura</a></li>
           <li class="site-nav__item"><a class="site-nav__link" href="contatti.html">Contatti</a></li>
+          <li class="site-nav__item site-nav__item--cta"><a class="site-nav__link" href="configura.html">Configura</a></li>
         </ul>
       </nav>
     </div>
@@ -45,94 +42,88 @@
   <main id="main">
     <section class="page-intro" aria-labelledby="page-title">
       <div class="page-intro__inner container">
-        <p class="eyebrow">Galleria</p>
-        <h1 class="page-intro__title" id="page-title">Sally, dentro e fuori</h1>
-        <p class="page-intro__lead">Sally montata e fotografata in giardino: fuori, dentro e da lontano. Apri ogni foto per vederla a tutto schermo.</p>
+        <p class="eyebrow eyebrow--light">Galleria</p>
+        <h1 class="page-intro__title" id="page-title"><span>Sally,</span> dentro e fuori</h1>
+        <p class="page-intro__lead">Bordo piscina, in giardino, sul patio di casa. Apri ogni foto per vederla a tutto schermo.</p>
       </div>
     </section>
 
     <section class="gallery" aria-label="Foto della galleria">
       <div class="gallery__inner container">
         <ul class="gallery__grid" role="list">
-          <li class="gallery__item">
+          <li class="gallery__item gallery__item--feature">
             <figure class="gallery__figure">
-              <a class="gallery__link" href="assets/img/esterno-1440.webp" data-lightbox>
-                <img src="assets/img/esterno-720.webp"
-                     srcset="assets/img/esterno-480.webp 480w, assets/img/esterno-720.webp 720w, assets/img/esterno-960.webp 960w"
-                     sizes="(min-width: 64em) 33vw, (min-width: 40em) 50vw, calc(100vw - 2.5rem)" width="1440" height="1920"
-                     alt="La casetta Sally bianca con porta vetrata e finestra verticale, su un patio in pietra" fetchpriority="high" decoding="async">
+              <a class="gallery__link" href="assets/img/sally-piscina-1200.webp" data-lightbox>
+                <img src="assets/img/sally-piscina-720.webp" srcset="assets/img/sally-piscina-480.webp 480w, assets/img/sally-piscina-720.webp 720w, assets/img/sally-piscina-1200.webp 1200w" sizes="(min-width: 64em) 58vw, (min-width: 40em) 50vw, 100vw" width="1200" height="1496" alt="Sally bianca su una pedana in legno accanto a una piscina, con un divano da esterno e glicini in fiore" fetchpriority="high" decoding="async">
                 <span class="visually-hidden">(apri ingrandimento)</span>
               </a>
-              <figcaption class="gallery__caption"><span class="gallery__num">01</span> Esterno</figcaption>
+              <figcaption class="gallery__caption"><span class="gallery__num">01</span> Bordo piscina</figcaption>
+            </figure>
+          </li>
+          <li class="gallery__item gallery__item--tall">
+            <figure class="gallery__figure">
+              <a class="gallery__link" href="assets/img/esterno-1440.webp" data-lightbox>
+                <img src="assets/img/esterno-960.webp" srcset="assets/img/esterno-480.webp 480w, assets/img/esterno-720.webp 720w, assets/img/esterno-960.webp 960w, assets/img/esterno-1440.webp 1440w" sizes="(min-width: 64em) 40vw, (min-width: 40em) 50vw, 100vw" width="1440" height="1920" alt="Sally bianca con porta vetrata e finestra verticale, su un patio in pietra" decoding="async">
+                <span class="visually-hidden">(apri ingrandimento)</span>
+              </a>
+              <figcaption class="gallery__caption"><span class="gallery__num">02</span> Sul patio</figcaption>
             </figure>
           </li>
           <li class="gallery__item">
             <figure class="gallery__figure">
               <a class="gallery__link" href="assets/img/interno-porta-1440.webp" data-lightbox>
-                <img src="assets/img/interno-porta-720.webp"
-                     srcset="assets/img/interno-porta-480.webp 480w, assets/img/interno-porta-720.webp 720w, assets/img/interno-porta-960.webp 960w"
-                     sizes="(min-width: 64em) 33vw, (min-width: 40em) 50vw, calc(100vw - 2.5rem)" width="1440" height="1920"
-                     alt="Interno della casetta con pareti a pannelli bianchi, visto verso la porta vetrata" loading="lazy" decoding="async">
+                <img src="assets/img/interno-porta-960.webp" srcset="assets/img/interno-porta-480.webp 480w, assets/img/interno-porta-720.webp 720w, assets/img/interno-porta-960.webp 960w, assets/img/interno-porta-1440.webp 1440w" sizes="(min-width: 64em) 32vw, (min-width: 40em) 50vw, 100vw" width="1440" height="1920" alt="Interno della casetta con pareti a pannelli bianchi, visto verso la porta vetrata" loading="lazy" decoding="async">
                 <span class="visually-hidden">(apri ingrandimento)</span>
               </a>
-              <figcaption class="gallery__caption"><span class="gallery__num">02</span> Interno con porta</figcaption>
-            </figure>
-          </li>
-          <li class="gallery__item" data-reveal>
-            <figure class="gallery__figure">
-              <a class="gallery__link" href="assets/img/interno-completo-1440.webp" data-lightbox>
-                <img src="assets/img/interno-completo-720.webp"
-                     srcset="assets/img/interno-completo-480.webp 480w, assets/img/interno-completo-720.webp 720w, assets/img/interno-completo-960.webp 960w"
-                     sizes="(min-width: 64em) 33vw, (min-width: 40em) 50vw, calc(100vw - 2.5rem)" width="1440" height="1920"
-                     alt="Interno vuoto e luminoso della casetta, con pannelli bianchi e finestra laterale" loading="lazy" decoding="async">
-                <span class="visually-hidden">(apri ingrandimento)</span>
-              </a>
-              <figcaption class="gallery__caption"><span class="gallery__num">03</span> Interno completo</figcaption>
+              <figcaption class="gallery__caption"><span class="gallery__num">03</span> Interno con porta</figcaption>
             </figure>
           </li>
           <li class="gallery__item" data-reveal>
             <figure class="gallery__figure">
               <a class="gallery__link" href="assets/img/vista-ravvicinata-1440.webp" data-lightbox>
-                <img src="assets/img/vista-ravvicinata-720.webp"
-                     srcset="assets/img/vista-ravvicinata-480.webp 480w, assets/img/vista-ravvicinata-720.webp 720w, assets/img/vista-ravvicinata-960.webp 960w"
-                     sizes="(min-width: 64em) 33vw, (min-width: 40em) 50vw, calc(100vw - 2.5rem)" width="1440" height="1920"
-                     alt="La casetta Sally in giardino vista da vicino, con il vialetto in pietra davanti" loading="lazy" decoding="async">
+                <img src="assets/img/vista-ravvicinata-960.webp" srcset="assets/img/vista-ravvicinata-480.webp 480w, assets/img/vista-ravvicinata-720.webp 720w, assets/img/vista-ravvicinata-960.webp 960w, assets/img/vista-ravvicinata-1440.webp 1440w" sizes="(min-width: 64em) 32vw, (min-width: 40em) 50vw, 100vw" width="1440" height="1920" alt="La casetta Sally in giardino vista da vicino, con il vialetto in pietra davanti" loading="lazy" decoding="async">
                 <span class="visually-hidden">(apri ingrandimento)</span>
               </a>
               <figcaption class="gallery__caption"><span class="gallery__num">04</span> In giardino, da vicino</figcaption>
             </figure>
           </li>
-          <li class="gallery__item" data-reveal>
+          <li class="gallery__item gallery__item--offset" data-reveal>
             <figure class="gallery__figure">
-              <a class="gallery__link" href="assets/img/vista-larga-1440.webp" data-lightbox>
-                <img src="assets/img/vista-larga-720.webp"
-                     srcset="assets/img/vista-larga-480.webp 480w, assets/img/vista-larga-720.webp 720w, assets/img/vista-larga-960.webp 960w"
-                     sizes="(min-width: 64em) 33vw, (min-width: 40em) 50vw, calc(100vw - 2.5rem)" width="1440" height="1920"
-                     alt="La casetta Sally sullo sfondo di un ampio prato, sotto un cielo azzurro" loading="lazy" decoding="async">
+              <a class="gallery__link" href="assets/img/interno-completo-1440.webp" data-lightbox>
+                <img src="assets/img/interno-completo-960.webp" srcset="assets/img/interno-completo-480.webp 480w, assets/img/interno-completo-720.webp 720w, assets/img/interno-completo-960.webp 960w, assets/img/interno-completo-1440.webp 1440w" sizes="(min-width: 64em) 32vw, (min-width: 40em) 50vw, 100vw" width="1440" height="1920" alt="Interno vuoto e luminoso della casetta, con pannelli bianchi e finestra laterale" loading="lazy" decoding="async">
                 <span class="visually-hidden">(apri ingrandimento)</span>
               </a>
-              <figcaption class="gallery__caption"><span class="gallery__num">05</span> In giardino, vista larga</figcaption>
+              <figcaption class="gallery__caption"><span class="gallery__num">05</span> Interno completo</figcaption>
+            </figure>
+          </li>
+          <li class="gallery__item gallery__item--wide" data-reveal>
+            <figure class="gallery__figure">
+              <a class="gallery__link" href="assets/img/vista-larga-1440.webp" data-lightbox>
+                <img src="assets/img/vista-larga-960.webp" srcset="assets/img/vista-larga-480.webp 480w, assets/img/vista-larga-720.webp 720w, assets/img/vista-larga-960.webp 960w, assets/img/vista-larga-1440.webp 1440w" sizes="(min-width: 64em) 90vw, (min-width: 40em) 50vw, 100vw" width="1440" height="1920" alt="La casetta Sally sullo sfondo di un ampio prato, sotto un cielo azzurro" loading="lazy" decoding="async">
+                <span class="visually-hidden">(apri ingrandimento)</span>
+              </a>
+              <figcaption class="gallery__caption"><span class="gallery__num">06</span> In giardino, vista larga</figcaption>
             </figure>
           </li>
         </ul>
-        <p class="gallery__note">Foto reali di Sally montata in giardino. <a href="configura.html">Prova i colori nel configuratore</a>.</p>
+        <p class="gallery__note">Foto di Sally montata e immagine della brochure. <a href="configura.html">Prova colori e finiture nel configuratore</a>.</p>
       </div>
     </section>
 
     <dialog class="lightbox" aria-label="Foto ingrandita" data-lightbox-dialog>
       <div class="lightbox__inner">
         <figure class="lightbox__figure">
-          <img class="lightbox__img" src="" alt="" data-lightbox-img>
+          <img class="lightbox__img" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" data-lightbox-img>
           <figcaption class="lightbox__caption"><span data-lightbox-caption></span> <span class="lightbox__count" data-lightbox-count></span></figcaption>
         </figure>
         <button class="lightbox__btn lightbox__btn--prev" type="button" data-lightbox-prev aria-label="Foto precedente">
-          <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <button class="lightbox__btn lightbox__btn--next" type="button" data-lightbox-next aria-label="Foto successiva">
-          <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <button class="lightbox__btn lightbox__btn--close" type="button" data-lightbox-close aria-label="Chiudi">
-          <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         </button>
       </div>
     </dialog>
@@ -141,37 +132,42 @@
   <footer class="site-footer">
     <div class="site-footer__inner container">
       <div class="site-footer__brand">
-        <a class="brand brand--footer" href="index.html">
-          <svg class="brand__mark" viewBox="0 0 32 32" width="32" height="32" aria-hidden="true" focusable="false">
-            <path d="M4 14 16 5l12 9v13H4z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
-            <path d="M12 27v-7h8v7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
-            <path d="M16 15c3-4 7-4 8-3-1 4-5 5-8 3z" fill="currentColor"/>
-          </svg>
-          <span class="brand__name">Garden<span class="brand__accent">House</span></span>
-        </a>
-        <p class="site-footer__pitch">Scegli la tua casetta da giardino, dalle i tuoi colori e immaginala nel tuo spazio verde prima ancora di ordinarla.</p>
-        <p class="site-footer__contact"><a href="mailto:vailfabio05@gmail.com">vailfabio05@gmail.com</a></p>
+        <a class="brand brand--footer" href="index.html" aria-label="Techs Garden House, home">
+        <span class="brand__name" aria-hidden="true">TECHS-<span class="brand__over">GARDENHOUSE</span></span>
+        <span class="brand__sub" aria-hidden="true">Sally · Outdoor living</span>
+      </a>
+        <p class="site-footer__pitch">Techs Garden House è una nuova concezione di spazio outdoor: una struttura di design che unisce tecnologia, comfort e integrazione con l’ambiente.</p>
+        <p class="site-footer__contact">
+          <a href="mailto:vailfabio05@gmail.com">vailfabio05@gmail.com</a>
+          <a href="https://www.techs-gardenhouse.com/">www.techs-gardenhouse.com</a>
+        </p>
       </div>
 
       <nav class="site-footer__nav" aria-labelledby="footer-links-title">
-        <h2 class="site-footer__title" id="footer-links-title">Link utili</h2>
+        <h2 class="site-footer__title" id="footer-links-title">Esplora</h2>
         <ul class="site-footer__list">
           <li><a href="index.html">Home</a></li>
           <li><a href="galleria.html">Galleria</a></li>
           <li><a href="configura.html">Configura</a></li>
           <li><a href="contatti.html">Contatti</a></li>
+          <li><a href="assets/download/brochure.pdf" download>Brochure (PDF)</a></li>
+          <li><a href="assets/download/scheda-tecnica.pdf" download>Scheda tecnica (PDF)</a></li>
         </ul>
       </nav>
 
-      <div class="site-footer__adi">
-        <h2 class="site-footer__title">Design registrato</h2>
-        <p>Il progetto Sally è depositato presso l’ADI, Associazione per il Disegno Industriale, nel Registro dei progetti con prot. n. 3880.</p>
+      <div>
+        <div class="site-footer__adi">
+          <h2 class="site-footer__title">Design registrato</h2>
+          <img src="assets/img/marchi/adi.webp" width="252" height="258" alt="ADI, Associazione per il Disegno Industriale" loading="lazy" decoding="async">
+          <p>Il progetto Sally è depositato presso l’ADI, Associazione per il Disegno Industriale, nel Registro dei progetti con prot. n. 3880.</p>
+        </div>
+        <p class="site-footer__partner">Powered by <img src="assets/img/marchi/fvl-servizi.webp" width="510" height="166" alt="FVL Servizi SRL" loading="lazy" decoding="async"></p>
       </div>
     </div>
 
     <div class="site-footer__bottom container">
-      <p class="site-footer__copy">© <span data-year>2026</span> GardenHouse. Tutti i diritti riservati.</p>
-      <a class="site-footer__top" href="#top">Torna su</a>
+      <p class="site-footer__copy">© <span data-year>2026</span> Techs Garden House. Tutti i diritti riservati.</p>
+      <a class="site-footer__top" href="#top">Torna su ↑</a>
     </div>
   </footer>
 </body>

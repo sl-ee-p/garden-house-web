@@ -3,27 +3,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sally Garden House · Casetta da giardino coibentata e personalizzabile</title>
-  <meta name="description" content="Sally è la casetta da giardino coibentata, senza manutenzione e personalizzabile nei colori di telaio e pannelli. Configurala online.">
-  <meta name="theme-color" content="#ffffff">
+  <title>Sally · Techs Garden House · L’evoluzione dell’outdoor living</title>
+  <meta name="description" content="Sally di Techs Garden House: la struttura da giardino di design, coibentata con pannelli da 4 cm, senza manutenzione e personalizzabile in 16 finiture. Progetto registrato ADI.">
+  <meta name="theme-color" content="#02483e">
   <link rel="icon" href="assets/favicon.png" type="image/png">
-  <link rel="preload" as="image" href="assets/img/sally-giardino-1280.webp" imagesrcset="assets/img/sally-giardino-640.webp 640w, assets/img/sally-giardino-960.webp 960w, assets/img/sally-giardino-1280.webp 1280w, assets/img/sally-giardino-1920.webp 1920w" imagesizes="100vw" fetchpriority="high">
+  <link rel="preload" href="assets/fonts/montserrat-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/rufina-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" href="assets/img/sally-piscina-720.webp" imagesrcset="assets/img/sally-piscina-480.webp 480w, assets/img/sally-piscina-720.webp 720w, assets/img/sally-piscina-1200.webp 1200w" imagesizes="(min-width: 64em) 58vw, 100vw" fetchpriority="high">
   <link rel="stylesheet" href="css/style.css">
   <script>document.documentElement.classList.add('js');</script>
   <script src="js/main.js" defer></script>
+  <script src="js/signature.js" defer></script>
 </head>
 <body class="page-index">
   <a class="skip-link" href="#main">Vai al contenuto</a>
 
   <header class="site-header" id="top" data-header>
     <div class="site-header__inner container">
-      <a class="brand" href="index.html">
-        <svg class="brand__mark" viewBox="0 0 32 32" width="32" height="32" aria-hidden="true" focusable="false">
-          <path d="M4 14 16 5l12 9v13H4z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
-          <path d="M12 27v-7h8v7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
-          <path d="M16 15c3-4 7-4 8-3-1 4-5 5-8 3z" fill="currentColor"/>
-        </svg>
-        <span class="brand__name">Garden<span class="brand__accent">House</span></span>
+      <a class="brand" href="index.html" aria-label="Techs Garden House, home">
+        <span class="brand__name" aria-hidden="true">TECHS-<span class="brand__over">GARDENHOUSE</span></span>
+        <span class="brand__sub" aria-hidden="true">Sally · Outdoor living</span>
       </a>
 
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
@@ -35,8 +34,8 @@
         <ul class="site-nav__list">
           <li class="site-nav__item"><a class="site-nav__link" href="index.html" aria-current="page">Home</a></li>
           <li class="site-nav__item"><a class="site-nav__link" href="galleria.html">Galleria</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="configura.html">Configura</a></li>
           <li class="site-nav__item"><a class="site-nav__link" href="contatti.html">Contatti</a></li>
+          <li class="site-nav__item site-nav__item--cta"><a class="site-nav__link" href="configura.html">Configura</a></li>
         </ul>
       </nav>
     </div>
@@ -45,88 +44,321 @@
   <main id="main">
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero__media">
-        <img class="hero__img"
-             src="assets/img/sally-giardino-1280.webp"
-             srcset="assets/img/sally-giardino-640.webp 640w, assets/img/sally-giardino-960.webp 960w, assets/img/sally-giardino-1280.webp 1280w, assets/img/sally-giardino-1920.webp 1920w"
-             sizes="100vw" width="1920" height="869"
-             alt="La casetta Sally bianca in un giardino, tra un albero, una siepe e un muro di cinta"
-             fetchpriority="high" decoding="async">
+        <img class="hero__img" src="assets/img/sally-piscina-720.webp" srcset="assets/img/sally-piscina-480.webp 480w, assets/img/sally-piscina-720.webp 720w, assets/img/sally-piscina-1200.webp 1200w" sizes="(min-width: 64em) 58vw, 100vw" width="1200" height="1496" alt="Sally bianca con porta vetrata e finestra verticale, su una pedana in legno accanto a una piscina, tra glicini e alberi" fetchpriority="high" decoding="async">
       </div>
-      <div class="hero__content container">
-        <p class="hero__eyebrow eyebrow">Novità · Design italiano</p>
-        <h1 class="hero__title" id="hero-title">Nuova <span class="hero__name">Sally</span></h1>
-        <p class="hero__lead">La casetta da giardino coibentata che disegni tu: scegli misure, colore del telaio e dei pannelli. Zero manutenzione, tutto l’anno.</p>
+      <div class="hero__panel">
+        <p class="eyebrow eyebrow--light">Sally · Techs Garden House</p>
+        <h1 class="hero__title" id="hero-title"><span class="hero__line hero__line--thin">L’evoluzione</span> <span class="hero__line">dell’outdoor</span> <span class="hero__line">living</span></h1>
+        <p class="hero__lead">Una struttura di design che unisce tecnologia, comfort e integrazione con l’ambiente. Per giardini, terrazze, hospitality e spazi privati di alto livello.</p>
         <div class="hero__actions">
-          <a class="btn btn--primary" href="configura.html">Configura la tua Sally</a>
-          <a class="btn btn--secondary" href="assets/download/scheda-tecnica.pdf" download>Scheda tecnica <span class="btn__meta">PDF</span></a>
+          <a class="btn btn--light" href="configura.html">Configura la tua Sally</a>
+          <a class="link-arrow link-arrow--light" href="assets/download/brochure.pdf" download>Scarica la brochure <span class="btn__meta">PDF</span></a>
+        </div>
+        <p class="hero__seal"><img src="assets/img/marchi/adi.webp" width="252" height="258" alt="" decoding="async"> <span>Progetto depositato presso ADI<br>Registro dei progetti · prot. n. 3880</span></p>
+      </div>
+      <a class="hero__scroll" href="#manifesto">Scopri</a>
+    </section>
+
+    <section class="creds" aria-label="Sally in sintesi">
+      <ul class="creds__list container" role="list">
+        <li class="creds__item"><span class="creds__value">4<small>cm</small></span><span class="creds__label">Pannelli in poliuretano espanso</span></li>
+        <li class="creds__item"><span class="creds__value">365</span><span class="creds__label">Giorni l’anno, coibentata</span></li>
+        <li class="creds__item"><span class="creds__value">0</span><span class="creds__label">Manutenzione richiesta</span></li>
+        <li class="creds__item"><span class="creds__value">16</span><span class="creds__label">Finiture per i pannelli</span></li>
+        <li class="creds__item"><span class="creds__value">360°</span><span class="creds__label">Sfruttabile per ogni uso</span></li>
+      </ul>
+    </section>
+
+    <section class="manifesto" id="manifesto" aria-labelledby="manifesto-title">
+      <div class="manifesto__inner container">
+        <div class="manifesto__text">
+          <p class="eyebrow">Una nuova concezione di spazio outdoor</p>
+          <h2 class="visually-hidden" id="manifesto-title">Il progetto Sally</h2>
+          <p class="manifesto__quote" data-reveal>Non una semplice struttura da esterno, ma un <em>ambiente modulare e personalizzabile</em> che trasforma ogni spazio in un luogo da vivere tutto l’anno.</p>
+          <div class="manifesto__body" data-reveal>
+            <p>Materiali innovativi, soluzioni tecnologiche integrate e un’estetica contemporanea rendono Techs Garden House un elemento architettonico distintivo, capace di valorizzare qualsiasi contesto.</p>
+            <p>Una nuova esperienza outdoor, dove natura e innovazione convivono in perfetto equilibrio.</p>
+          </div>
+        </div>
+        <figure class="manifesto__media" data-reveal>
+          <img class="manifesto__photo" src="assets/img/esterno-960.webp" srcset="assets/img/esterno-480.webp 480w, assets/img/esterno-720.webp 720w, assets/img/esterno-960.webp 960w, assets/img/esterno-1440.webp 1440w" sizes="(min-width: 64em) 36vw, 82vw" width="1440" height="1920" alt="Sally bianca su un patio in pietra chiara, accanto a una casa moderna" loading="lazy" decoding="async">
+          <img class="manifesto__detail" src="assets/img/interno-porta-720.webp" srcset="assets/img/interno-porta-480.webp 480w, assets/img/interno-porta-720.webp 720w" sizes="(min-width: 64em) 20vw, 44vw" width="1440" height="1920" alt="L’interno luminoso di Sally, con le pareti a pannelli bianchi e la porta vetrata" loading="lazy" decoding="async">
+          <figcaption class="manifesto__caption">Fuori e dentro</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="contexts" aria-label="Dove si inserisce">
+      <ul class="contexts__list container" role="list">
+        <li class="contexts__item">Giardini</li>
+        <li class="contexts__item">Piscine</li>
+        <li class="contexts__item">Terrazze</li>
+        <li class="contexts__item">Hospitality</li>
+      </ul>
+    </section>
+
+    <section class="pillars" aria-labelledby="pillars-title">
+      <div class="container">
+        <div class="pillars__head">
+          <p class="eyebrow">Il progetto</p>
+          <h2 class="section-title" id="pillars-title">Tre principi, <strong>un solo progetto</strong></h2>
+        </div>
+
+        <article class="pillar" aria-labelledby="pillar-1">
+          <div class="pillar__media" data-reveal><img src="assets/img/vista-ravvicinata-960.webp" srcset="assets/img/vista-ravvicinata-480.webp 480w, assets/img/vista-ravvicinata-720.webp 720w, assets/img/vista-ravvicinata-960.webp 960w, assets/img/vista-ravvicinata-1440.webp 1440w" sizes="(min-width: 56em) 55vw, 100vw" width="1440" height="1920" alt="Sally in un giardino curato, con il vialetto di pietre davanti alla porta" loading="lazy" decoding="async"></div>
+          <div class="pillar__body" data-reveal>
+            <span class="pillar__num" aria-hidden="true">01</span>
+            <h3 class="pillar__title" id="pillar-1">Design architettonico distintivo</h3>
+            <div class="pillar__text">
+              <p>Linee moderne, eleganza minimal e massima cura dei dettagli rendono Techs Garden House un vero elemento di arredo architettonico.</p>
+              <p>Ogni struttura è progettata per integrarsi armoniosamente con l’ambiente circostante, valorizzando giardini, piscine, terrazze e spazi hospitality. Un’estetica contemporanea che unisce bellezza, funzionalità e prestigio.</p>
+            </div>
+            <span class="pillar__tag">Progetto registrato ADI · n. 3880</span>
+          </div>
+        </article>
+
+        <article class="pillar" aria-labelledby="pillar-2">
+          <div class="pillar__media" data-reveal><img src="assets/img/interno-completo-960.webp" srcset="assets/img/interno-completo-480.webp 480w, assets/img/interno-completo-720.webp 720w, assets/img/interno-completo-960.webp 960w, assets/img/interno-completo-1440.webp 1440w" sizes="(min-width: 56em) 55vw, 100vw" width="1440" height="1920" alt="L’interno vuoto di Sally, con pareti e soffitto a pannelli e la finestra verticale" loading="lazy" decoding="async"></div>
+          <div class="pillar__body" data-reveal>
+            <span class="pillar__num" aria-hidden="true">02</span>
+            <h3 class="pillar__title" id="pillar-2">Tecnologia e comfort integrati</h3>
+            <div class="pillar__text">
+              <p>Illuminazione, chiusure, optional e soluzioni tecniche sono progettati per garantire comfort in ogni stagione.</p>
+              <p>Le strutture Techs Garden House offrono uno spazio protetto, funzionale e altamente tecnologico, ideale sia per il relax privato sia per contesti professionali e ricettivi.</p>
+            </div>
+            <span class="pillar__tag">Un ambiente da vivere 365 giorni l’anno</span>
+          </div>
+        </article>
+
+        <article class="pillar" aria-labelledby="pillar-3">
+          <div class="pillar__media" data-reveal><img src="assets/img/pannelli-finiture-587.webp" srcset="assets/img/pannelli-finiture-360.webp 360w, assets/img/pannelli-finiture-587.webp 587w" sizes="(min-width: 56em) 55vw, 100vw" width="587" height="744" alt="Quattro campioni di pannello affiancati: bianco, verde, bruno ed effetto legno" loading="lazy" decoding="async" style="object-position: 50% 70%"></div>
+          <div class="pillar__body" data-reveal>
+            <span class="pillar__num" aria-hidden="true">03</span>
+            <h3 class="pillar__title" id="pillar-3">Modularità e personalizzazione</h3>
+            <div class="pillar__text">
+              <p>Ogni progetto è configurabile in base allo spazio e alle esigenze del cliente. Dimensioni, finiture, accessori e soluzioni tecniche possono essere personalizzati per creare un ambiente unico e su misura.</p>
+              <p>Dalla residenza privata agli spazi contract e hospitality, Techs Garden House si adatta a ogni contesto con soluzioni esclusive.</p>
+            </div>
+            <a class="pillar__tag link-arrow" href="#finiture">Scopri le 16 finiture</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="showcase" id="modello-3d" aria-labelledby="showcase-title" data-showcase>
+      <div class="showcase__inner container">
+        <div class="showcase__text">
+          <p class="eyebrow eyebrow--light">Modello 3D</p>
+          <h2 class="section-title" id="showcase-title">Guardala da <strong>ogni lato</strong></h2>
+          <p class="showcase__lead">Il modello originale di Sally, con la porta vetrata e la finestra verticale. Trascinalo per girarci intorno, avvicinati con la rotellina o con due dita.</p>
+          <ul class="showcase__specs">
+            <li><span>Pannelli</span><span>Poliuretano espanso, 4 cm</span></li>
+            <li><span>Comfort</span><span>Coibentata, tutto l’anno</span></li>
+            <li><span>Manutenzione</span><span>Nessuna</span></li>
+            <li><span>Finiture</span><span>16 per i pannelli</span></li>
+          </ul>
+          <div class="showcase__actions">
+            <a class="btn btn--light" href="configura.html">Scegli colori e finiture</a>
+          </div>
+        </div>
+        <div class="showcase__stage" data-showcase-stage>
+          <div class="showcase__canvas" data-showcase-canvas></div>
+          <p class="showcase__poster" data-showcase-poster>Modello 3D interattivo</p>
+          <p class="showcase__label" data-anchor="porta" aria-hidden="true"><span>Porta vetrata</span></p>
+          <p class="showcase__label" data-anchor="finestra" data-side="left" aria-hidden="true"><span>Finestra verticale</span></p>
+          <p class="showcase__label" data-anchor="pannelli" data-side="below" aria-hidden="true"><span>Pannelli coibentati 4 cm</span></p>
+          <div class="showcase__tools" data-showcase-tools hidden>
+            <button class="icon-btn" type="button" aria-pressed="false" data-showcase-pause>
+              <svg class="when-playing" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M8 5v14M16 5v14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              <svg class="when-paused" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10-6.5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+              <span class="visually-hidden">Ferma la rotazione automatica</span>
+            </button>
+            <button class="icon-btn" type="button" data-showcase-reset>
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 2.3-5.6M4 4v4h4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="visually-hidden">Torna alla vista iniziale</span>
+            </button>
+          </div>
+          <p class="showcase__status" data-showcase-status aria-live="polite"></p>
         </div>
       </div>
     </section>
 
-    <section class="product" id="sally" aria-labelledby="product-title">
-      <div class="product__inner container">
-        <div class="product__text">
-          <p class="eyebrow">Sally Garden House</p>
-          <h2 class="product__title" id="product-title">Uno spazio in più, pensato per durare</h2>
-          <p class="product__intro">Sally è un piccolo edificio da giardino in kit: telaio robusto, pannelli isolanti e un design pulito che si adatta a studio, laboratorio, rimessa o angolo relax.</p>
-
-          <ul class="features" role="list">
-            <li class="feature feature--highlight" data-reveal>
-              <svg class="feature__icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M4 20 20 4M14 4h6v6M4 14v6h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <h3 class="feature__title">Totalmente personalizzabile</h3>
-              <p class="feature__text">Dimensioni, colore del telaio e colore dei pannelli: ogni Sally è unica.</p>
-            </li>
-            <li class="feature" data-reveal>
-              <svg class="feature__icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m8.5 12 2.5 2.5 4.5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <h3 class="feature__title">Nessuna manutenzione</h3>
-              <p class="feature__text">Niente vernici da rinnovare né legno da trattare.</p>
-            </li>
-            <li class="feature" data-reveal>
-              <svg class="feature__icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 3v18M4.5 7.5l15 9M19.5 7.5l-15 9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-              <h3 class="feature__title">Coibentata</h3>
-              <p class="feature__text">Fresca d’estate, riparata d’inverno.</p>
-            </li>
-            <li class="feature" data-reveal>
-              <svg class="feature__icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M4 5h16v4H4zM4 10.5h16v4H4zM4 16h16v4H4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
-              <h3 class="feature__title">Pannelli da 4&nbsp;cm</h3>
-              <p class="feature__text">In poliuretano espanso, leggeri e isolanti.</p>
-            </li>
-            <li class="feature" data-reveal>
-              <svg class="feature__icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="m12 3 2.6 5.6 6 .7-4.4 4.1 1.2 6L12 16.4 6.6 19.4l1.2-6L3.4 9.3l6-.7z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
-              <h3 class="feature__title">Design esclusivo</h3>
-              <p class="feature__text">Linee essenziali, progetto registrato ADI.</p>
-            </li>
-            <li class="feature" data-reveal>
-              <svg class="feature__icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M6 3h12l3 6-9 12L3 9z M3 9h18M9 3l3 18M15 3l-3 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
-              <h3 class="feature__title">Materiali premium</h3>
-              <p class="feature__text">Componenti scelti per durare nel tempo.</p>
-            </li>
-            <li class="feature" data-reveal>
-              <svg class="feature__icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-              <h3 class="feature__title">Sfruttabile a 360°</h3>
-              <p class="feature__text">Studio, hobby, deposito o relax: decidi tu.</p>
-            </li>
-            <li class="feature" data-reveal>
-              <svg class="feature__icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M3 8l9-5 9 5v8l-9 5-9-5z M3 8l9 5 9-5M12 13v8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
-              <h3 class="feature__title">Disponibile in kit</h3>
-              <p class="feature__text">Arriva pronta da montare, con istruzioni chiare.</p>
-            </li>
-          </ul>
-
-          <div class="product__actions">
-            <a class="btn btn--primary" href="configura.html">Scegli i tuoi colori</a>
-            <a class="link-arrow" href="galleria.html">Guarda la galleria</a>
+    <section class="finishes" id="finiture" aria-labelledby="finishes-title">
+      <div class="container">
+        <div class="finishes__head">
+          <div>
+            <p class="eyebrow">La materia</p>
+            <h2 class="section-title" id="finishes-title">Scopri la nostra <strong>gamma di colori</strong></h2>
           </div>
+          <p class="section-lead">Sedici finiture per i pannelli: superfici lisce, goffrate o Polygrain e due essenze di noce, con doga centrale (passo 250&nbsp;mm) oppure a piano unico (passo 500&nbsp;mm).</p>
         </div>
+        <ul class="finishes__grid" role="list">
+          <li class="finish" data-reveal>
+            <figure>
+              <div class="finish__media"><img src="assets/img/finiture/piano-goffrato-ral9010-378.webp" srcset="assets/img/finiture/piano-goffrato-ral9010-160.webp 160w, assets/img/finiture/piano-goffrato-ral9010-378.webp 378w" sizes="(min-width: 72em) 9vw, (min-width: 40em) 22vw, 45vw" width="378" height="423" alt="Pannello piano goffrato, RAL 9010" loading="lazy" decoding="async"></div>
+              <figcaption><span class="finish__name">Piano · Goffrato</span><span class="finish__code">RAL 9010 · passo 500</span></figcaption>
+            </figure>
+          </li>
+          <li class="finish" data-reveal>
+            <figure>
+              <div class="finish__media"><img src="assets/img/finiture/doga-goffrato-ral9010-378.webp" srcset="assets/img/finiture/doga-goffrato-ral9010-160.webp 160w, assets/img/finiture/doga-goffrato-ral9010-378.webp 378w" sizes="(min-width: 72em) 9vw, (min-width: 40em) 22vw, 45vw" width="378" height="423" alt="Pannello doga centrale goffrato, RAL 9010" loading="lazy" decoding="async"></div>
+              <figcaption><span class="finish__name">Doga centrale · Goffrato</span><span class="finish__code">RAL 9010 · passo 250</span></figcaption>
+            </figure>
+          </li>
+          <li class="finish" data-reveal>
+            <figure>
+              <div class="finish__media"><img src="assets/img/finiture/doga-liscio-ral9010-378.webp" srcset="assets/img/finiture/doga-liscio-ral9010-160.webp 160w, assets/img/finiture/doga-liscio-ral9010-378.webp 378w" sizes="(min-width: 72em) 9vw, (min-width: 40em) 22vw, 45vw" width="378" height="423" alt="Pannello doga centrale liscio, RAL 9010" loading="lazy" decoding="async"></div>
+              <figcaption><span class="finish__name">Doga centrale · Liscio</span><span class="finish__code">RAL 9010 · passo 250</span></figcaption>
+            </figure>
+          </li>
+          <li class="finish" data-reveal>
+            <figure>
+              <div class="finish__media"><img src="assets/img/finiture/doga-liscio-ral1013-378.webp" srcset="assets/img/finiture/doga-liscio-ral1013-160.webp 160w, assets/img/finiture/doga-liscio-ral1013-378.webp 378w" sizes="(min-width: 72em) 9vw, (min-width: 40em) 22vw, 45vw" width="378" height="423" alt="Pannello doga centrale liscio, RAL 1013" loading="lazy" decoding="async"></div>
+              <figcaption><span class="finish__name">Doga centrale · Liscio</span><span class="finish__code">RAL 1013 · passo 250</span></figcaption>
+            </figure>
+          </li>
+          <li class="finish" data-reveal>
+            <figure>
+              <div class="finish__media"><img src="assets/img/finiture/doga-liscio-ral7035-378.webp" srcset="assets/img/finiture/doga-liscio-ral7035-160.webp 160w, assets/img/finiture/doga-liscio-ral7035-378.webp 378w" sizes="(min-width: 72em) 9vw, (min-width: 40em) 22vw, 45vw" width="378" height="423" alt="Pannello doga centrale liscio, RAL 7035" loading="lazy" decoding="async"></div>
+              <figcaption><span class="finish__name">Doga centrale · Liscio</span><span class="finish__code">RAL 7035 · passo 250</span></figcaption>
+            </figure>
+          </li>
+          <li class="finish" data-reveal>
+            <figure>
+              <div class="finish__media"><img src="assets/img/finiture/doga-liscio-ral9006-378.webp" srcset="assets/img/finiture/doga-liscio-ral9006-160.webp 160w, assets/img/finiture/doga-liscio-ral9006-378.webp 378w" sizes="(min-width: 72em) 9vw, (min-width: 40em) 22vw, 45vw" width="378" height="423" alt="Pannello doga centrale liscio, RAL 9006" loading="lazy" decoding="async"></div>
+              <figcaption><span class="finish__name">Doga centrale · Liscio</span><span class="finish__code">RAL 9006 · passo 250</span></figcaption>
+            </figure>
+          </li>
+          <li class="finish" data-reveal>
+            <figure>
+              <div class="finish__media"><img src="assets/img/finiture/piano-liscio-ral9006-378.webp" srcset="assets/img/finiture/piano-liscio-ral9006-160.webp 160w, assets/img/finiture/piano-liscio-ral9006-378.webp 378w" sizes="(min-width: 72em) 9vw, (min-width: 40em) 22vw, 45vw" width="378" height="423" alt="Pannello piano liscio, RAL 9006" loading="lazy" decoding="async"></div>
+              <figcaption><span class="finish__name">Piano · Liscio</span><span class="finish__code">RAL 9006 · passo 500</span></figcaption>
+            </figure>
+          </li>
+          <li class="finish" data-reveal>
+            <figure>
+              <div class="finish__media"><img src="assets/img/finiture/doga-polygrain-ral7016-378.webp" srcset="assets/img/finiture/doga-polygrain-ral7016-160.webp 160w, assets/img/finiture/doga-polygrain-ral7016-378.webp 378w" sizes="(min-width: 72em) 9vw, (min-width: 40em) 22vw, 45vw" width="378" height="423" alt="Pannello doga centrale polygrain, RAL 7016" loading="lazy" decoding="async"></div>
+              <figcaption><span class="finish__name">Doga centrale · Polygrain</span><span class="finish__code">RAL 7016 · passo 250</span></figcaption>
+            </figure>
+          </li>
+          <li class="finish" data-reveal>
+            <figure>
+              <div class="finish__media"><img src="assets/img/finiture/piano-polygrain-ral7016-378.webp" srcset="assets/img/finiture/piano-polygrain-ral7016-160.webp 160w, assets/img/finiture/piano-polygrain-ral7016-378.webp 378w" sizes="(min-width: 72em) 9vw, (min-width: 40em) 22vw, 45vw" width="378" height="423" alt="Pannello piano polygrain, RAL 7016" loading="lazy" decoding="async"></div>
+              <figcaption><span class="finish__name">Piano · Polygrain</span><span class="finish__code">RAL 7016 · passo 500</span></figcaption>
+            </figure>
+          </li>
+          <li class="finish" data-reveal>
+            <figure>
+              <div class="finish__media"><img src="assets/img/finiture/doga-goffrato-ral6005-378.webp" srcset="assets/img/finiture/doga-goffrato-ral6005-160.webp 160w, assets/img/finiture/doga-goffrato-ral6005-378.webp 378w" sizes="(min-width: 72em) 9vw, (min-width: 40em) 22vw, 45vw" width="378" height="423" alt="Pannello doga centrale goffrato, RAL 6005" loading="lazy" decoding="async"></div>
+              <figcaption><span class="finish__name">Doga centrale · Goffrato</span><span class="finish__code">RAL 6005 · passo 250</span></figcaption>
+            </figure>
+          </li>
+          <li class="finish" data-reveal>
+            <figure>
+              <div class="finish__media"><img src="assets/img/finiture/doga-goffrato-ral6009-378.webp" srcset="assets/img/finiture/doga-goffrato-ral6009-160.webp 160w, assets/img/finiture/doga-goffrato-ral6009-378.webp 378w" sizes="(min-width: 72em) 9vw, (min-width: 40em) 22vw, 45vw" width="378" height="423" alt="Pannello doga centrale goffrato, RAL 6009" loading="lazy" decoding="async"></div>
+              <figcaption><span class="finish__name">Doga centrale · Goffrato</span><span class="finish__code">RAL 6009 · passo 250</span></figcaption>
+            </figure>
+          </li>
+          <li class="finish" data-reveal>
+            <figure>
+              <div class="finish__media"><img src="assets/img/finiture/piano-liscio-noce-chiaro-378.webp" srcset="assets/img/finiture/piano-liscio-noce-chiaro-160.webp 160w, assets/img/finiture/piano-liscio-noce-chiaro-378.webp 378w" sizes="(min-width: 72em) 9vw, (min-width: 40em) 22vw, 45vw" width="378" height="423" alt="Pannello piano liscio, Noce chiaro" loading="lazy" decoding="async"></div>
+              <figcaption><span class="finish__name">Piano · Liscio</span><span class="finish__code">Noce chiaro · passo 500</span></figcaption>
+            </figure>
+          </li>
+          <li class="finish" data-reveal>
+            <figure>
+              <div class="finish__media"><img src="assets/img/finiture/doga-liscio-noce-chiaro-378.webp" srcset="assets/img/finiture/doga-liscio-noce-chiaro-160.webp 160w, assets/img/finiture/doga-liscio-noce-chiaro-378.webp 378w" sizes="(min-width: 72em) 9vw, (min-width: 40em) 22vw, 45vw" width="378" height="423" alt="Pannello doga centrale liscio, Noce chiaro" loading="lazy" decoding="async"></div>
+              <figcaption><span class="finish__name">Doga centrale · Liscio</span><span class="finish__code">Noce chiaro · passo 250</span></figcaption>
+            </figure>
+          </li>
+          <li class="finish" data-reveal>
+            <figure>
+              <div class="finish__media"><img src="assets/img/finiture/piano-liscio-noce-scuro-378.webp" srcset="assets/img/finiture/piano-liscio-noce-scuro-160.webp 160w, assets/img/finiture/piano-liscio-noce-scuro-378.webp 378w" sizes="(min-width: 72em) 9vw, (min-width: 40em) 22vw, 45vw" width="378" height="423" alt="Pannello piano liscio, Noce scuro" loading="lazy" decoding="async"></div>
+              <figcaption><span class="finish__name">Piano · Liscio</span><span class="finish__code">Noce scuro · passo 500</span></figcaption>
+            </figure>
+          </li>
+          <li class="finish" data-reveal>
+            <figure>
+              <div class="finish__media"><img src="assets/img/finiture/doga-liscio-noce-scuro-378.webp" srcset="assets/img/finiture/doga-liscio-noce-scuro-160.webp 160w, assets/img/finiture/doga-liscio-noce-scuro-378.webp 378w" sizes="(min-width: 72em) 9vw, (min-width: 40em) 22vw, 45vw" width="378" height="423" alt="Pannello doga centrale liscio, Noce scuro" loading="lazy" decoding="async"></div>
+              <figcaption><span class="finish__name">Doga centrale · Liscio</span><span class="finish__code">Noce scuro · passo 250</span></figcaption>
+            </figure>
+          </li>
+          <li class="finish" data-reveal>
+            <figure>
+              <div class="finish__media"><img src="assets/img/finiture/doga-goffrato-ral8014-378.webp" srcset="assets/img/finiture/doga-goffrato-ral8014-160.webp 160w, assets/img/finiture/doga-goffrato-ral8014-378.webp 378w" sizes="(min-width: 72em) 9vw, (min-width: 40em) 22vw, 45vw" width="378" height="423" alt="Pannello doga centrale goffrato, RAL 8014" loading="lazy" decoding="async"></div>
+              <figcaption><span class="finish__name">Doga centrale · Goffrato</span><span class="finish__code">RAL 8014 · passo 250</span></figcaption>
+            </figure>
+          </li>
+        </ul>
+        <div class="finishes__foot">
+          <p class="finishes__note">Le foto mostrano i pannelli reali. I colori a schermo possono variare leggermente: chiedici i campioni.</p>
+          <a class="btn btn--primary" href="configura.html">Provale sulla tua Sally</a>
+        </div>
+      </div>
+    </section>
 
-        <figure class="product__media" data-reveal>
-          <img src="assets/img/pannelli-finiture-587.webp"
-               srcset="assets/img/pannelli-finiture-360.webp 360w, assets/img/pannelli-finiture-587.webp 587w"
-               sizes="(min-width: 64em) 30vw, calc(100vw - 2.5rem)" width="587" height="744"
-               alt="Quattro campioni di pannello affiancati: bianco, verde petrolio, marrone scuro ed effetto legno"
-               loading="lazy" decoding="async">
-          <figcaption class="product__caption">Pannelli disponibili in diverse finiture.</figcaption>
-        </figure>
+    <section class="features-section" aria-labelledby="features-title">
+      <div class="container">
+        <div class="features-section__head">
+          <p class="eyebrow">Perché Sally</p>
+          <h2 class="section-title" id="features-title">Pensata per durare, <strong>bella da vivere</strong></h2>
+        </div>
+        <ul class="features" role="list">
+          <li class="feature" data-reveal>
+            <svg class="feature__icon" viewBox="0 0 24 24" width="40" height="40" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11M18 7h3M3 17h5M12 17h9"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>
+            <h3 class="feature__title">Totalmente personalizzabile</h3>
+            <p class="feature__text">Dimensioni, finiture, accessori e colori: ogni Sally nasce su misura.</p>
+          </li>
+          <li class="feature" data-reveal>
+            <svg class="feature__icon" viewBox="0 0 24 24" width="40" height="40" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4.5 6v6c0 4.4 3.2 7.9 7.5 9 4.3-1.1 7.5-4.6 7.5-9V6z"/><path d="m8.6 12.2 2.4 2.4 4.4-4.8"/></svg>
+            <h3 class="feature__title">Nessuna manutenzione</h3>
+            <p class="feature__text">Niente vernici da rinnovare né legno da trattare, stagione dopo stagione.</p>
+          </li>
+          <li class="feature" data-reveal>
+            <svg class="feature__icon" viewBox="0 0 24 24" width="40" height="40" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 14.6V5a2 2 0 1 1 4 0v9.6a3.6 3.6 0 1 1-4 0z"/><path d="M10 9v7.5"/><path d="M18 3v8M14.6 5l6.8 4M21.4 5l-6.8 4"/></svg>
+            <h3 class="feature__title">Coibentata</h3>
+            <p class="feature__text">Fresca d’estate, riparata d’inverno: uno spazio da vivere 365 giorni l’anno.</p>
+          </li>
+          <li class="feature" data-reveal>
+            <svg class="feature__icon" viewBox="0 0 24 24" width="40" height="40" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8 9-4 9 4-9 4z"/><path d="m3 12 9 4 9-4M3 16l9 4 9-4"/></svg>
+            <h3 class="feature__title">Pannelli da 4&nbsp;cm</h3>
+            <p class="feature__text">In poliuretano espanso, leggeri, rigidi e isolanti.</p>
+          </li>
+          <li class="feature" data-reveal>
+            <svg class="feature__icon" viewBox="0 0 24 24" width="40" height="40" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5.5"/><path d="M8.6 13.4 7 21l5-2.6 5 2.6-1.6-7.6"/><path d="m12 6.6.8 1.6 1.7.2-1.3 1.2.4 1.7-1.6-.9-1.6.9.4-1.7-1.3-1.2 1.7-.2z"/></svg>
+            <h3 class="feature__title">Design esclusivo</h3>
+            <p class="feature__text">Linee essenziali, progetto depositato presso l’ADI.</p>
+          </li>
+          <li class="feature" data-reveal>
+            <svg class="feature__icon" viewBox="0 0 24 24" width="40" height="40" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12l3 5-9 11L3 9z"/><path d="M3 9h18M9.5 4 12 20M14.5 4 12 20"/></svg>
+            <h3 class="feature__title">Materiali premium</h3>
+            <p class="feature__text">Componenti scelti per durare nel tempo, senza compromessi.</p>
+          </li>
+          <li class="feature" data-reveal>
+            <svg class="feature__icon" viewBox="0 0 24 24" width="40" height="40" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v4h-4"/><path d="M8.5 12.5h2.2l-1.2 1.4a1.3 1.3 0 1 1-1.2 1.8M13 13.5a1.5 1.5 0 1 1 0 .1zM13.2 12.4 14 11"/></svg>
+            <h3 class="feature__title">Sfruttabile a 360°</h3>
+            <p class="feature__text">Studio, relax, hobby, deposito o ospitalità: decidi tu.</p>
+          </li>
+          <li class="feature" data-reveal>
+            <svg class="feature__icon" viewBox="0 0 24 24" width="40" height="40" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 7.5 9-4.5 9 4.5v9l-9 4.5-9-4.5z"/><path d="m3 7.5 9 4.5 9-4.5M12 12v9"/></svg>
+            <h3 class="feature__title">Disponibile in kit</h3>
+            <p class="feature__text">Arriva pronta da montare, con istruzioni chiare.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="closing" aria-labelledby="closing-title">
+      <div class="closing__bg">
+        <img src="assets/img/sally-giardino-1280.webp" srcset="assets/img/sally-giardino-640.webp 640w, assets/img/sally-giardino-960.webp 960w, assets/img/sally-giardino-1280.webp 1280w, assets/img/sally-giardino-1920.webp 1920w" sizes="100vw" width="1920" height="869" alt="" loading="lazy" decoding="async">
+      </div>
+      <div class="container">
+        <h2 class="closing__title" id="closing-title"><span>Il tuo stile,</span> il tuo nuovo giardino</h2>
+        <p class="closing__lead">Scegli il colore del telaio e la finitura dei pannelli, poi chiedici un preventivo. Ti rispondiamo con tutti i dettagli.</p>
+        <div class="closing__actions">
+          <a class="btn btn--light" href="configura.html">Configura la tua Sally</a>
+          <a class="btn btn--outline-light" href="contatti.html">Parla con noi</a>
+        </div>
       </div>
     </section>
   </main>
@@ -134,37 +366,42 @@
   <footer class="site-footer">
     <div class="site-footer__inner container">
       <div class="site-footer__brand">
-        <a class="brand brand--footer" href="index.html">
-          <svg class="brand__mark" viewBox="0 0 32 32" width="32" height="32" aria-hidden="true" focusable="false">
-            <path d="M4 14 16 5l12 9v13H4z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
-            <path d="M12 27v-7h8v7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
-            <path d="M16 15c3-4 7-4 8-3-1 4-5 5-8 3z" fill="currentColor"/>
-          </svg>
-          <span class="brand__name">Garden<span class="brand__accent">House</span></span>
-        </a>
-        <p class="site-footer__pitch">Scegli la tua casetta da giardino, dalle i tuoi colori e immaginala nel tuo spazio verde prima ancora di ordinarla.</p>
-        <p class="site-footer__contact"><a href="mailto:vailfabio05@gmail.com">vailfabio05@gmail.com</a></p>
+        <a class="brand brand--footer" href="index.html" aria-label="Techs Garden House, home">
+        <span class="brand__name" aria-hidden="true">TECHS-<span class="brand__over">GARDENHOUSE</span></span>
+        <span class="brand__sub" aria-hidden="true">Sally · Outdoor living</span>
+      </a>
+        <p class="site-footer__pitch">Techs Garden House è una nuova concezione di spazio outdoor: una struttura di design che unisce tecnologia, comfort e integrazione con l’ambiente.</p>
+        <p class="site-footer__contact">
+          <a href="mailto:vailfabio05@gmail.com">vailfabio05@gmail.com</a>
+          <a href="https://www.techs-gardenhouse.com/">www.techs-gardenhouse.com</a>
+        </p>
       </div>
 
       <nav class="site-footer__nav" aria-labelledby="footer-links-title">
-        <h2 class="site-footer__title" id="footer-links-title">Link utili</h2>
+        <h2 class="site-footer__title" id="footer-links-title">Esplora</h2>
         <ul class="site-footer__list">
           <li><a href="index.html">Home</a></li>
           <li><a href="galleria.html">Galleria</a></li>
           <li><a href="configura.html">Configura</a></li>
           <li><a href="contatti.html">Contatti</a></li>
+          <li><a href="assets/download/brochure.pdf" download>Brochure (PDF)</a></li>
+          <li><a href="assets/download/scheda-tecnica.pdf" download>Scheda tecnica (PDF)</a></li>
         </ul>
       </nav>
 
-      <div class="site-footer__adi">
-        <h2 class="site-footer__title">Design registrato</h2>
-        <p>Il progetto Sally è depositato presso l’ADI, Associazione per il Disegno Industriale, nel Registro dei progetti con prot. n. 3880.</p>
+      <div>
+        <div class="site-footer__adi">
+          <h2 class="site-footer__title">Design registrato</h2>
+          <img src="assets/img/marchi/adi.webp" width="252" height="258" alt="ADI, Associazione per il Disegno Industriale" loading="lazy" decoding="async">
+          <p>Il progetto Sally è depositato presso l’ADI, Associazione per il Disegno Industriale, nel Registro dei progetti con prot. n. 3880.</p>
+        </div>
+        <p class="site-footer__partner">Powered by <img src="assets/img/marchi/fvl-servizi.webp" width="510" height="166" alt="FVL Servizi SRL" loading="lazy" decoding="async"></p>
       </div>
     </div>
 
     <div class="site-footer__bottom container">
-      <p class="site-footer__copy">© <span data-year>2026</span> GardenHouse. Tutti i diritti riservati.</p>
-      <a class="site-footer__top" href="#top">Torna su</a>
+      <p class="site-footer__copy">© <span data-year>2026</span> Techs Garden House. Tutti i diritti riservati.</p>
+      <a class="site-footer__top" href="#top">Torna su ↑</a>
     </div>
   </footer>
 </body>
