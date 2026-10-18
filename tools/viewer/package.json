@@ -1,0 +1,18 @@
+{
+  "name": "gardenhouse-viewer-build",
+  "private": true,
+  "description": "Builds js/viewer3d.js and assets/model/sally.glb. See tools/README.md.",
+  "type": "module",
+  "scripts": {
+    "model": "curl -sL https://www.techs-gardenhouse.com/modello3d/garden-house/ALL-DIVIDE.glb -o /tmp/ALL-DIVIDE.glb && node prep-model.mjs /tmp/ALL-DIVIDE.glb ../../assets/model/sally.glb",
+    "build": "esbuild viewer3d.js --bundle --minify --format=esm --target=es2020 --legal-comments=eof --outfile=../../js/viewer3d.js"
+  },
+  "devDependencies": {
+    "@gltf-transform/core": "4.5.1",
+    "@gltf-transform/extensions": "4.5.1",
+    "@gltf-transform/functions": "4.5.1",
+    "esbuild": "0.24.2",
+    "meshoptimizer": "1.3.0",
+    "three": "0.170.0"
+  }
+}
