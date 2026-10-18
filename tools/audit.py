@@ -77,7 +77,7 @@ def interactions(browser, base):
         report("lightbox: focus not returned to trigger")
 
     page.goto(base + "configura.html")
-    page.locator('input[name="struttura"][value="verde"]').check()
+    page.locator('label.swatch:has(input[name="struttura"][value="verde"])').click()
     if "#178048" not in (page.locator("[data-house]").get_attribute("style") or ""):
         report("configurator: structure colour not applied")
     if "verde" not in page.url:
