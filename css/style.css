@@ -384,7 +384,7 @@ main > .page-intro + section { border-top: 0; }
 /* ---------- Configurator ---------- */
 .configurator__inner { display: grid; gap: var(--space-5); }
 .configurator__stage { align-self: start; }
-.configurator__canvas { padding: var(--space-3); background: var(--white); border: var(--rule); }
+.configurator__canvas, .configurator__viewer-stage { padding: var(--space-3); background: var(--white); border: var(--rule); }
 .house { width: 100%; }
 .configurator__summary {
   display: flex; flex-wrap: wrap; align-items: baseline; gap: .25rem .75rem; padding-top: .75rem;
@@ -427,17 +427,27 @@ main > .page-intro + section { border-top: 0; }
 }
 
 /* View switch: 2D drawing / 3D model */
-.view-switch { display: inline-flex; margin-bottom: var(--space-2); border: 1px solid var(--color-border); border-radius: var(--radius); }
 .view-switch[hidden], [data-view-panel][hidden] { display: none !important; }
-.view-switch__btn { min-height: 44px; padding: .4em 1em; border: 0; background: transparent; color: var(--color-text); font: inherit; cursor: pointer; }
-.view-switch__btn[aria-pressed="true"] { background: var(--color-accent); color: var(--color-accent-contrast); font-weight: 600; }
-.configurator__viewer { background: var(--color-surface); }
-.configurator__viewer-stage { aspect-ratio: 640 / 440; cursor: grab; }
+.configurator__viewer-stage { aspect-ratio: 640 / 440; padding: 0 !important; cursor: grab; }
 .configurator__viewer-stage:active { cursor: grabbing; }
-.configurator__viewer-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-1); padding: var(--space-1); }
-.configurator__viewer-status { margin: 0; font-size: var(--step--1); color: var(--color-muted); }
-.configurator__viewer-tools { display: flex; gap: .25rem; }
-.viewer-btn { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--color-border); border-radius: var(--radius); background: var(--color-bg); color: var(--color-text); cursor: pointer; }
+.configurator__viewer-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-1) var(--space-2); }
+.configurator__viewer-status { margin: 0; max-width: 32rem; }
+.configurator__viewer-tools { display: flex; gap: .4rem; }
+.view-switch__btn, .viewer-btn { cursor: pointer; }
+.viewer-btn { display: grid; place-items: center; width: 44px; height: 44px; }
+.view-switch { display: inline-flex; margin-bottom: var(--space-2); border: var(--rule); }
+.view-switch__btn {
+  min-height: 44px; padding: .5rem 1.1rem; border: 0; background: transparent; color: var(--ink);
+  font-family: var(--font-display); font-size: var(--step--1); font-weight: 750; letter-spacing: .08em; text-transform: uppercase;
+  transition: background-color var(--dur-fast), color var(--dur-fast);
+}
+.view-switch__btn + .view-switch__btn { border-left: var(--rule); }
+.view-switch__btn:hover { background: var(--paper-2); }
+.view-switch__btn[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.configurator__viewer-bar { padding-top: .75rem; }
+.configurator__viewer-status { font-style: italic; font-size: var(--step--1); color: var(--ink-2); }
+.viewer-btn { border: var(--rule); background: var(--paper); color: var(--ink); transition: background-color var(--dur-fast), color var(--dur-fast); }
+.viewer-btn:hover { background: var(--ink); color: var(--paper); }
 
 /* ---------- Contacts ---------- */
 .contact__inner { display: grid; gap: var(--space-5); }
