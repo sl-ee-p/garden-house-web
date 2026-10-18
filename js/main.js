@@ -160,6 +160,9 @@
     var quote = form.querySelector('[data-quote]');
     var parts = { struttura: 'Struttura', pannelli: 'Pannelli' };
     var cssVar = { struttura: '--house-structure', pannelli: '--house-panel' };
+    var colorKey = { struttura: 'structure', pannelli: 'panel' };
+    var colors = {};
+    var viewer = null;
 
     function selected(part) {
       return form.querySelector('input[name="' + part + '"]:checked');
@@ -176,12 +179,17 @@
         var input = selected(part);
         if (!input) return;
         house.style.setProperty(cssVar[part], input.dataset.color);
+        colors[colorKey[part]] = input.dataset.color;
         var name = label(input);
         bits.push(parts[part] + ' ' + name);
         hash.push(part + '=' + input.value);
         var current = form.querySelector('[data-current="' + part + '"]');
         if (current) current.textContent = name;
       });
+      if (viewer) {
+        viewer.setColors(colors);
+        viewer.canvas.setAttribute('aria-label', 'Modello 3D di Sally: ' + bits.join(', ') + '.');
+      }
       var text = bits.join(' · ');
       if (summary) summary.textContent = text;
       if (desc) desc.textContent = bits.join(', ') + '.';
@@ -220,6 +228,62 @@
       }, 0);
     });
     render(false);
+    initViewSwitch();
+
+    /* 2D drawing / interactive 3D model. The 3D viewer (three.js + the
+       original Sally model) is only downloaded when the visitor asks for it. */
+    function initViewSwitch() {
+      var group = document.querySelector('[data-view-switch]');
+      var stage = document.querySelector('[data-viewer-stage]');
+      var status = document.querySelector('[data-viewer-status]');
+      if (!group || !stage || !('ResizeObserver' in window)) return;
+      var buttons = group.querySelectorAll('[data-view]');
+      var loading = null;
+      var hint = 'Trascina per ruotare, usa la rotellina o due dita per lo zoom.';
+
+      function show(view) {
+        buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.view === view)); });
+        document.querySelectorAll('[data-view-panel]').forEach(function (p) {
+          p.hidden = p.dataset.viewPanel !== view;
+        });
+        if (viewer) { if (view === '3d') viewer.start(); else viewer.stop(); }
+      }
+
+      function load() {
+        if (loading) return loading;
+        status.textContent = 'Caricamento del modello 3D…';
+        loading = import('./viewer3d.js').then(function (mod) {
+          if (!mod.supported()) throw new Error('webgl');
+          return mod.mount(stage, {
+            modelUrl: 'assets/model/sally.glb',
+            colors: colors,
+            label: 'Modello 3D di Sally: ' + (desc ? desc.textContent : '') + ' Trascina per ruotarlo.'
+          });
+        }).then(function (v) {
+          viewer = v;
+          viewer.setColors(colors);
+          status.textContent = hint;
+          if (group.querySelector('[data-view="3d"]').getAttribute('aria-pressed') !== 'true') viewer.stop();
+        }).catch(function () {
+          loading = null;
+          status.textContent = 'Non è stato possibile mostrare il modello 3D su questo dispositivo. Il disegno resta disponibile.';
+        });
+        return loading;
+      }
+
+      buttons.forEach(function (b) {
+        b.addEventListener('click', function () {
+          show(b.dataset.view);
+          if (b.dataset.view === '3d') load();
+        });
+      });
+      document.querySelectorAll('[data-viewer-rotate]').forEach(function (b) {
+        b.addEventListener('click', function () { if (viewer) viewer.rotate(Number(b.dataset.viewerRotate)); });
+      });
+      var reset = document.querySelector('[data-viewer-reset]');
+      if (reset) reset.addEventListener('click', function () { if (viewer) viewer.reset(); });
+      group.hidden = false;
+    }
   }
 
   /* ---------- Footer year ---------- */
