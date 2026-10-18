@@ -415,7 +415,7 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 .site-footer::after {
   content: "GardenHouse";
   content: "GardenHouse" / "";
-  display: block; margin: 0 0 -0.2em; padding-inline: var(--gutter);
+  display: block; margin: 0 0 -0.09em; padding-inline: var(--gutter);
   font-size: clamp(3rem, 15.2vw, 19rem); font-weight: 700; letter-spacing: -0.065em; line-height: 1; white-space: nowrap;
   color: var(--ink); text-align: center;
 }
