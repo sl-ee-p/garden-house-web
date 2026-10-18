@@ -10,6 +10,7 @@ Redesign of [techs-gardenhouse.com](https://www.techs-gardenhouse.com/) for the 
 | Organica e naturale | `design/organic-natural` | https://sl-ee-p.github.io/garden-house-web/organic/ |
 | Moderna e minimale | `design/modern-minimal` | https://sl-ee-p.github.io/garden-house-web/minimal/ |
 | Editoriale | `design/bold-editorial` | https://sl-ee-p.github.io/garden-house-web/editorial/ |
+| Signature (nuova brochure) | `design/signature` | https://sl-ee-p.github.io/garden-house-web/signature/ |
 | Base | `main` | https://sl-ee-p.github.io/garden-house-web/main/ |
 
 The site is plain HTML, CSS and JavaScript with no build step: open `index.html` or serve the folder.
