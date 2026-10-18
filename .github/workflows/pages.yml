@@ -4,6 +4,7 @@
 #   /organic/    design/organic-natural
 #   /minimal/    design/modern-minimal
 #   /editorial/  design/bold-editorial
+#   /signature/  design/signature
 # Any push to one of these branches rebuilds the whole site from all of them.
 name: Publish site
 
@@ -34,7 +35,7 @@ jobs:
           set -euo pipefail
           mkdir -p _site/previews
           git show origin/main:.github/pages/index.html > _site/index.html
-          for pair in main:main organic:design/organic-natural minimal:design/modern-minimal editorial:design/bold-editorial; do
+          for pair in main:main organic:design/organic-natural minimal:design/modern-minimal editorial:design/bold-editorial signature:design/signature; do
             dir=${pair%%:*}; ref=origin/${pair#*:}
             mkdir -p "_site/$dir"
             git archive "$ref" | tar -x -C "_site/$dir" --exclude=.github --exclude=tools --exclude=docs --exclude=README.md --exclude=.gitignore
