@@ -163,3 +163,75 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 .link-arrow::after { content: "→"; transition: transform var(--dur) var(--ease-spring); }
 .link-arrow:hover { background-size: calc(100% - 1.4em) 2px; }
 .link-arrow:hover::after { transform: translateX(4px); }
+
+/* ---------- Header: floating pill navigation ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  padding-block: .75rem;
+}
+.site-header__inner {
+  position: relative;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem 1rem;
+  min-height: 3.6rem;
+  padding: .45rem .45rem .45rem 1.1rem;
+  border: 1px solid rgb(216 205 182 / .8);
+  border-radius: var(--radius-m);
+  background: rgb(255 253 248 / .86);
+  -webkit-backdrop-filter: blur(14px) saturate(1.3);
+          backdrop-filter: blur(14px) saturate(1.3);
+  transition: box-shadow var(--dur) var(--ease-out), background-color var(--dur);
+}
+.site-header[data-scrolled="true"] .site-header__inner { box-shadow: var(--shadow-soft); background: rgb(255 253 248 / .94); }
+
+.brand {
+  display: inline-flex; align-items: center; gap: .55rem; min-height: 44px;
+  font-family: var(--font-heading); font-size: 1.35rem; font-weight: 600; letter-spacing: -.01em;
+  color: var(--moss-deep); text-decoration: none;
+}
+.brand:hover { color: var(--moss-deep); }
+.brand__mark { width: 34px; height: 34px; padding: 5px; border-radius: 50%; background: var(--sage-soft); color: var(--moss); transition: transform var(--dur-slow) var(--ease-spring); }
+.brand:hover .brand__mark { transform: rotate(-12deg) scale(1.06); }
+.brand__accent { font-style: italic; font-weight: 400; color: var(--terracotta); }
+
+.site-nav__list { display: flex; flex-wrap: wrap; gap: .25rem; list-style: none; margin: 0; padding: 0; }
+.site-nav__link {
+  display: inline-flex; align-items: center; min-height: 44px; padding: .4rem 1.05rem;
+  border-radius: var(--radius-pill);
+  color: var(--bark); font-weight: 600; text-decoration: none;
+  transition: background-color var(--dur-fast), color var(--dur-fast);
+}
+.site-nav__link:hover { background: var(--sage-soft); color: var(--moss-deep); }
+.site-nav__link[aria-current="page"] { background: var(--moss); color: var(--cream); }
+
+.nav-toggle {
+  display: none; align-items: center; gap: .6rem; min-height: 44px; padding: .4rem 1.1rem .4rem .9rem;
+  border: 0; border-radius: var(--radius-pill);
+  background: var(--moss); color: var(--cream);
+  font: inherit; font-weight: 700; cursor: pointer;
+}
+.nav-toggle__icon { position: relative; width: 18px; height: 12px; }
+.nav-toggle__icon::before, .nav-toggle__icon::after, .nav-toggle__icon span {
+  content: ""; position: absolute; left: 0; width: 100%; height: 2px; border-radius: 2px; background: currentColor;
+  transition: transform var(--dur) var(--ease-out), opacity var(--dur-fast);
+}
+.nav-toggle__icon::before { top: 0; }
+.nav-toggle__icon span { top: 5px; }
+.nav-toggle__icon::after { top: 10px; }
+.nav-toggle[aria-expanded="true"] .nav-toggle__icon::before { transform: translateY(5px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .nav-toggle__icon span { opacity: 0; }
+.nav-toggle[aria-expanded="true"] .nav-toggle__icon::after { transform: translateY(-5px) rotate(-45deg); }
+
+@media (max-width: 47.99em) {
+  .js .nav-toggle { display: inline-flex; }
+  .js .site-nav {
+    position: absolute; top: calc(100% + .5rem); left: 0; right: 0;
+    padding: .75rem;
+    border: 1px solid var(--color-border); border-radius: var(--radius-m);
+    background: var(--white); box-shadow: var(--shadow-lift);
+    opacity: 0; visibility: hidden; transform: translateY(-8px) scale(.98); transform-origin: top center;
+    transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out), visibility 0s linear var(--dur);
+  }
+  .js .site-header.is-open .site-nav { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+  .js .site-nav__list { flex-direction: column; }
+  .js .site-nav__link { width: 100%; padding-inline: 1.2rem; font-size: 1.1rem; }
+}
