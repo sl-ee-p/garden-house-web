@@ -105,7 +105,8 @@ def main():
         browser = p.chromium.launch()
         for w in WIDTHS:
             print(f"width {w}px")
-            ctx = browser.new_context(viewport={"width": w, "height": 900})
+            # Reduced motion so axe sees final colours, not elements mid-fade.
+            ctx = browser.new_context(viewport={"width": w, "height": 900}, reduced_motion="reduce")
             page = ctx.new_page()
             errors = []
             page.on("console", lambda m: errors.append(m.text) if m.type == "error" else None)
