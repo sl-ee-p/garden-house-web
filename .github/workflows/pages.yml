@@ -1,0 +1,59 @@
+# Publishes every design branch side by side on GitHub Pages:
+#   /            index of the versions (.github/pages/index.html on main)
+#   /main/       baseline
+#   /organic/    design/organic-natural
+#   /minimal/    design/modern-minimal
+#   /editorial/  design/bold-editorial
+# Any push to one of these branches rebuilds the whole site from all of them.
+name: Publish site
+
+on:
+  push:
+    branches: [main, "design/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Assemble all versions
+        run: |
+          set -euo pipefail
+          mkdir -p _site/previews
+          git show origin/main:.github/pages/index.html > _site/index.html
+          for pair in main:main organic:design/organic-natural minimal:design/modern-minimal editorial:design/bold-editorial; do
+            dir=${pair%%:*}; ref=origin/${pair#*:}
+            mkdir -p "_site/$dir"
+            git archive "$ref" | tar -x -C "_site/$dir" --exclude=.github --exclude=tools --exclude=docs --exclude=README.md --exclude=.gitignore
+            shots=docs/screenshots/$( [ "$dir" = main ] && echo main || echo "${pair#*:}" )
+            git show "$ref:$shots/desktop-index.jpg" > "_site/previews/$dir.jpg"
+          done
+          touch _site/.nojekyll
+          find _site -maxdepth 2 | sort
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
