@@ -458,7 +458,7 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 .configurator { padding-block: var(--space-2) var(--space-5); }
 .configurator__inner { display: grid; gap: var(--space-4); align-items: start; }
 .configurator__stage { position: relative; }
-.configurator__canvas {
+.configurator__canvas, .configurator__viewer-stage {
   position: relative; overflow: hidden;
   padding: clamp(1rem, 4vw, 3rem) clamp(.5rem, 3vw, 2.5rem) 0;
   border-radius: var(--radius-l);
@@ -512,17 +512,22 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 }
 
 /* View switch: 2D drawing / 3D model */
-.view-switch { display: inline-flex; margin-bottom: var(--space-2); border: 1px solid var(--color-border); border-radius: var(--radius); }
 .view-switch[hidden], [data-view-panel][hidden] { display: none !important; }
-.view-switch__btn { min-height: 44px; padding: .4em 1em; border: 0; background: transparent; color: var(--color-text); font: inherit; cursor: pointer; }
-.view-switch__btn[aria-pressed="true"] { background: var(--color-accent); color: var(--color-accent-contrast); font-weight: 600; }
-.configurator__viewer { background: var(--color-surface); }
-.configurator__viewer-stage { aspect-ratio: 640 / 440; cursor: grab; }
+.configurator__viewer-stage { aspect-ratio: 640 / 440; padding: 0 !important; cursor: grab; }
 .configurator__viewer-stage:active { cursor: grabbing; }
-.configurator__viewer-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-1); padding: var(--space-1); }
-.configurator__viewer-status { margin: 0; font-size: var(--step--1); color: var(--color-muted); }
-.configurator__viewer-tools { display: flex; gap: .25rem; }
-.viewer-btn { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--color-border); border-radius: var(--radius); background: var(--color-bg); color: var(--color-text); cursor: pointer; }
+.configurator__viewer-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-1) var(--space-2); }
+.configurator__viewer-status { margin: 0; max-width: 32rem; }
+.configurator__viewer-tools { display: flex; gap: .4rem; }
+.view-switch__btn, .viewer-btn { cursor: pointer; }
+.viewer-btn { display: grid; place-items: center; width: 44px; height: 44px; }
+.view-switch { display: inline-flex; gap: .25rem; margin-bottom: var(--space-2); padding: .3rem; border-radius: var(--radius-pill); background: var(--white); box-shadow: var(--shadow-soft); }
+.view-switch__btn { min-height: 44px; padding: .5rem 1.25rem; border: 0; border-radius: var(--radius-pill); background: transparent; color: var(--moss-deep); font: inherit; font-weight: 700; transition: background-color .2s, color .2s; }
+.view-switch__btn:hover { background: var(--sage-soft); }
+.view-switch__btn[aria-pressed="true"] { background: var(--moss); color: var(--cream); }
+.configurator__viewer-bar { margin-top: var(--space-2); }
+.configurator__viewer-status { font-size: var(--step--1); color: var(--bark-muted); }
+.viewer-btn { border: 0; border-radius: 50%; background: var(--white); color: var(--moss-deep); box-shadow: var(--shadow-soft); transition: background-color .2s; }
+.viewer-btn:hover { background: var(--sage-soft); }
 
 /* ---------- Contacts ---------- */
 .contact { padding-block: var(--space-2) var(--space-5); }
