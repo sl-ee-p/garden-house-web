@@ -28,7 +28,7 @@ def main():
             continue
         fam = re.search(r"font-family: '([^']+)'", block).group(1)
         style = re.search(r"font-style: (\w+)", block).group(1)
-        weight = int(re.search(r"font-weight: (\d+)", block).group(1))
+        weight = [int(w) for w in re.search(r"font-weight: ([\d ]+);", block).group(1).split()]
         url = re.search(r"url\((\S+?)\)", block).group(1)
         if url not in seen:
             name = f"{fam.lower().replace(' ', '-')}-{style}.woff2"
@@ -36,7 +36,7 @@ def main():
                 name = name.replace(".woff2", f"-{len(seen)}.woff2")
             (out / name).write_bytes(get(url))
             seen[url] = name
-        faces.setdefault(url, [fam, style, []])[2].append(weight)
+        faces.setdefault(url, [fam, style, []])[2].extend(weight)
     for url, (fam, style, weights) in faces.items():
         w = str(min(weights)) if len(set(weights)) == 1 else f"{min(weights)} {max(weights)}"
         print(f"@font-face {{ font-family: '{fam}'; font-style: {style}; font-weight: {w}; font-display: swap; "
