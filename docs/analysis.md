@@ -1,6 +1,6 @@
 # Reference site analysis — techs-gardenhouse.com
 
-Reviewed on 2026-10-18 by reading the live HTML of all four pages. The site is used here only as a content and structure reference. No code, copy, images or branding are reused.
+Reviewed on 2026-10-18 by reading the live HTML of all four pages. The site is the content and structure reference. Its own assets are reused as-is: the photos, the favicon, the PDF brochure and technical sheet, and the 3D model of Sally. No stock or placeholder images are used anywhere. The original code is not reused.
 
 ## Purpose and audience
 
@@ -41,6 +41,6 @@ The 9 configurator colors are: brown #8B4513, green #178048, light grey #9DA6A1,
 
 1. Keep the 4 pages, their sections and their order. Fix the semantics: one `h1` per page, real lists, real links and buttons.
 2. Replace the carousel with an accessible grid + `<dialog>` lightbox.
-3. Replace the 3D viewer with a lightweight **inline-SVG configurator**. It uses radio-button swatches (keyboard accessible, with names from the app palette), shows a live summary, keeps the selection in a shareable URL hash, and adds a "Richiedi preventivo" email CTA so it is no longer a dead end.
+3. Rebuild the configurator around two previews of the same house: an **inline-SVG drawing** that follows the original 3D model's design (instant, works without WebGL) and the **original 3D model**, which can be rotated and loads only when the visitor switches to it. Both follow the same radio-button swatches (keyboard accessible, with names from the app palette). The configurator shows a live summary, keeps the selection in a shareable URL hash, and adds a "Richiedi preventivo" email CTA so it is no longer a dead end.
 4. Rewrite the copy in Italian with the same facts, and add one sentence explaining what Sally is.
 5. Give each design branch its own art direction on the same content.

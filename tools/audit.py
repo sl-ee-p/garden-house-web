@@ -85,6 +85,24 @@ def interactions(browser, base):
     page.goto(base + "configura.html#struttura=rosso&pannelli=ocra")
     if "Rosso" not in page.locator("[data-summary]").inner_text():
         report("configurator: hash not restored")
+
+    # 2D / 3D switch: the viewer loads on demand and either shows the model
+    # or a visible fallback message, never a blank panel.
+    page.locator('[data-view="3d"]').click()
+    status = page.locator("[data-viewer-status]")
+    try:
+        page.wait_for_function(
+            "(t => t && !t.startsWith('Caricamento'))(document.querySelector('[data-viewer-status]').textContent)",
+            timeout=30000)
+    except Exception:
+        report("3d: viewer did not finish loading")
+    if page.locator("[data-view-panel='2d']").is_visible():
+        report("3d: drawing still visible in 3D view")
+    if not page.locator("[data-viewer-stage] canvas").count() and "Non è stato possibile" not in status.inner_text():
+        report("3d: no canvas and no fallback message")
+    page.locator('[data-view="2d"]').click()
+    if not page.locator("[data-view-panel='2d']").is_visible():
+        report("3d: switching back did not show the drawing")
     ctx.close()
 
     # Reduced motion: nothing may stay hidden.
