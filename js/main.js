@@ -180,6 +180,14 @@
         if (!input) return;
         house.style.setProperty(cssVar[part], input.dataset.color);
         colors[colorKey[part]] = input.dataset.color;
+        // Optional finish texture (data-texture): the drawing's <image data-texture-for>
+        // patterns and the 3D model use it, the flat colour stays as the fallback.
+        var texture = input.dataset.texture || '';
+        colors[colorKey[part] + 'Texture'] = texture;
+        house.querySelectorAll('[data-texture-for="' + part + '"]').forEach(function (img) {
+          img.setAttribute('href', texture);
+        });
+        house.toggleAttribute('data-textured-' + part, !!texture);
         var name = label(input);
         bits.push(parts[part] + ' ' + name);
         hash.push(part + '=' + input.value);
