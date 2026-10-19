@@ -11,6 +11,7 @@ Redesign of [techs-gardenhouse.com](https://www.techs-gardenhouse.com/) for the 
 | Moderna e minimale | `design/modern-minimal` | https://sl-ee-p.github.io/garden-house-web/minimal/ |
 | Editoriale | `design/bold-editorial` | https://sl-ee-p.github.io/garden-house-web/editorial/ |
 | Signature (nuova brochure) | `design/signature` | https://sl-ee-p.github.io/garden-house-web/signature/ |
+| Signature notte (scura) | `design/signature-dark` | https://sl-ee-p.github.io/garden-house-web/signature-dark/ |
 | Base | `main` | https://sl-ee-p.github.io/garden-house-web/main/ |
 
 The site is plain HTML, CSS and JavaScript with no build step: open `index.html` or serve the folder.
