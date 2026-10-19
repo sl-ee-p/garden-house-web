@@ -35,9 +35,11 @@ def sky_mask(rgb):
     cand = blue | cloud
     yy, xx = np.mgrid[0:h, 0:w]
     cand &= yy < 1000
-    # the garden house itself: front face, then the side face whose top slopes down to the right
-    roof = np.where(xx <= 988, 446, 446 + (xx - 988) * 38 / 149)
-    cand &= ~((xx >= 398) & (xx <= 1137) & (yy >= roof))
+    # the garden house itself, measured on the photo: the front roof edge rises from y 470 on the
+    # left to the corner at x 985, then the side face's top falls away to the right
+    roof = np.where(xx <= 985, 469 - (xx - 402) * 0.0475, 442 + (xx - 985) * 0.33) - 1
+    house = (xx >= 398) & (xx <= 1137) & (yy >= roof)
+    cand &= ~house
     lab, _ = ndimage.label(cand)
     keep = np.unique(lab[:40][lab[:40] > 0])  # regions connected to the top edge
     big = np.bincount(lab.ravel())
@@ -46,10 +48,14 @@ def sky_mask(rgb):
     m = np.isin(lab, list(ids)).astype(np.float32)
     # small gaps between leaves read as sky too, so close the mask a little
     m = ndimage.binary_closing(m > 0.5, iterations=1).astype(np.float32)
-    return np.clip(smooth(m, 1.2), 0, 1)
+    m = smooth(m, 1.2)
+    # sky seen through the foliage: soft, by how blue each pixel is, above the hedges and off the house
+    through = np.clip((b - np.maximum(r, g) - 0.04) / 0.18, 0, 1) * (b > 0.35)
+    through *= (yy < 740) & ~house
+    return np.clip(np.maximum(m, smooth(through, 0.6)), 0, 1), m
 
 
-def night_sky(rgb, h, w):
+def night_sky(rgb, h, w, open_sky):
     yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
     t = np.clip(yy / 1000, 0, 1)[..., None]
     top = np.array([0.020, 0.035, 0.075])
@@ -80,6 +86,7 @@ def night_sky(rgb, h, w):
     big[sy[bright], sx[bright]] = 1
     stars += smooth(big, 1.1) * 3.0
     vis = (1 - cloudiness) * (1 - np.clip(halo[..., 0] * 5, 0, 1)) * np.clip(1.2 - yy / 900, 0, 1)
+    vis *= ndimage.grey_erosion(open_sky, size=15)  # no stars in the gaps between leaves
     sky = sky + (stars * vis)[..., None] * np.array([0.92, 0.95, 1.0])
     # moon disc
     disc = np.clip(1 - (d - 15) / 1.5, 0, 1)
@@ -109,8 +116,9 @@ def night_scene(rgb, h, w):
 def grade(src):
     rgb = np.asarray(src.convert('RGB'), np.float32) / 255
     h, w, _ = rgb.shape
-    m = sky_mask(rgb)[..., None]
-    out = night_scene(rgb, h, w) * (1 - m) + night_sky(rgb, h, w) * m
+    m, open_sky = sky_mask(rgb)
+    m = m[..., None]
+    out = night_scene(rgb, h, w) * (1 - m) + night_sky(rgb, h, w, open_sky) * m
     # gentle vignette and fine grain, so the dark areas don't band
     yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
     v = 1 - 0.22 * (np.hypot((xx - w / 2) / w, (yy - h * 0.45) / h) * 1.6) ** 2
