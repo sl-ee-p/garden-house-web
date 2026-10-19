@@ -64,6 +64,8 @@
               <style>
                 .house .h-structure { fill: var(--house-structure); stroke: rgba(0,0,0,.22); stroke-width: 1; transition: fill .35s ease; }
                 .house .h-panel { fill: var(--house-panel); stroke: rgba(0,0,0,.22); stroke-width: 1; transition: fill .35s ease; }
+                .house[data-textured-pannelli] .h-panel { fill: url(#house-tex-front); }
+                .house[data-textured-pannelli] .h-panel--side { fill: url(#house-tex-side); }
                 .house .h-shade { fill: #000; opacity: .2; }
                 .house .h-light { fill: #fff; opacity: .14; }
                 .house .h-groove { stroke: #000; stroke-opacity: .12; stroke-width: 1.5; }
@@ -76,10 +78,13 @@
                 <linearGradient id="house-glass" x1="0" y1="0" x2="1" y2="1">
                   <stop offset="0" stop-color="#d9e8ee"/><stop offset=".55" stop-color="#93b5c4"/><stop offset="1" stop-color="#5a7a89"/>
                 </linearGradient>
+                <!-- panel finish textures, set from the selected swatch by js/main.js -->
+                <pattern id="house-tex-front" patternUnits="userSpaceOnUse" x="130" y="106" width="138" height="126.2"><image data-texture-for="pannelli" href="" width="69" height="31.55" preserveAspectRatio="none"/><image data-texture-for="pannelli" href="" width="69" height="31.55" preserveAspectRatio="none" transform="translate(138 0) scale(-1 1)"/><image data-texture-for="pannelli" href="" x="-138" width="69" height="31.55" preserveAspectRatio="none"/><image data-texture-for="pannelli" href="" width="69" height="31.55" preserveAspectRatio="none" transform="translate(0 0) scale(-1 1)"/><image data-texture-for="pannelli" href="" width="69" height="31.55" preserveAspectRatio="none" transform="translate(75.9 63.1) scale(1 -1)"/><image data-texture-for="pannelli" href="" width="69" height="31.55" preserveAspectRatio="none" transform="translate(213.9 63.1) scale(-1 -1)"/><image data-texture-for="pannelli" href="" width="69" height="31.55" preserveAspectRatio="none" transform="translate(-62.1 63.1) scale(1 -1)"/><image data-texture-for="pannelli" href="" width="69" height="31.55" preserveAspectRatio="none" transform="translate(75.9 63.1) scale(-1 -1)"/><image data-texture-for="pannelli" href="" x="27.6" y="63.1" width="69" height="31.55" preserveAspectRatio="none"/><image data-texture-for="pannelli" href="" width="69" height="31.55" preserveAspectRatio="none" transform="translate(165.6 63.1) scale(-1 1)"/><image data-texture-for="pannelli" href="" x="-110.4" y="63.1" width="69" height="31.55" preserveAspectRatio="none"/><image data-texture-for="pannelli" href="" width="69" height="31.55" preserveAspectRatio="none" transform="translate(27.6 63.1) scale(-1 1)"/><image data-texture-for="pannelli" href="" width="69" height="31.55" preserveAspectRatio="none" transform="translate(110.4 126.2) scale(1 -1)"/><image data-texture-for="pannelli" href="" width="69" height="31.55" preserveAspectRatio="none" transform="translate(248.4 126.2) scale(-1 -1)"/><image data-texture-for="pannelli" href="" width="69" height="31.55" preserveAspectRatio="none" transform="translate(-27.6 126.2) scale(1 -1)"/><image data-texture-for="pannelli" href="" width="69" height="31.55" preserveAspectRatio="none" transform="translate(110.4 126.2) scale(-1 -1)"/></pattern>
+                <pattern id="house-tex-side" patternUnits="userSpaceOnUse" width="73.4" height="126.2" patternTransform="translate(430 106) skewY(-15.255)"><image data-texture-for="pannelli" href="" width="36.7" height="31.55" preserveAspectRatio="none"/><image data-texture-for="pannelli" href="" width="36.7" height="31.55" preserveAspectRatio="none" transform="translate(73.4 0) scale(-1 1)"/><image data-texture-for="pannelli" href="" x="-73.4" width="36.7" height="31.55" preserveAspectRatio="none"/><image data-texture-for="pannelli" href="" width="36.7" height="31.55" preserveAspectRatio="none" transform="translate(0 0) scale(-1 1)"/><image data-texture-for="pannelli" href="" width="36.7" height="31.55" preserveAspectRatio="none" transform="translate(40.37 63.1) scale(1 -1)"/><image data-texture-for="pannelli" href="" width="36.7" height="31.55" preserveAspectRatio="none" transform="translate(113.77 63.1) scale(-1 -1)"/><image data-texture-for="pannelli" href="" width="36.7" height="31.55" preserveAspectRatio="none" transform="translate(-33.03 63.1) scale(1 -1)"/><image data-texture-for="pannelli" href="" width="36.7" height="31.55" preserveAspectRatio="none" transform="translate(40.37 63.1) scale(-1 -1)"/><image data-texture-for="pannelli" href="" x="14.68" y="63.1" width="36.7" height="31.55" preserveAspectRatio="none"/><image data-texture-for="pannelli" href="" width="36.7" height="31.55" preserveAspectRatio="none" transform="translate(88.08 63.1) scale(-1 1)"/><image data-texture-for="pannelli" href="" x="-58.72" y="63.1" width="36.7" height="31.55" preserveAspectRatio="none"/><image data-texture-for="pannelli" href="" width="36.7" height="31.55" preserveAspectRatio="none" transform="translate(14.68 63.1) scale(-1 1)"/><image data-texture-for="pannelli" href="" width="36.7" height="31.55" preserveAspectRatio="none" transform="translate(58.72 126.2) scale(1 -1)"/><image data-texture-for="pannelli" href="" width="36.7" height="31.55" preserveAspectRatio="none" transform="translate(132.12 126.2) scale(-1 -1)"/><image data-texture-for="pannelli" href="" width="36.7" height="31.55" preserveAspectRatio="none" transform="translate(-14.68 126.2) scale(1 -1)"/><image data-texture-for="pannelli" href="" width="36.7" height="31.55" preserveAspectRatio="none" transform="translate(58.72 126.2) scale(-1 -1)"/></pattern>
               </defs>
               <ellipse cx="350" cy="392" rx="270" ry="20" fill="#000" opacity=".12"/>
               <!-- side wall -->
-              <polygon class="h-panel" points="430.0,106.0 540.0,76.0 540.0,360.0 430.0,390.0"/>
+              <polygon class="h-panel h-panel--side" points="430.0,106.0 540.0,76.0 540.0,360.0 430.0,390.0"/>
               <g class="h-groove"><line x1="430.0" y1="137.6" x2="540.0" y2="107.6"/><line x1="430.0" y1="169.1" x2="540.0" y2="139.1"/><line x1="430.0" y1="200.7" x2="540.0" y2="170.7"/><line x1="430.0" y1="232.2" x2="540.0" y2="202.2"/><line x1="430.0" y1="263.8" x2="540.0" y2="233.8"/><line x1="430.0" y1="295.3" x2="540.0" y2="265.3"/><line x1="430.0" y1="326.9" x2="540.0" y2="296.9"/><line x1="430.0" y1="358.4" x2="540.0" y2="328.4"/></g>
               <polygon class="h-shade" points="430.0,106.0 540.0,76.0 540.0,360.0 430.0,390.0"/>
               <polygon class="h-structure" points="430.0,106.0 439.9,103.3 439.9,387.3 430.0,390.0"/>
@@ -203,82 +208,82 @@
             <p class="swatches__hint">Le 16 finiture della brochure: doga centrale (passo 250) o piano (passo 500).</p>
             <div class="swatches__list">
               <label class="swatch">
-                <input class="swatch__input" type="radio" name="pannelli" value="piano-goffrato-ral9010" data-color="#f0ece2">
+                <input class="swatch__input" type="radio" name="pannelli" value="piano-goffrato-ral9010" data-texture="assets/img/finiture/tex/piano-goffrato-ral9010.webp" data-color="#f0ece2">
                 <span class="swatch__chip" style="--swatch-img: url(../assets/img/finiture/piano-goffrato-ral9010-160.webp)" aria-hidden="true"></span>
                 <span class="swatch__name">Piano goffrato RAL 9010</span>
               </label>
               <label class="swatch">
-                <input class="swatch__input" type="radio" name="pannelli" value="doga-goffrato-ral9010" data-color="#e9e4db" checked>
+                <input class="swatch__input" type="radio" name="pannelli" value="doga-goffrato-ral9010" data-texture="assets/img/finiture/tex/doga-goffrato-ral9010.webp" data-color="#e9e4db" checked>
                 <span class="swatch__chip" style="--swatch-img: url(../assets/img/finiture/doga-goffrato-ral9010-160.webp)" aria-hidden="true"></span>
                 <span class="swatch__name">Doga centrale goffrato RAL 9010</span>
               </label>
               <label class="swatch">
-                <input class="swatch__input" type="radio" name="pannelli" value="doga-liscio-ral9010" data-color="#f2eee4">
+                <input class="swatch__input" type="radio" name="pannelli" value="doga-liscio-ral9010" data-texture="assets/img/finiture/tex/doga-liscio-ral9010.webp" data-color="#f2eee4">
                 <span class="swatch__chip" style="--swatch-img: url(../assets/img/finiture/doga-liscio-ral9010-160.webp)" aria-hidden="true"></span>
                 <span class="swatch__name">Doga centrale liscio RAL 9010</span>
               </label>
               <label class="swatch">
-                <input class="swatch__input" type="radio" name="pannelli" value="doga-liscio-ral1013" data-color="#e1d8c2">
+                <input class="swatch__input" type="radio" name="pannelli" value="doga-liscio-ral1013" data-texture="assets/img/finiture/tex/doga-liscio-ral1013.webp" data-color="#e1d8c2">
                 <span class="swatch__chip" style="--swatch-img: url(../assets/img/finiture/doga-liscio-ral1013-160.webp)" aria-hidden="true"></span>
                 <span class="swatch__name">Doga centrale liscio RAL 1013</span>
               </label>
               <label class="swatch">
-                <input class="swatch__input" type="radio" name="pannelli" value="doga-liscio-ral7035" data-color="#c4cdca">
+                <input class="swatch__input" type="radio" name="pannelli" value="doga-liscio-ral7035" data-texture="assets/img/finiture/tex/doga-liscio-ral7035.webp" data-color="#c4cdca">
                 <span class="swatch__chip" style="--swatch-img: url(../assets/img/finiture/doga-liscio-ral7035-160.webp)" aria-hidden="true"></span>
                 <span class="swatch__name">Doga centrale liscio RAL 7035</span>
               </label>
               <label class="swatch">
-                <input class="swatch__input" type="radio" name="pannelli" value="doga-liscio-ral9006" data-color="#a09d9c">
+                <input class="swatch__input" type="radio" name="pannelli" value="doga-liscio-ral9006" data-texture="assets/img/finiture/tex/doga-liscio-ral9006.webp" data-color="#a09d9c">
                 <span class="swatch__chip" style="--swatch-img: url(../assets/img/finiture/doga-liscio-ral9006-160.webp)" aria-hidden="true"></span>
                 <span class="swatch__name">Doga centrale liscio RAL 9006</span>
               </label>
               <label class="swatch">
-                <input class="swatch__input" type="radio" name="pannelli" value="piano-liscio-ral9006" data-color="#a09d9c">
+                <input class="swatch__input" type="radio" name="pannelli" value="piano-liscio-ral9006" data-texture="assets/img/finiture/tex/piano-liscio-ral9006.webp" data-color="#a09d9c">
                 <span class="swatch__chip" style="--swatch-img: url(../assets/img/finiture/piano-liscio-ral9006-160.webp)" aria-hidden="true"></span>
                 <span class="swatch__name">Piano liscio RAL 9006</span>
               </label>
               <label class="swatch">
-                <input class="swatch__input" type="radio" name="pannelli" value="doga-polygrain-ral7016" data-color="#3c3d3b">
+                <input class="swatch__input" type="radio" name="pannelli" value="doga-polygrain-ral7016" data-texture="assets/img/finiture/tex/doga-polygrain-ral7016.webp" data-color="#3c3d3b">
                 <span class="swatch__chip" style="--swatch-img: url(../assets/img/finiture/doga-polygrain-ral7016-160.webp)" aria-hidden="true"></span>
                 <span class="swatch__name">Doga centrale polygrain RAL 7016</span>
               </label>
               <label class="swatch">
-                <input class="swatch__input" type="radio" name="pannelli" value="piano-polygrain-ral7016" data-color="#3c3d3b">
+                <input class="swatch__input" type="radio" name="pannelli" value="piano-polygrain-ral7016" data-texture="assets/img/finiture/tex/piano-polygrain-ral7016.webp" data-color="#3c3d3b">
                 <span class="swatch__chip" style="--swatch-img: url(../assets/img/finiture/piano-polygrain-ral7016-160.webp)" aria-hidden="true"></span>
                 <span class="swatch__name">Piano polygrain RAL 7016</span>
               </label>
               <label class="swatch">
-                <input class="swatch__input" type="radio" name="pannelli" value="doga-goffrato-ral6005" data-color="#1a4539">
+                <input class="swatch__input" type="radio" name="pannelli" value="doga-goffrato-ral6005" data-texture="assets/img/finiture/tex/doga-goffrato-ral6005.webp" data-color="#1a4539">
                 <span class="swatch__chip" style="--swatch-img: url(../assets/img/finiture/doga-goffrato-ral6005-160.webp)" aria-hidden="true"></span>
                 <span class="swatch__name">Doga centrale goffrato RAL 6005</span>
               </label>
               <label class="swatch">
-                <input class="swatch__input" type="radio" name="pannelli" value="doga-goffrato-ral6009" data-color="#183020">
+                <input class="swatch__input" type="radio" name="pannelli" value="doga-goffrato-ral6009" data-texture="assets/img/finiture/tex/doga-goffrato-ral6009.webp" data-color="#183020">
                 <span class="swatch__chip" style="--swatch-img: url(../assets/img/finiture/doga-goffrato-ral6009-160.webp)" aria-hidden="true"></span>
                 <span class="swatch__name">Doga centrale goffrato RAL 6009</span>
               </label>
               <label class="swatch">
-                <input class="swatch__input" type="radio" name="pannelli" value="piano-liscio-noce-chiaro" data-color="#6d4324">
+                <input class="swatch__input" type="radio" name="pannelli" value="piano-liscio-noce-chiaro" data-texture="assets/img/finiture/tex/piano-liscio-noce-chiaro.webp" data-color="#6d4324">
                 <span class="swatch__chip" style="--swatch-img: url(../assets/img/finiture/piano-liscio-noce-chiaro-160.webp)" aria-hidden="true"></span>
                 <span class="swatch__name">Piano liscio Noce chiaro</span>
               </label>
               <label class="swatch">
-                <input class="swatch__input" type="radio" name="pannelli" value="doga-liscio-noce-chiaro" data-color="#6e4325">
+                <input class="swatch__input" type="radio" name="pannelli" value="doga-liscio-noce-chiaro" data-texture="assets/img/finiture/tex/doga-liscio-noce-chiaro.webp" data-color="#6e4325">
                 <span class="swatch__chip" style="--swatch-img: url(../assets/img/finiture/doga-liscio-noce-chiaro-160.webp)" aria-hidden="true"></span>
                 <span class="swatch__name">Doga centrale liscio Noce chiaro</span>
               </label>
               <label class="swatch">
-                <input class="swatch__input" type="radio" name="pannelli" value="piano-liscio-noce-scuro" data-color="#573f27">
+                <input class="swatch__input" type="radio" name="pannelli" value="piano-liscio-noce-scuro" data-texture="assets/img/finiture/tex/piano-liscio-noce-scuro.webp" data-color="#573f27">
                 <span class="swatch__chip" style="--swatch-img: url(../assets/img/finiture/piano-liscio-noce-scuro-160.webp)" aria-hidden="true"></span>
                 <span class="swatch__name">Piano liscio Noce scuro</span>
               </label>
               <label class="swatch">
-                <input class="swatch__input" type="radio" name="pannelli" value="doga-liscio-noce-scuro" data-color="#4c351f">
+                <input class="swatch__input" type="radio" name="pannelli" value="doga-liscio-noce-scuro" data-texture="assets/img/finiture/tex/doga-liscio-noce-scuro.webp" data-color="#4c351f">
                 <span class="swatch__chip" style="--swatch-img: url(../assets/img/finiture/doga-liscio-noce-scuro-160.webp)" aria-hidden="true"></span>
                 <span class="swatch__name">Doga centrale liscio Noce scuro</span>
               </label>
               <label class="swatch">
-                <input class="swatch__input" type="radio" name="pannelli" value="doga-goffrato-ral8014" data-color="#302214">
+                <input class="swatch__input" type="radio" name="pannelli" value="doga-goffrato-ral8014" data-texture="assets/img/finiture/tex/doga-goffrato-ral8014.webp" data-color="#302214">
                 <span class="swatch__chip" style="--swatch-img: url(../assets/img/finiture/doga-goffrato-ral8014-160.webp)" aria-hidden="true"></span>
                 <span class="swatch__name">Doga centrale goffrato RAL 8014</span>
               </label>
