@@ -100,11 +100,21 @@
               <polygon class="h-shade" points="430.0,106.0 540.0,76.0 540.0,90.2 430.0,120.2"/>
               <polygon class="h-structure" points="430.0,382.9 540.0,352.9 540.0,360.0 430.0,390.0"/>
               <polygon class="h-shade" points="430.0,382.9 540.0,352.9 540.0,360.0 430.0,390.0"/>
-              <!-- roof -->
+              <!-- roof: a level frame, with the corrugated sheet inside it sloping down to the back
+                   (2.51 m at the front, 2.36 m at the back on the original model), so the inside of the
+                   back and left frame shows above it -->
+              <defs><clipPath id="house-roof-hole"><polygon points="144.1,104.7 425.7,104.7 525.9,77.3 244.3,77.3"/></clipPath></defs>
               <polygon class="h-structure" points="130.0,106.0 430.0,106.0 540.0,76.0 240.0,76.0"/>
               <polygon class="h-light" points="130.0,106.0 430.0,106.0 540.0,76.0 240.0,76.0"/>
-              <polygon class="h-roof" points="154.4,101.8 436.4,101.8 515.6,80.2 233.6,80.2"/>
-              <g class="h-rib"><line x1="185.7" y1="101.8" x2="264.9" y2="80.2"/><line x1="217.1" y1="101.8" x2="296.3" y2="80.2"/><line x1="248.4" y1="101.8" x2="327.6" y2="80.2"/><line x1="279.7" y1="101.8" x2="358.9" y2="80.2"/><line x1="311.1" y1="101.8" x2="390.3" y2="80.2"/><line x1="342.4" y1="101.8" x2="421.6" y2="80.2"/><line x1="373.7" y1="101.8" x2="452.9" y2="80.2"/><line x1="405.1" y1="101.8" x2="484.3" y2="80.2"/></g>
+              <polygon class="h-structure" points="144.1,104.7 425.7,104.7 525.9,77.3 244.3,77.3"/>
+              <g clip-path="url(#house-roof-hole)">
+                <!-- inside of the left frame: faces away from the light, like the side wall -->
+                <polygon class="h-shade" points="144.1,104.7 244.3,77.3 244.3,97.4 144.1,108.5"/>
+                <polygon points="144.1,104.7 244.3,77.3 244.3,97.4 144.1,108.5" fill="#000" opacity=".12"/>
+                <polygon class="h-roof" points="144.1,108.5 425.7,108.5 525.9,97.4 244.3,97.4"/>
+                <line x1="244.3" y1="97.4" x2="525.9" y2="97.4" stroke="#000" stroke-opacity=".25" stroke-width="1.5"/>
+                <g class="h-rib"><line x1="175.3" y1="108.5" x2="275.6" y2="97.4"/><line x1="206.6" y1="108.5" x2="306.9" y2="97.4"/><line x1="237.9" y1="108.5" x2="338.2" y2="97.4"/><line x1="269.2" y1="108.5" x2="369.5" y2="97.4"/><line x1="300.5" y1="108.5" x2="400.8" y2="97.4"/><line x1="331.8" y1="108.5" x2="432.1" y2="97.4"/><line x1="363.1" y1="108.5" x2="463.4" y2="97.4"/><line x1="394.4" y1="108.5" x2="494.7" y2="97.4"/></g>
+              </g>
               <!-- front wall -->
               <rect class="h-panel" x="130.0" y="106.0" width="300.0" height="284.0"/>
               <g class="h-groove"><line x1="130" y1="137.6" x2="430" y2="137.6"/><line x1="130" y1="169.1" x2="430" y2="169.1"/><line x1="130" y1="200.7" x2="430" y2="200.7"/><line x1="130" y1="232.2" x2="430" y2="232.2"/><line x1="130" y1="263.8" x2="430" y2="263.8"/><line x1="130" y1="295.3" x2="430" y2="295.3"/><line x1="130" y1="326.9" x2="430" y2="326.9"/><line x1="130" y1="358.4" x2="430" y2="358.4"/></g>
