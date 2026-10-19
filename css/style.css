@@ -591,11 +591,12 @@ strong { font-weight: 600; }
 /* ---------- Configurator ---------- */
 .configurator { padding-block: var(--space-4) var(--space-5); }
 .configurator__inner { display: grid; gap: var(--space-4); align-items: start; }
-.configurator__stage { position: relative; }
+.configurator__stage { position: relative; --switch-room: calc(var(--space-2) + 46px + var(--space-2)); }
 .configurator__canvas, .configurator__viewer {
   background: radial-gradient(110% 80% at 50% 100%, #06604f 0%, var(--green) 50%, var(--green-deep) 100%);
 }
-.configurator__canvas { padding: var(--space-3); }
+/* Both views start below the 2D/3D switch, so it never covers the house. */
+.configurator__canvas { padding: var(--switch-room) var(--space-3) var(--space-3); }
 .house { width: 100%; }
 .configurator__summary {
   margin-top: var(--space-2); padding: var(--space-2) 0; border-bottom: 1px solid var(--line);
@@ -608,7 +609,7 @@ strong { font-weight: 600; }
   font: inherit; font-size: var(--step--2); font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
 }
 .view-switch__btn[aria-pressed="true"] { background: var(--paper); color: var(--green); }
-.configurator__viewer { position: relative; }
+.configurator__viewer { position: relative; padding-top: var(--switch-room); }
 .configurator__viewer-stage { aspect-ratio: 640 / 520; cursor: grab; touch-action: pan-y; }
 .configurator__viewer-stage:active { cursor: grabbing; }
 .configurator__viewer-bar {

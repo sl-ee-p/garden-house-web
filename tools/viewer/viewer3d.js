@@ -5,11 +5,13 @@
    The model is the original techs-gardenhouse.com CAD export, baked by
    prep-model.mjs so that its materials name the configurable groups.
    Signature branch: studio environment lighting, real glass in the window and
-   door, an optional slow turntable and screen positions for HTML labels. */
+   door, the brochure panel finishes as textures, an optional slow turntable
+   and screen positions for HTML labels. */
 import {
   WebGLRenderer, Scene, PerspectiveCamera, HemisphereLight, DirectionalLight,
   Box3, Vector3, Mesh, PlaneGeometry, MeshBasicMaterial, CanvasTexture, MathUtils,
   MeshPhysicalMaterial, PMREMGenerator, ACESFilmicToneMapping, SRGBColorSpace, DoubleSide,
+  BufferAttribute, TextureLoader, MirroredRepeatWrapping,
 } from 'three';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
@@ -26,6 +28,42 @@ const ANCHORS = {
   porta: { at: [0.34, 1.6, 0.905], normal: [0, 0, 1] },
   pannelli: { at: [1.31, 1.1, 0.2], normal: [1, 0, 0] },
 };
+
+// Real size (metres) of one panel texture: a plain half-board face, between a
+// joint and the board's central groove, which repeat every 25 cm up the wall.
+const TEXTURE_WIDTH = 0.6;
+const TEXTURE_HEIGHT = 0.25;
+
+// The CAD export has no UVs: project each panel triangle on the wall it faces
+// (box mapping in world space), so the finish runs across the boards at scale.
+// Each 25 cm row starts at its own point of the texture, like boards cut from
+// different planks, so knots and grain don't line up row after row.
+function addPanelUVs(mesh) {
+  mesh.updateWorldMatrix(true, false);
+  const geo = mesh.geometry.index ? mesh.geometry.toNonIndexed() : mesh.geometry;
+  mesh.geometry = geo;
+  const pos = geo.attributes.position;
+  const uv = new Float32Array(pos.count * 2);
+  const a = new Vector3(); const b = new Vector3(); const c = new Vector3();
+  const n = new Vector3(); const e = new Vector3();
+  for (let i = 0; i < pos.count; i += 3) {
+    a.fromBufferAttribute(pos, i).applyMatrix4(mesh.matrixWorld);
+    b.fromBufferAttribute(pos, i + 1).applyMatrix4(mesh.matrixWorld);
+    c.fromBufferAttribute(pos, i + 2).applyMatrix4(mesh.matrixWorld);
+    n.subVectors(b, a).cross(e.subVectors(c, a));
+    const ax = Math.abs(n.x); const ay = Math.abs(n.y); const az = Math.abs(n.z);
+    const row = Math.floor((a.y + b.y + c.y) / 3 / TEXTURE_HEIGHT);
+    const wall = ax > az ? Math.sign(n.x) + 3 : Math.sign(n.z);
+    const shift = (Math.sin(row * 12.9898 + wall * 78.233) * 43758.5453) % 1; // stable pseudo-random
+    [a, b, c].forEach((p, k) => {
+      let u; let v;
+      if (ay > ax && ay > az) { u = p.x; v = p.z; } else if (ax > az) { u = p.z; v = p.y; } else { u = p.x; v = p.y; }
+      uv[(i + k) * 2] = u / TEXTURE_WIDTH + shift * 4;
+      uv[(i + k) * 2 + 1] = v / TEXTURE_HEIGHT;
+    });
+  }
+  geo.setAttribute('uv', new BufferAttribute(uv, 2));
+}
 
 export function supported() {
   try {
@@ -121,7 +159,10 @@ export async function mount(host, { modelUrl, colors, label, turntable = false, 
   const materials = {};
   model.traverse((o) => { if (o.isMesh) materials[o.material.name] = o.material; });
   if (materials.structure) { materials.structure.roughness = 0.42; materials.structure.metalness = 0.15; }
-  if (materials.panel) materials.panel.roughness = 0.55;
+  if (materials.panel) {
+    materials.panel.roughness = 0.55;
+    model.traverse((o) => { if (o.isMesh && o.material === materials.panel) addPanelUVs(o); });
+  }
   if (materials.glass) {
     // Dark, reflective glazing like the brochure photos.
     const glass = new MeshPhysicalMaterial({
@@ -234,11 +275,47 @@ export async function mount(host, { modelUrl, colors, label, turntable = false, 
     }
   }
 
+  // Panel finishes: photo textures from the brochure, loaded once each.
+  const loader = new TextureLoader();
+  const textures = {};
+  let wantedTexture = '';
+  function loadTexture(url) {
+    if (!textures[url]) {
+      textures[url] = loader.loadAsync(url).then((tex) => {
+        tex.colorSpace = SRGBColorSpace;
+        tex.wrapS = tex.wrapT = MirroredRepeatWrapping;
+        tex.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
+        return tex;
+      });
+    }
+    return textures[url];
+  }
+  function setPanelTexture(url, color) {
+    const mat = materials.panel;
+    wantedTexture = url || '';
+    if (!url) {
+      if (mat.map) { mat.map = null; mat.needsUpdate = true; }
+      mat.color.set(color);
+      return;
+    }
+    // Keep the flat colour until the texture arrives, so the switch never flashes white.
+    if (!mat.map) mat.color.set(color);
+    loadTexture(url).then((tex) => {
+      if (wantedTexture !== url) return;
+      if (!mat.map) mat.needsUpdate = true;
+      mat.map = tex;
+      mat.color.set(0xffffff);
+      requestRender();
+    }).catch(() => { if (wantedTexture === url) { mat.map = null; mat.needsUpdate = true; mat.color.set(color); requestRender(); } });
+  }
+
   const api = {
     canvas,
-    setColors({ structure, panel }) {
+    // `panelTexture` (optional) is the URL of the finish's texture; `panel` stays
+    // the flat fallback colour while it loads or if it fails.
+    setColors({ structure, panel, panelTexture }) {
       if (structure && materials.structure) materials.structure.color.set(structure);
-      if (panel && materials.panel) materials.panel.color.set(panel);
+      if (panel && materials.panel) setPanelTexture(panelTexture, panel);
       requestRender();
     },
     rotate,
