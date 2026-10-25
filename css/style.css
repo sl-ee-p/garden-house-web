@@ -347,7 +347,7 @@ strong { font-weight: 600; }
 .manifesto__quote em { font-style: normal; font-weight: 500; color: var(--accent); }
 .manifesto__body { display: grid; gap: var(--space-2); max-width: 36rem; color: var(--text-muted); }
 .manifesto__media { margin: 0; }
-.manifesto__photo { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 60%; }
+.manifesto__photo { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 72% 50%; }
 @media (min-width: 64em) {
   .manifesto__inner { grid-template-columns: .8fr 1.2fr; gap: clamp(3rem, 7vw, 7rem); }
   .manifesto__media { grid-column: 1; grid-row: 1; max-width: 30rem; }
