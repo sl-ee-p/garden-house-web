@@ -294,6 +294,81 @@
     }
   }
 
+  /* ---------- Pillars: horizontal track (buttons, drag, progress) ---------- */
+  function initPillars() {
+    var track = document.querySelector('[data-pillars-track]');
+    if (!track) return;
+    var cards = Array.prototype.slice.call(track.querySelectorAll('.pillar'));
+    var nav = document.querySelector('[data-pillars-nav]');
+    var bar = document.querySelector('[data-pillars-bar]');
+    var count = document.querySelector('[data-pillars-current]');
+    var prev = document.querySelector('[data-pillars-prev]');
+    var next = document.querySelector('[data-pillars-next]');
+    var active = -1;
+
+    function update() {
+      var max = track.scrollWidth - track.clientWidth;
+      var ratio = max > 0 ? track.scrollLeft / max : 1;
+      var left = track.scrollLeft + parseFloat(getComputedStyle(track).paddingLeft || 0);
+      var best = 0;
+      cards.forEach(function (card, i) {
+        if (Math.abs(card.offsetLeft - left) < Math.abs(cards[best].offsetLeft - left)) best = i;
+      });
+      if (ratio > .98) best = cards.length - 1;
+      if (bar) bar.style.transform = 'scaleX(' + Math.max(ratio, 1 / cards.length).toFixed(3) + ')';
+      if (best !== active) {
+        active = best;
+        cards.forEach(function (card, i) { card.classList.toggle('is-active', i === best); });
+        if (count) count.textContent = '0' + (best + 1);
+      }
+      if (prev) prev.disabled = ratio <= .01;
+      if (next) next.disabled = ratio >= .99;
+    }
+
+    function go(dir) {
+      var target = Math.min(Math.max(active + dir, 0), cards.length - 1);
+      var pad = parseFloat(getComputedStyle(track).paddingLeft || 0);
+      track.scrollTo({ left: cards[target].offsetLeft - pad, behavior: 'smooth' });
+    }
+
+    if (nav) nav.hidden = false;
+    if (prev) prev.addEventListener('click', function () { go(-1); });
+    if (next) next.addEventListener('click', function () { go(1); });
+    track.addEventListener('scroll', function () { window.requestAnimationFrame(update); }, { passive: true });
+    window.addEventListener('resize', update);
+    track.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
+    });
+
+    // mouse drag (touch and trackpads already scroll natively)
+    var startX = 0, startLeft = 0, down = false, moved = false;
+    track.addEventListener('pointerdown', function (e) {
+      if (e.pointerType !== 'mouse' || e.button !== 0) return;
+      down = true; moved = false; startX = e.clientX; startLeft = track.scrollLeft;
+    });
+    window.addEventListener('pointermove', function (e) {
+      if (!down) return;
+      var dx = e.clientX - startX;
+      if (!moved && Math.abs(dx) > 5) { moved = true; track.classList.add('is-dragging'); }
+      if (moved) track.scrollLeft = startLeft - dx;
+    });
+    window.addEventListener('pointerup', function () {
+      if (!down) return;
+      down = false;
+      if (moved) {
+        track.classList.remove('is-dragging');
+        var left = track.scrollLeft + parseFloat(getComputedStyle(track).paddingLeft || 0);
+        var best = 0;
+        cards.forEach(function (card, i) {
+          if (Math.abs(card.offsetLeft - left) < Math.abs(cards[best].offsetLeft - left)) best = i;
+        });
+        go(best - active);
+      }
+    });
+    update();
+  }
+
   /* ---------- Footer year ---------- */
   function initYear() {
     document.querySelectorAll('[data-year]').forEach(function (el) {
@@ -306,5 +381,6 @@
   initReveal();
   initLightbox();
   initConfigurator();
+  initPillars();
   initYear();
 })();

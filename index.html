@@ -81,11 +81,6 @@
             <p>Una nuova esperienza outdoor, dove natura e innovazione convivono in perfetto equilibrio.</p>
           </div>
         </div>
-        <figure class="manifesto__media" data-reveal>
-          <img class="manifesto__photo" src="assets/img/sally-piscina-notte-720.webp" srcset="assets/img/sally-piscina-notte-480.webp 480w, assets/img/sally-piscina-notte-720.webp 720w, assets/img/sally-piscina-notte-1200.webp 1200w" sizes="(min-width: 64em) 36vw, 82vw" width="1200" height="1496" alt="La casetta bianca con porta vetrata e finestra verticale, illuminata dalla luna su una pedana in legno accanto a una piscina, sotto un cielo stellato" loading="lazy" decoding="async">
-          <img class="manifesto__detail" src="assets/img/interno-porta-720.webp" srcset="assets/img/interno-porta-480.webp 480w, assets/img/interno-porta-720.webp 720w" sizes="(min-width: 64em) 20vw, 44vw" width="1440" height="1920" alt="L’interno luminoso della casetta, con le pareti a pannelli bianchi e la porta vetrata" loading="lazy" decoding="async">
-          <figcaption class="manifesto__caption">Fuori e dentro</figcaption>
-        </figure>
       </div>
     </section>
 
@@ -103,11 +98,18 @@
         <div class="pillars__head">
           <p class="eyebrow">Il progetto</p>
           <h2 class="section-title" id="pillars-title">Tre principi, <strong>un solo progetto</strong></h2>
+          <div class="pillars__nav" data-pillars-nav hidden>
+            <span class="pillars__count" aria-hidden="true"><b data-pillars-current>01</b> / 03</span>
+            <button class="icon-btn" type="button" data-pillars-prev aria-label="Principio precedente"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="icon-btn" type="button" data-pillars-next aria-label="Principio successivo"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div>
         </div>
 
+      </div>
+      <div class="pillars__track" data-pillars-track tabindex="0" role="region" aria-label="Tre principi, scorri di lato">
         <article class="pillar" aria-labelledby="pillar-1">
-          <div class="pillar__media" data-reveal><img src="assets/img/vista-ravvicinata-960.webp" srcset="assets/img/vista-ravvicinata-480.webp 480w, assets/img/vista-ravvicinata-720.webp 720w, assets/img/vista-ravvicinata-960.webp 960w, assets/img/vista-ravvicinata-1440.webp 1440w" sizes="(min-width: 56em) 55vw, 100vw" width="1440" height="1920" alt="La casetta in un giardino curato, con il vialetto di pietre davanti alla porta" loading="lazy" decoding="async"></div>
-          <div class="pillar__body" data-reveal>
+          <div class="pillar__media"><img src="assets/img/vista-ravvicinata-960.webp" srcset="assets/img/vista-ravvicinata-480.webp 480w, assets/img/vista-ravvicinata-720.webp 720w, assets/img/vista-ravvicinata-960.webp 960w, assets/img/vista-ravvicinata-1440.webp 1440w" sizes="(min-width: 56em) 55vw, 100vw" width="1440" height="1920" alt="La casetta in un giardino curato, con il vialetto di pietre davanti alla porta" loading="lazy" decoding="async"></div>
+          <div class="pillar__body">
             <span class="pillar__num" aria-hidden="true">01</span>
             <h3 class="pillar__title" id="pillar-1">Design architettonico distintivo</h3>
             <div class="pillar__text">
@@ -119,8 +121,8 @@
         </article>
 
         <article class="pillar" aria-labelledby="pillar-2">
-          <div class="pillar__media" data-reveal><img src="assets/img/interno-completo-960.webp" srcset="assets/img/interno-completo-480.webp 480w, assets/img/interno-completo-720.webp 720w, assets/img/interno-completo-960.webp 960w, assets/img/interno-completo-1440.webp 1440w" sizes="(min-width: 56em) 55vw, 100vw" width="1440" height="1920" alt="L’interno vuoto della casetta, con pareti e soffitto a pannelli e la finestra verticale" loading="lazy" decoding="async"></div>
-          <div class="pillar__body" data-reveal>
+          <div class="pillar__media"><img src="assets/img/interno-completo-960.webp" srcset="assets/img/interno-completo-480.webp 480w, assets/img/interno-completo-720.webp 720w, assets/img/interno-completo-960.webp 960w, assets/img/interno-completo-1440.webp 1440w" sizes="(min-width: 56em) 55vw, 100vw" width="1440" height="1920" alt="L’interno vuoto della casetta, con pareti e soffitto a pannelli e la finestra verticale" loading="lazy" decoding="async"></div>
+          <div class="pillar__body">
             <span class="pillar__num" aria-hidden="true">02</span>
             <h3 class="pillar__title" id="pillar-2">Tecnologia e comfort integrati</h3>
             <div class="pillar__text">
@@ -132,8 +134,8 @@
         </article>
 
         <article class="pillar" aria-labelledby="pillar-3">
-          <div class="pillar__media" data-reveal><img src="assets/img/sally-terrazza-939.webp" srcset="assets/img/sally-terrazza-480.webp 480w, assets/img/sally-terrazza-720.webp 720w, assets/img/sally-terrazza-939.webp 939w" sizes="(min-width: 56em) 55vw, 100vw" width="939" height="1292" alt="La casetta bianca su un terrazzo in pietra chiara, con la porta vetrata e la finestra verticale" loading="lazy" decoding="async" style="object-position: 50% 55%"></div>
-          <div class="pillar__body" data-reveal>
+          <div class="pillar__media"><img src="assets/img/sally-terrazza-939.webp" srcset="assets/img/sally-terrazza-480.webp 480w, assets/img/sally-terrazza-720.webp 720w, assets/img/sally-terrazza-939.webp 939w" sizes="(min-width: 56em) 55vw, 100vw" width="939" height="1292" alt="La casetta bianca su un terrazzo in pietra chiara, con la porta vetrata e la finestra verticale" loading="lazy" decoding="async" style="object-position: 50% 55%"></div>
+          <div class="pillar__body">
             <span class="pillar__num" aria-hidden="true">03</span>
             <h3 class="pillar__title" id="pillar-3">Modularità e personalizzazione</h3>
             <div class="pillar__text">
@@ -144,6 +146,7 @@
           </div>
         </article>
       </div>
+      <div class="container"><div class="pillars__progress" aria-hidden="true"><span data-pillars-bar></span></div></div>
     </section>
 
     <section class="showcase" id="modello-3d" aria-labelledby="showcase-title" data-showcase>
