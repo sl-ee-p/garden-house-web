@@ -278,12 +278,6 @@ strong { font-weight: 600; }
 .hero__lead { max-width: 32rem; margin-bottom: var(--space-3); font-size: var(--step-1); font-weight: 300; line-height: 1.65; color: var(--sage-soft); }
 .hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-4); }
 .link-arrow--light { color: var(--white); }
-.hero__seal {
-  display: flex; align-items: center; gap: 1rem; margin: var(--space-3) 0 0; padding-top: var(--space-3);
-  border-top: 1px solid var(--line-light);
-  font-size: var(--step--2); font-weight: 500; letter-spacing: .14em; line-height: 1.7; text-transform: uppercase; color: var(--sage);
-}
-.hero__seal img { width: 44px; height: 45px; flex: none; }
 .hero__scroll {
   position: absolute; z-index: 2; right: var(--gutter); bottom: var(--space-4);
   display: none; flex-direction: column; align-items: center; gap: .8rem;
@@ -705,10 +699,10 @@ strong { font-weight: 600; }
 .site-footer__list { list-style: none; padding: 0; margin: 0; }
 .site-footer__list a { display: inline-block; padding-block: .35rem; text-decoration: none; }
 .site-footer__list a:hover { text-decoration: underline; }
-.site-footer__adi { display: grid; grid-template-columns: auto 1fr; gap: 1rem; align-items: start; }
+.site-footer__adi { display: grid; grid-template-columns: auto 1fr; gap: 1.4rem; align-items: center; padding: var(--space-3); border: 1px solid var(--line-light, var(--line)); background: rgb(255 255 255 / .03); }
 .site-footer__adi .site-footer__title { grid-column: 1 / -1; margin-bottom: .2rem; }
-.site-footer__adi img { width: 56px; height: 57px; }
-.site-footer__adi p { margin: 0; color: var(--sage); }
+.site-footer__adi img { width: 96px; height: auto; }
+.site-footer__adi p { margin: 0; font-size: var(--step-0); line-height: 1.6; color: var(--sage-soft, var(--sage)); }
 .site-footer__partner { display: flex; align-items: center; gap: 1rem; margin-top: var(--space-3); color: var(--sage); font-size: var(--step--2); letter-spacing: .2em; text-transform: uppercase; }
 .site-footer__partner img { width: 120px; height: 39px; }
 .site-footer__bottom {
