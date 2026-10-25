@@ -68,7 +68,7 @@
         return mod.mount(host, {
           modelUrl: 'assets/model/sally.glb',
           colors: { structure: '#F5F5F5', panel: '#e9e4db' },
-          label: 'Modello 3D di Sally, telaio e pannelli bianchi, con porta vetrata e finestra verticale. Trascinalo per ruotarlo.',
+          label: 'Modello 3D, telaio e pannelli bianchi, con porta vetrata e finestra verticale. Trascinalo per ruotarlo.',
           turntable: !reduceMotion.matches,
           onRender: place
         });

@@ -196,23 +196,23 @@
       });
       if (viewer) {
         viewer.setColors(colors);
-        viewer.canvas.setAttribute('aria-label', 'Modello 3D di Sally: ' + bits.join(', ') + '.');
+        viewer.canvas.setAttribute('aria-label', 'Modello 3D: ' + bits.join(', ') + '.');
       }
       var text = bits.join(' · ');
       if (summary) summary.textContent = text;
       if (desc) desc.textContent = bits.join(', ') + '.';
       if (quote) {
-        var body = 'Buongiorno,\nvorrei un preventivo per Sally con questa configurazione:\n' +
+        var body = 'Buongiorno,\nvorrei un preventivo con questa configurazione:\n' +
           bits.join('\n') + '\n\nGrazie.';
         quote.href = 'mailto:vailfabio05@gmail.com?subject=' +
-          encodeURIComponent('Preventivo Sally') + '&body=' + encodeURIComponent(body);
+          encodeURIComponent('Preventivo') + '&body=' + encodeURIComponent(body);
       }
       if (updateHash && window.history.replaceState) {
         window.history.replaceState(null, '', '#' + hash.join('&'));
       }
     }
 
-    // Restore a shared configuration from the URL hash, e.g. #struttura=verde&pannelli=bianco
+    // Restore a shared configuration from the URL hash, e.g. #struttura=ral-6018&pannelli=bianco
     function applyHash() {
       window.location.hash.replace(/^#/, '').split('&').forEach(function (pair) {
         var kv = pair.split('=');
@@ -239,7 +239,7 @@
     initViewSwitch();
 
     /* 2D drawing / interactive 3D model. The 3D viewer (three.js + the
-       original Sally model) is only downloaded when the visitor asks for it. */
+       original model) is only downloaded when the visitor asks for it. */
     function initViewSwitch() {
       var group = document.querySelector('[data-view-switch]');
       var stage = document.querySelector('[data-viewer-stage]');
@@ -265,7 +265,7 @@
           return mod.mount(stage, {
             modelUrl: 'assets/model/sally.glb',
             colors: colors,
-            label: 'Modello 3D di Sally: ' + (desc ? desc.textContent : '') + ' Trascina per ruotarlo.'
+            label: 'Modello 3D: ' + (desc ? desc.textContent : '') + ' Trascina per ruotarlo.'
           });
         }).then(function (v) {
           viewer = v;

@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Configura la tua Sally · Techs Garden House</title>
-  <meta name="description" content="Configura Sally di Techs Garden House: scegli il colore del telaio e una delle 16 finiture dei pannelli, guarda il modello 3D e richiedi un preventivo.">
+  <title>Configura la tua Techs Garden House</title>
+  <meta name="description" content="Configura la casetta di Techs Garden House: scegli il colore RAL del telaio e una delle 16 finiture dei pannelli, guarda il modello 3D e richiedi un preventivo.">
   <meta name="theme-color" content="#0b100f">
   <meta name="color-scheme" content="dark">
   <link rel="icon" href="assets/favicon.png" type="image/png">
@@ -22,7 +22,7 @@
     <div class="site-header__inner container">
       <a class="brand" href="index.html" aria-label="Techs Garden House, home">
         <span class="brand__name" aria-hidden="true">TECHS-<span class="brand__over">GARDENHOUSE</span></span>
-        <span class="brand__sub" aria-hidden="true">Sally · Outdoor living</span>
+        <span class="brand__sub" aria-hidden="true">Outdoor living</span>
       </a>
 
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
@@ -45,7 +45,7 @@
     <section class="page-intro page-intro--compact" aria-labelledby="page-title">
       <div class="page-intro__inner container">
         <p class="eyebrow eyebrow--light">Configuratore</p>
-        <h1 class="page-intro__title" id="page-title"><span>Configura la</span> tua Sally</h1>
+        <h1 class="page-intro__title" id="page-title"><span>Configura la</span> tua casetta</h1>
         <p class="page-intro__lead">Scegli il telaio e una delle sedici finiture dei pannelli: il modello si aggiorna subito. Quando ti piace, chiedici un preventivo.</p>
       </div>
     </section>
@@ -59,8 +59,8 @@
           </div>
           <div class="configurator__canvas" data-view-panel="2d">
             <svg class="house" viewBox="0 0 640 440" role="img" aria-labelledby="house-title house-desc" data-house style="--house-structure: #F5F5F5; --house-panel: #e9e4db">
-              <title id="house-title">Anteprima della casetta Sally</title>
-              <desc id="house-desc" data-house-desc>Struttura Bianco, pannelli Doga centrale goffrato RAL 9010.</desc>
+              <title id="house-title">Anteprima della casetta</title>
+              <desc id="house-desc" data-house-desc>Struttura RAL 9010, pannelli Doga centrale goffrato RAL 9010.</desc>
               <style>
                 .house .h-structure { fill: var(--house-structure); stroke: rgba(0,0,0,.22); stroke-width: 1; transition: fill .35s ease; }
                 .house .h-panel { fill: var(--house-panel); stroke: rgba(0,0,0,.22); stroke-width: 1; transition: fill .35s ease; }
@@ -163,7 +163,7 @@
               </div>
             </div>
           </div>
-          <figcaption class="configurator__summary" data-summary aria-live="polite">Struttura Bianco · Pannelli Doga centrale goffrato RAL 9010</figcaption>
+          <figcaption class="configurator__summary" data-summary aria-live="polite">Struttura RAL 9010 · Pannelli Doga centrale goffrato RAL 9010</figcaption>
         </figure>
 
         <form class="configurator__panel" data-configurator action="#" aria-labelledby="cfg-title">
@@ -172,50 +172,145 @@
             <legend class="swatches__legend">Struttura <span class="swatches__current" data-current="struttura"></span></legend>
             <p class="swatches__hint">Struttura, profili, tetto e cornici di porta e finestra.</p>
             <div class="swatches__list">
-              <label class="swatch">
-                <input class="swatch__input" type="radio" name="struttura" value="bianco" data-color="#F5F5F5" checked>
-                <span class="swatch__chip" style="--swatch: #F5F5F5" aria-hidden="true"></span>
-                <span class="swatch__name">Bianco</span>
+              <label class="swatch" title="RAL 9001">
+                <input class="swatch__input" type="radio" name="struttura" value="ral-9001" data-color="#F3EFE5">
+                <span class="swatch__chip" style="--swatch: #F3EFE5" aria-hidden="true"></span>
+                <span class="swatch__name">RAL 9001</span>
               </label>
-              <label class="swatch">
-                <input class="swatch__input" type="radio" name="struttura" value="antracite" data-color="#2F4F4F">
-                <span class="swatch__chip" style="--swatch: #2F4F4F" aria-hidden="true"></span>
-                <span class="swatch__name">Antracite</span>
+              <label class="swatch" title="Bianco Grigio (simil RAL 9002)">
+                <input class="swatch__input" type="radio" name="struttura" value="bianco-grigio" data-color="#E1E2E2">
+                <span class="swatch__chip" style="--swatch: #E1E2E2" aria-hidden="true"></span>
+                <span class="swatch__name">Bianco Grigio (simil RAL 9002)</span>
               </label>
-              <label class="swatch">
-                <input class="swatch__input" type="radio" name="struttura" value="grigio-chiaro" data-color="#9DA6A1">
-                <span class="swatch__chip" style="--swatch: #9DA6A1" aria-hidden="true"></span>
-                <span class="swatch__name">Grigio chiaro</span>
+              <label class="swatch" title="RAL 9010">
+                <input class="swatch__input" type="radio" name="struttura" value="ral-9010" data-color="#F9FAF7" checked>
+                <span class="swatch__chip" style="--swatch: #F9FAF7" aria-hidden="true"></span>
+                <span class="swatch__name">RAL 9010</span>
               </label>
-              <label class="swatch">
-                <input class="swatch__input" type="radio" name="struttura" value="verde" data-color="#178048">
-                <span class="swatch__chip" style="--swatch: #178048" aria-hidden="true"></span>
-                <span class="swatch__name">Verde</span>
+              <label class="swatch" title="RAL 1013">
+                <input class="swatch__input" type="radio" name="struttura" value="ral-1013" data-color="#F5EDDB">
+                <span class="swatch__chip" style="--swatch: #F5EDDB" aria-hidden="true"></span>
+                <span class="swatch__name">RAL 1013</span>
               </label>
-              <label class="swatch">
-                <input class="swatch__input" type="radio" name="struttura" value="marrone" data-color="#8B4513">
-                <span class="swatch__chip" style="--swatch: #8B4513" aria-hidden="true"></span>
-                <span class="swatch__name">Marrone</span>
+              <label class="swatch" title="RAL 1015">
+                <input class="swatch__input" type="radio" name="struttura" value="ral-1015" data-color="#F6E5B7">
+                <span class="swatch__chip" style="--swatch: #F6E5B7" aria-hidden="true"></span>
+                <span class="swatch__name">RAL 1015</span>
               </label>
-              <label class="swatch">
-                <input class="swatch__input" type="radio" name="struttura" value="ocra" data-color="#F4A300">
-                <span class="swatch__chip" style="--swatch: #F4A300" aria-hidden="true"></span>
-                <span class="swatch__name">Ocra</span>
+              <label class="swatch" title="RAL 1016">
+                <input class="swatch__input" type="radio" name="struttura" value="ral-1016" data-color="#F9EC64">
+                <span class="swatch__chip" style="--swatch: #F9EC64" aria-hidden="true"></span>
+                <span class="swatch__name">RAL 1016</span>
               </label>
-              <label class="swatch">
-                <input class="swatch__input" type="radio" name="struttura" value="rosso" data-color="#DB2612">
-                <span class="swatch__chip" style="--swatch: #DB2612" aria-hidden="true"></span>
-                <span class="swatch__name">Rosso</span>
+              <label class="swatch" title="RAL 1018">
+                <input class="swatch__input" type="radio" name="struttura" value="ral-1018" data-color="#FEDE00">
+                <span class="swatch__chip" style="--swatch: #FEDE00" aria-hidden="true"></span>
+                <span class="swatch__name">RAL 1018</span>
               </label>
-              <label class="swatch">
-                <input class="swatch__input" type="radio" name="struttura" value="azzurro" data-color="#12C0E3">
-                <span class="swatch__chip" style="--swatch: #12C0E3" aria-hidden="true"></span>
-                <span class="swatch__name">Azzurro</span>
+              <label class="swatch" title="RAL 7035">
+                <input class="swatch__input" type="radio" name="struttura" value="ral-7035" data-color="#E8E7E1">
+                <span class="swatch__chip" style="--swatch: #E8E7E1" aria-hidden="true"></span>
+                <span class="swatch__name">RAL 7035</span>
               </label>
-              <label class="swatch">
-                <input class="swatch__input" type="radio" name="struttura" value="lilla" data-color="#CFABD6">
-                <span class="swatch__chip" style="--swatch: #CFABD6" aria-hidden="true"></span>
-                <span class="swatch__name">Lilla</span>
+              <label class="swatch" title="RAL 1001">
+                <input class="swatch__input" type="radio" name="struttura" value="ral-1001" data-color="#D7B37C">
+                <span class="swatch__chip" style="--swatch: #D7B37C" aria-hidden="true"></span>
+                <span class="swatch__name">RAL 1001</span>
+              </label>
+              <label class="swatch" title="RAL 1002">
+                <input class="swatch__input" type="radio" name="struttura" value="ral-1002" data-color="#E7B20B">
+                <span class="swatch__chip" style="--swatch: #E7B20B" aria-hidden="true"></span>
+                <span class="swatch__name">RAL 1002</span>
+              </label>
+              <label class="swatch" title="RAL 1007">
+                <input class="swatch__input" type="radio" name="struttura" value="ral-1007" data-color="#F29000">
+                <span class="swatch__chip" style="--swatch: #F29000" aria-hidden="true"></span>
+                <span class="swatch__name">RAL 1007</span>
+              </label>
+              <label class="swatch" title="RAL 1020">
+                <input class="swatch__input" type="radio" name="struttura" value="ral-1020" data-color="#A49A67">
+                <span class="swatch__chip" style="--swatch: #A49A67" aria-hidden="true"></span>
+                <span class="swatch__name">RAL 1020</span>
+              </label>
+              <label class="swatch" title="RAL 1024">
+                <input class="swatch__input" type="radio" name="struttura" value="ral-1024" data-color="#B88F34">
+                <span class="swatch__chip" style="--swatch: #B88F34" aria-hidden="true"></span>
+                <span class="swatch__name">RAL 1024</span>
+              </label>
+              <label class="swatch" title="RAL 2000">
+                <input class="swatch__input" type="radio" name="struttura" value="ral-2000" data-color="#C63B0F">
+                <span class="swatch__chip" style="--swatch: #C63B0F" aria-hidden="true"></span>
+                <span class="swatch__name">RAL 2000</span>
+              </label>
+              <label class="swatch" title="RAL 2001">
+                <input class="swatch__input" type="radio" name="struttura" value="ral-2001" data-color="#C63B0F">
+                <span class="swatch__chip" style="--swatch: #C63B0F" aria-hidden="true"></span>
+                <span class="swatch__name">RAL 2001</span>
+              </label>
+              <label class="swatch" title="RAL 2003">
+                <input class="swatch__input" type="radio" name="struttura" value="ral-2003" data-color="#EB6522">
+                <span class="swatch__chip" style="--swatch: #EB6522" aria-hidden="true"></span>
+                <span class="swatch__name">RAL 2003</span>
+              </label>
+              <label class="swatch" title="RAL 2005">
+                <input class="swatch__input" type="radio" name="struttura" value="ral-2005" data-color="#EB6400">
+                <span class="swatch__chip" style="--swatch: #EB6400" aria-hidden="true"></span>
+                <span class="swatch__name">RAL 2005</span>
+              </label>
+              <label class="swatch" title="RAL 5012">
+                <input class="swatch__input" type="radio" name="struttura" value="ral-5012" data-color="#2A86C0">
+                <span class="swatch__chip" style="--swatch: #2A86C0" aria-hidden="true"></span>
+                <span class="swatch__name">RAL 5012</span>
+              </label>
+              <label class="swatch" title="RAL 6011">
+                <input class="swatch__input" type="radio" name="struttura" value="ral-6011" data-color="#738762">
+                <span class="swatch__chip" style="--swatch: #738762" aria-hidden="true"></span>
+                <span class="swatch__name">RAL 6011</span>
+              </label>
+              <label class="swatch" title="RAL 6018">
+                <input class="swatch__input" type="radio" name="struttura" value="ral-6018" data-color="#4DAE45">
+                <span class="swatch__chip" style="--swatch: #4DAE45" aria-hidden="true"></span>
+                <span class="swatch__name">RAL 6018</span>
+              </label>
+              <label class="swatch" title="RAL 6021">
+                <input class="swatch__input" type="radio" name="struttura" value="ral-6021" data-color="#7EA17B">
+                <span class="swatch__chip" style="--swatch: #7EA17B" aria-hidden="true"></span>
+                <span class="swatch__name">RAL 6021</span>
+              </label>
+              <label class="swatch" title="RAL 7001">
+                <input class="swatch__input" type="radio" name="struttura" value="ral-7001" data-color="#828E98">
+                <span class="swatch__chip" style="--swatch: #828E98" aria-hidden="true"></span>
+                <span class="swatch__name">RAL 7001</span>
+              </label>
+              <label class="swatch" title="RAL 7002">
+                <input class="swatch__input" type="radio" name="struttura" value="ral-7002" data-color="#8C8474">
+                <span class="swatch__chip" style="--swatch: #8C8474" aria-hidden="true"></span>
+                <span class="swatch__name">RAL 7002</span>
+              </label>
+              <label class="swatch" title="RAL 7032">
+                <input class="swatch__input" type="radio" name="struttura" value="ral-7032" data-color="#DAD9CD">
+                <span class="swatch__chip" style="--swatch: #DAD9CD" aria-hidden="true"></span>
+                <span class="swatch__name">RAL 7032</span>
+              </label>
+              <label class="swatch" title="RAL 7038">
+                <input class="swatch__input" type="radio" name="struttura" value="ral-7038" data-color="#BCC0B7">
+                <span class="swatch__chip" style="--swatch: #BCC0B7" aria-hidden="true"></span>
+                <span class="swatch__name">RAL 7038</span>
+              </label>
+              <label class="swatch" title="RAL 8003">
+                <input class="swatch__input" type="radio" name="struttura" value="ral-8003" data-color="#7C411A">
+                <span class="swatch__chip" style="--swatch: #7C411A" aria-hidden="true"></span>
+                <span class="swatch__name">RAL 8003</span>
+              </label>
+              <label class="swatch" title="RAL 9006">
+                <input class="swatch__input" type="radio" name="struttura" value="ral-9006" data-color="#DADDE1">
+                <span class="swatch__chip" style="--swatch: #DADDE1" aria-hidden="true"></span>
+                <span class="swatch__name">RAL 9006</span>
+              </label>
+              <label class="swatch" title="RAL 9007">
+                <input class="swatch__input" type="radio" name="struttura" value="ral-9007" data-color="#939395">
+                <span class="swatch__chip" style="--swatch: #939395" aria-hidden="true"></span>
+                <span class="swatch__name">RAL 9007</span>
               </label>
             </div>
           </fieldset>
@@ -306,7 +401,7 @@
             </div>
           </fieldset>
           <div class="configurator__actions">
-            <a class="btn btn--primary" href="mailto:vailfabio05@gmail.com?subject=Preventivo%20Sally" data-quote>Richiedi preventivo</a>
+            <a class="btn btn--primary" href="mailto:vailfabio05@gmail.com?subject=Preventivo" data-quote>Richiedi preventivo</a>
             <button class="btn btn--ghost btn--plain" type="reset" data-reset>Ripristina</button>
           </div>
           <p class="configurator__note">I colori a schermo sono indicativi: su richiesta ti inviamo i campioni dei pannelli. Dimensioni, accessori e altre tinte si definiscono insieme nel preventivo.</p>
@@ -320,7 +415,7 @@
       <div class="site-footer__brand">
         <a class="brand brand--footer" href="index.html" aria-label="Techs Garden House, home">
         <span class="brand__name" aria-hidden="true">TECHS-<span class="brand__over">GARDENHOUSE</span></span>
-        <span class="brand__sub" aria-hidden="true">Sally · Outdoor living</span>
+        <span class="brand__sub" aria-hidden="true">Outdoor living</span>
       </a>
         <p class="site-footer__pitch">Techs Garden House è una nuova concezione di spazio outdoor: una struttura di design che unisce tecnologia, comfort e integrazione con l’ambiente.</p>
         <p class="site-footer__contact">
@@ -345,7 +440,7 @@
         <div class="site-footer__adi">
           <h2 class="site-footer__title">Design registrato</h2>
           <img src="assets/img/marchi/adi.webp" width="252" height="258" alt="ADI, Associazione per il Disegno Industriale" loading="lazy" decoding="async">
-          <p>Il progetto Sally è depositato presso l’ADI, Associazione per il Disegno Industriale, nel Registro dei progetti con prot. n. 3880.</p>
+          <p>Il progetto è depositato presso l’ADI, Associazione per il Disegno Industriale, nel Registro dei progetti con prot. n. 3880.</p>
         </div>
         <p class="site-footer__partner">Powered by <img src="assets/img/marchi/fvl-servizi.webp" width="510" height="166" alt="FVL Servizi SRL" loading="lazy" decoding="async"></p>
       </div>

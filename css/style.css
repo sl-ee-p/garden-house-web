@@ -264,7 +264,7 @@ strong { font-weight: 600; }
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(180deg, rgb(var(--scrim-rgb) / .5) 0%, rgb(var(--scrim-rgb) / 0) 22%, rgb(16 23 21 / 0) 74%, var(--surface-1) 100%);
 }
-.hero__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 55% 40%; }
+.hero__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 72% 50%; }
 .hero__panel {
   position: relative; z-index: 1;
   margin-top: -3rem; padding: 0 var(--gutter) var(--space-4);
@@ -561,21 +561,9 @@ strong { font-weight: 600; }
 .gallery__link:hover img, .gallery__link:focus-visible img { transform: scale(1.04); }
 .gallery__link:hover::after, .gallery__link:focus-visible::after { opacity: 1; transform: none; }
 .gallery__caption { display: flex; align-items: baseline; gap: .8rem; padding-top: .8rem; font-size: var(--step--2); font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--text); }
-.gallery__num { font-size: .85rem; font-weight: 300; letter-spacing: .04em; color: var(--accent); }
 .gallery__note { margin: var(--space-5) 0 0; padding-top: var(--space-3); border-top: 1px solid var(--line); color: var(--text-muted); }
 @media (min-width: 40em) { .gallery__grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 64em) {
-  .gallery__grid { grid-template-columns: repeat(12, 1fr); gap: var(--space-4) var(--space-3); }
-  .gallery__item { grid-column: span 4; }
-  .gallery__item--feature { grid-column: span 7; }
-  .gallery__item--feature .gallery__figure { display: flex; flex-direction: column; height: 100%; }
-  .gallery__item--feature .gallery__link { flex: 1; }
-  .gallery__item--feature .gallery__link img { position: absolute; inset: 0; height: 100%; aspect-ratio: auto; object-position: 50% 72%; }
-  .gallery__item--tall { grid-column: span 5; }
-  .gallery__item--offset { margin-top: var(--space-5); }
-  .gallery__item--wide { grid-column: 1 / -1; }
-  .gallery__item--wide .gallery__link img { aspect-ratio: 21 / 9; object-position: 50% 62%; }
-}
+@media (min-width: 64em) { .gallery__grid { grid-template-columns: repeat(3, 1fr); gap: var(--space-4) var(--space-3); } }
 
 .lightbox { width: min(96vw, 1200px); max-width: none; max-height: 96vh; padding: 0; border: 0; background: transparent; color: var(--white); overflow: visible; }
 .lightbox::backdrop { background: rgb(var(--scrim-rgb) / .96); }
