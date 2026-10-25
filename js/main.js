@@ -341,6 +341,15 @@
       if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
     });
 
+    // pointer spotlight on the cards
+    cards.forEach(function (card) {
+      card.addEventListener('pointermove', function (e) {
+        var r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    });
+
     // mouse drag (touch and trackpads already scroll natively)
     var startX = 0, startLeft = 0, down = false, moved = false;
     track.addEventListener('pointerdown', function (e) {
