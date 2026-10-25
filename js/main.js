@@ -378,6 +378,19 @@
     update();
   }
 
+  /* ---------- Back to top (the #top target is the fixed header, which never scrolls) ---------- */
+  function initToTop() {
+    document.querySelectorAll('.site-footer__top').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        var smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: 0, behavior: smooth ? 'smooth' : 'auto' });
+        var skip = document.querySelector('.skip-link');
+        if (skip) skip.focus({ preventScroll: true });
+      });
+    });
+  }
+
   /* ---------- Footer year ---------- */
   function initYear() {
     document.querySelectorAll('[data-year]').forEach(function (el) {
@@ -391,5 +404,6 @@
   initLightbox();
   initConfigurator();
   initPillars();
+  initToTop();
   initYear();
 })();
