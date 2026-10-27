@@ -170,7 +170,7 @@ strong { font-weight: 600; }
   font-family: var(--font-serif); font-weight: 700; font-size: 1.12rem; letter-spacing: .04em; white-space: nowrap;
 }
 .brand__over { position: relative; display: inline-block; }
-.brand__over::before { /* the hairline over GARDENHOUSE, as in the brochure logo */
+.brand__over::before { /* the hairline over HOUSE only */
   content: ""; position: absolute; left: .02em; right: .02em; top: -.32em; height: 1px; background: currentColor;
 }
 .brand__sub {
