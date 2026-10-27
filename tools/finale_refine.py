@@ -1,7 +1,9 @@
 """Foto 5 (night photo at the end of the home page).
 
-usage: python tools/finale_refine.py trim   SRC.jpg   -> placeholder exports
-       python tools/finale_refine.py refine SRC.jpg   -> refined exports (stage 2)
+usage: python tools/finale_refine.py trim   SRC.jpg        -> placeholder exports
+       python tools/finale_refine.py refine SRC.jpg [A|B]  -> refined exports
+B (the owner's choice, 2026-10-27) also gives the door its real panelled
+lower leaf; A keeps the full-glass door.
 
 The supplied file carries black pillarbox bars (about 393 px each side) that
 are not part of the scene: trim() finds the scene by a luminance column scan
@@ -43,8 +45,9 @@ def main():
     stage, src = sys.argv[1], sys.argv[2]
     img = trim(Image.open(src).convert('RGB'))
     if stage == 'refine':
+        sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
         from finale_masks import refine  # stage 2, see tools/finale_masks.py
-        img = refine(img)
+        img = refine(img, sys.argv[3] if len(sys.argv) > 3 else 'B')
     export(img)
 
 
