@@ -113,25 +113,45 @@
     events.forEach(function (e) { window.addEventListener(e, go, { capture: true, passive: true }); });
   }
 
-  // --t (0 white, 1 black) is a pure function of the scroll position, so the
-  // transition runs the same way up and down. It starts when the top of the
-  // 3D section reaches 85% of the viewport and ends at 35%.
+  // --t (0 white, 1 black) follows the scroll position, so the transition
+  // runs the same way up and down. The target ramps while the top of the 3D
+  // section moves from the bottom of the viewport to 20% from the top, eased
+  // at both ends (smoothstep); the shown value glides towards it (time-based,
+  // ~0.3 s whatever the frame rate) so fast flicks and jumpy wheels still fade
+  // instead of stepping.
   function initThemeScroll() {
     var section = document.querySelector('[data-theme-turn]');
     if (!section) return;
     var root = document.documentElement;
-    var queued = false;
-    var last = -1;
-    function update() {
-      queued = false;
+    var glide = !reduceMotion.matches;
+    var shown = -1;
+    var running = false;
+    var last = 0;
+
+    function target() {
       var vh = window.innerHeight;
-      var top = section.getBoundingClientRect().top;
-      var t = Math.min(1, Math.max(0, (vh * 0.85 - top) / (vh * 0.5)));
-      t = Math.round(t * 1000) / 1000;
-      if (t !== last) { last = t; root.style.setProperty('--t', String(t)); }
+      var x = (vh - section.getBoundingClientRect().top) / (vh * 0.8);
+      x = Math.min(1, Math.max(0, x));
+      return x * x * (3 - 2 * x);
     }
-    function queue() { if (!queued) { queued = true; window.requestAnimationFrame(update); } }
-    update();
+    function set(t) {
+      shown = t;
+      root.style.setProperty('--t', t.toFixed(4));
+    }
+    function step(now) {
+      var goal = target();
+      var dt = Math.min(now - last, 250);
+      last = now;
+      var next = glide && shown >= 0 ? shown + (goal - shown) * (1 - Math.exp(-dt / 90)) : goal;
+      if (Math.abs(goal - next) < 0.002) next = goal;
+      if (next !== shown) set(next);
+      running = next !== goal;
+      if (running) window.requestAnimationFrame(step);
+    }
+    function queue() {
+      if (!running) { running = true; last = performance.now(); window.requestAnimationFrame(step); }
+    }
+    set(target());
     root.classList.add('theme-scroll');
     window.addEventListener('scroll', queue, { passive: true });
     window.addEventListener('resize', queue);

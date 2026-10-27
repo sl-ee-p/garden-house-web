@@ -15,7 +15,8 @@
    mix of a light value and a dark value driven by --t (0 = white page,
    1 = black page). On the home page js/signature.js moves --t with the scroll
    (white for the hero, manifesto and principles, black from the 3D model on),
-   like the Porsche site (--t on <html>). Without JS each [data-theme] section
+   like the Porsche site (--t on <html>, eased; colours mix in OKLab so the
+   grey steps look even). Without JS each [data-theme] section
    keeps its own --t. Inner pages are black. Text pairs pass WCAG AA in both themes. */
 :root { --t: 1; }
 :root:has(> body.page-index) { --t: 0; }
@@ -26,18 +27,18 @@
 :root, [data-theme] {
   --mix: calc(var(--t) * 100%);
   /* text and lines flip in the middle of the fade, so they never match the background */
-  --mix-fg: calc(clamp(0, (var(--t) - .48) * 25, 1) * 100%);
-  --bg:          color-mix(in srgb, #0a0a0a var(--mix), #ffffff);
-  --surface-1:   color-mix(in srgb, #0d0d0d var(--mix), #ffffff);
-  --surface-2:   color-mix(in srgb, #121212 var(--mix), #f5f5f5);
-  --surface-3:   color-mix(in srgb, #1c1c1c var(--mix), #ececec);
-  --text:        color-mix(in srgb, #f2f2f2 var(--mix-fg), #111111);  /* 18:1 both ways */
-  --text-soft:   color-mix(in srgb, #d4d4d4 var(--mix-fg), #2e2e2e);
-  --text-muted:  color-mix(in srgb, #a3a3a3 var(--mix-fg), #575757);  /* 8:1 / 7:1 */
-  --hi:          color-mix(in srgb, #ffffff var(--mix-fg), #000000);  /* strongest foreground */
-  --line:        color-mix(in srgb, rgb(242 242 242 / .14) var(--mix-fg), rgb(17 17 17 / .12));
-  --line-strong: color-mix(in srgb, rgb(242 242 242 / .32) var(--mix-fg), rgb(17 17 17 / .3));
-  --line-light:  color-mix(in srgb, rgb(255 255 255 / .22) var(--mix-fg), rgb(0 0 0 / .16));
+  --mix-fg: calc(clamp(0, (var(--t) - .46) * 12.5, 1) * 100%);
+  --bg:          color-mix(in oklab, #0a0a0a var(--mix), #ffffff);
+  --surface-1:   color-mix(in oklab, #0d0d0d var(--mix), #ffffff);
+  --surface-2:   color-mix(in oklab, #121212 var(--mix), #f5f5f5);
+  --surface-3:   color-mix(in oklab, #1c1c1c var(--mix), #ececec);
+  --text:        color-mix(in oklab, #f2f2f2 var(--mix-fg), #111111);  /* 18:1 both ways */
+  --text-soft:   color-mix(in oklab, #d4d4d4 var(--mix-fg), #2e2e2e);
+  --text-muted:  color-mix(in oklab, #a3a3a3 var(--mix-fg), #575757);  /* 8:1 / 7:1 */
+  --hi:          color-mix(in oklab, #ffffff var(--mix-fg), #000000);  /* strongest foreground */
+  --line:        color-mix(in oklab, rgb(242 242 242 / .14) var(--mix-fg), rgb(17 17 17 / .12));
+  --line-strong: color-mix(in oklab, rgb(242 242 242 / .32) var(--mix-fg), rgb(17 17 17 / .3));
+  --line-light:  color-mix(in oklab, rgb(255 255 255 / .22) var(--mix-fg), rgb(0 0 0 / .16));
 
   /* older names, kept so the shared markup and rules read the same */
   --white: var(--hi);
@@ -146,14 +147,15 @@ strong { font-weight: 600; }
 }
 .btn:hover::after { width: 2.2em; }
 .btn--plain::after { display: none; }
-.btn--primary { background: var(--fill); color: var(--white); }
-.btn--primary:hover { background: var(--fill-hover); border-color: var(--text); }
+.btn--primary { background: var(--fill); border-color: var(--fill); color: var(--bg); }
+.btn--primary:hover { background: var(--fill-hover); border-color: var(--fill-hover); }
 .btn--secondary, .btn--ghost { background: transparent; color: var(--accent); }
 .btn--secondary:hover, .btn--ghost:hover { background: var(--accent); color: var(--bg); }
 .btn--light { background: var(--text); border-color: var(--text); color: var(--bg); }
 .btn--light:hover { background: var(--white); border-color: var(--white); }
 .btn--outline-light { background: transparent; border-color: color-mix(in srgb, var(--hi) 55%, transparent); color: var(--white); }
 .btn--outline-light:hover { background: color-mix(in srgb, var(--hi) 10%, transparent); border-color: var(--white); }
+@media (max-width: 29.99em) { .btn { padding-inline: 1.3em; letter-spacing: .1em; } } /* labels stay on one line on phones */
 .btn__meta { font-size: var(--step--2); font-weight: 500; letter-spacing: .1em; opacity: .75; }
 
 .link-arrow {
