@@ -309,24 +309,32 @@ strong { font-weight: 600; }
   .hero__scroll { display: flex; }
 }
 
-/* ---------- Credentials strip ---------- */
-.creds { background: var(--surface-2); color: var(--white); border-block: 1px solid var(--line); }
-.creds__list { display: grid; grid-template-columns: repeat(2, 1fr); }
+/* ---------- Credentials strip: a rounded box inside the content width ---------- */
+.creds { padding-block: var(--space-4) 0; color: var(--text); }
+.creds .creds__list { /* beats ul[role="list"] */
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  padding: var(--space-1) var(--space-3); border-radius: 1.25rem; background: var(--surface-2);
+}
 .creds__item {
   display: flex; flex-direction: column; gap: .4rem;
-  padding: var(--space-4) var(--space-2) var(--space-4) 0;
-  border-top: 1px solid var(--line-light);
+  padding: var(--space-3) var(--space-2) var(--space-3) 0;
+  border-top: 1px solid var(--line);
 }
 .creds__item:nth-child(-n+2) { border-top: 0; }
-.creds__value { font-size: clamp(2.2rem, 1.6rem + 2.2vw, 3.4rem); font-weight: 200; line-height: 1; letter-spacing: -.01em; }
-.creds__value small { margin-left: .2em; font-size: .38em; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; }
-.creds__label { max-width: 14rem; font-size: var(--step--2); font-weight: 500; letter-spacing: .16em; line-height: 1.7; text-transform: uppercase; color: var(--sage); }
-.creds__item:last-child { grid-column: 1 / -1; }
-@media (min-width: 56em) {
-  .creds__list { grid-template-columns: repeat(5, 1fr); }
-  .creds__item { padding: var(--space-4) var(--space-3); border-top: 0; border-left: 1px solid var(--line-light); }
+.creds__value { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: .25em; font-size: clamp(2rem, 1.5rem + 1.6vw, 3rem); font-weight: 200; line-height: 1; letter-spacing: -.01em; }
+.creds__value small { font-size: .38em; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
+.creds__label { max-width: 14rem; font-size: var(--step--2); font-weight: 500; letter-spacing: .16em; line-height: 1.7; text-transform: uppercase; color: var(--text-muted); }
+@media (min-width: 40em) {
+  .creds .creds__list { grid-template-columns: repeat(3, 1fr); }
+  .creds__item { padding-inline: var(--space-3); border-left: 1px solid var(--line); }
+  .creds__item:nth-child(3n+1) { border-left: 0; padding-left: 0; }
+  .creds__item:nth-child(-n+3) { border-top: 0; }
+}
+@media (min-width: 64em) {
+  .creds .creds__list { grid-template-columns: repeat(6, 1fr); padding: var(--space-1) var(--space-4); }
+  .creds__value { font-size: clamp(1.9rem, .9rem + 1.6vw, 2.8rem); }
+  .creds__item, .creds__item:nth-child(3n+1) { padding-inline: clamp(.9rem, 1.4vw, var(--space-3)); border-top: 0; border-left: 1px solid var(--line); }
   .creds__item:first-child { border-left: 0; padding-left: 0; }
-  .creds__item:last-child { grid-column: auto; }
 }
 
 /* ---------- Manifesto ---------- */
