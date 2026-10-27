@@ -43,6 +43,12 @@ jobs:
             shots=docs/screenshots/$( [ "$dir" = main ] && echo main || echo "${pair#*:}" )
             git show "$ref:$shots/desktop-index.jpg" > "_site/previews/$dir.jpg"
           done
+          # The github.io copies are previews: keep them out of search results so that
+          # only the production site (techs-gardenhouse.com) is indexed.
+          find _site -name '*.html' -print0 | xargs -0 perl -0pi -e '
+            s{<meta name="robots"[^>]*>}{<meta name="robots" content="noindex, nofollow">}
+              or s{<head>}{<head>\n  <meta name="robots" content="noindex, nofollow">}'
+          printf 'User-agent: *\nDisallow: /\n' > _site/robots.txt
           touch _site/.nojekyll
           find _site -maxdepth 2 | sort
 
