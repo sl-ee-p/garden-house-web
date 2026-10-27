@@ -502,15 +502,34 @@ strong { font-weight: 600; }
   .feature:nth-child(4n+1) { border-left: 0; padding-left: 0; }
 }
 
-/* ---------- Closing call to action ---------- */
-.closing { position: relative; padding-block: var(--space-5); color: var(--white); overflow: hidden; isolation: isolate; }
-.closing__bg { position: absolute; inset: 0; z-index: -1; }
-.closing__bg img { width: 100%; height: 100%; object-fit: cover; object-position: 60% 50%; }
-.closing__bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, color-mix(in srgb, var(--bg) 95%, transparent) 0%, color-mix(in srgb, var(--bg) 82%, transparent) 42%, color-mix(in srgb, var(--bg) 20%, transparent) 100%); }
-.closing__title { max-width: 14ch; margin-bottom: var(--space-3); font-size: var(--step-4); font-weight: 700; line-height: 1; text-transform: uppercase; letter-spacing: .01em; }
-.closing__title span { display: block; font-weight: 200; }
-.closing__lead { max-width: 32rem; margin-bottom: var(--space-4); font-size: var(--step-1); font-weight: 300; color: var(--sage-soft); }
-.closing__actions { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+/* ---------- Finale: the night photo, full screen and never cropped ----------
+   Small screens: slogan, photo, buttons in a column. From 48em the slogan
+   sits in the empty sky of the photo and the frame keeps the photo's ratio,
+   sized so photo + buttons fit the viewport. */
+.finale {
+  display: flex; flex-direction: column; justify-content: center; gap: var(--space-3);
+  min-height: 100vh; min-height: 100svh; padding-block: var(--space-4);
+  background: var(--bg); color: var(--text);
+}
+.finale__frame { display: flex; flex-direction: column; gap: var(--space-3); }
+.finale__frame picture { order: 2; }
+.finale__img { width: 100%; height: auto; object-fit: contain; }
+.finale__title {
+  order: 1; margin: 0; padding-inline: var(--gutter);
+  font-size: var(--step-4); font-weight: 700; line-height: 1; letter-spacing: .01em; text-transform: uppercase; color: var(--white);
+}
+.finale__title span { display: block; font-weight: 200; letter-spacing: .04em; }
+.finale__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-2); padding-inline: var(--gutter); }
+@media (max-width: 29.99em) { .finale__actions .btn { flex: 1 1 100%; } }
+@media (min-width: 48em) {
+  .finale { padding-block: var(--space-2) var(--space-3); gap: var(--space-2); }
+  .finale__frame {
+    display: block; position: relative; container-type: inline-size; margin-inline: auto;
+    width: min(100%, calc((100svh - 7.5rem) * 1830 / 1206)); aspect-ratio: 1830 / 1206;
+  }
+  .finale__img { position: absolute; inset: 0; height: 100%; }
+  .finale__title { position: absolute; left: 6%; top: 9%; max-width: 50%; padding: 0; font-size: clamp(1.8rem, 4.6cqi, 4.6rem); }
+}
 
 /* ==========================================================================
    Inner pages
