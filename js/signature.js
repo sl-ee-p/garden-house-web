@@ -34,15 +34,18 @@
     var viewer = null;
     var onScreen = false;
 
+    var EN = document.documentElement.lang === 'en';
+    var ROOT = document.documentElement.getAttribute('data-root') || '';
+
     function fail() {
       section.classList.add('is-failed');
-      poster.textContent = 'Il modello 3D non è disponibile su questo dispositivo. Lo trovi anche nel configuratore.';
+      poster.textContent = EN ? 'The 3D model is not available on this device. You can also find it in the configurator.' : 'Il modello 3D non è disponibile su questo dispositivo. Lo trovi anche nel configuratore.';
       status.textContent = '';
     }
 
     function setPaused(paused) {
       pause.setAttribute('aria-pressed', String(paused));
-      pauseLabel.textContent = paused ? 'Riprendi la rotazione automatica' : 'Ferma la rotazione automatica';
+      pauseLabel.textContent = EN ? (paused ? 'Resume the automatic rotation' : 'Stop the automatic rotation') : (paused ? 'Riprendi la rotazione automatica' : 'Ferma la rotazione automatica');
       if (viewer) viewer.setTurntable(!paused);
     }
 
@@ -64,12 +67,12 @@
 
     function load() {
       if (!webgl2()) { fail(); return; }
-      poster.textContent = 'Caricamento del modello 3D…';
+      poster.textContent = EN ? 'Loading the 3D model…' : 'Caricamento del modello 3D…';
       import('./viewer3d.js').then(function (mod) {
         return mod.mount(host, {
-          modelUrl: 'assets/model/sally.glb',
+          modelUrl: ROOT + 'assets/model/sally.glb',
           colors: { structure: '#F5F5F5', panel: '#e9e4db' },
-          label: 'Modello 3D, telaio e pannelli bianchi, con porta vetrata e punto luce verticale.',
+          label: EN ? '3D model, frame and white panels, with a glazed door and a vertical light window.' : 'Modello 3D, telaio e pannelli bianchi, con porta vetrata e punto luce verticale.',
           turntable: !reduceMotion.matches,
           onRender: place
         });

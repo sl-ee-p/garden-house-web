@@ -150,6 +150,17 @@
   }
 
   /* ---------- Configurator ---------- */
+  /* ---------- Language: strings and asset root of the English pages (/en/) ---------- */
+  var EN = document.documentElement.lang === 'en';
+  var ROOT = document.documentElement.getAttribute('data-root') || '';
+  window.GH_I18N = {
+    root: ROOT,
+    loading: EN ? 'Loading the 3D model…' : 'Caricamento del modello 3D…',
+    model: EN ? '3D model: ' : 'Modello 3D: ',
+    failed: EN ? 'The 3D model could not be shown on this device. The drawing is still available.'
+               : 'Non è stato possibile mostrare il modello 3D su questo dispositivo. Il disegno resta disponibile.'
+  };
+
   function initConfigurator() {
     var form = document.querySelector('[data-configurator]');
     var house = document.querySelector('[data-house]');
@@ -158,7 +169,7 @@
     var desc = document.querySelector('[data-house-desc]');
     var summary = document.querySelector('[data-summary]');
     var quote = form.querySelector('[data-quote]');
-    var parts = { struttura: 'Struttura', pannelli: 'Pannelli' };
+    var parts = EN ? { struttura: 'Frame', pannelli: 'Panels' } : { struttura: 'Struttura', pannelli: 'Pannelli' };
     var cssVar = { struttura: '--house-structure', pannelli: '--house-panel' };
     var colorKey = { struttura: 'structure', pannelli: 'panel' };
     var colors = {};
@@ -196,16 +207,17 @@
       });
       if (viewer) {
         viewer.setColors(colors);
-        viewer.canvas.setAttribute('aria-label', 'Modello 3D: ' + bits.join(', ') + '.');
+        viewer.canvas.setAttribute('aria-label', window.GH_I18N.model + bits.join(', ') + '.');
       }
       var text = bits.join(' · ');
       if (summary) summary.textContent = text;
       if (desc) desc.textContent = bits.join(', ') + '.';
       if (quote) {
-        var body = 'Buongiorno,\nvorrei un preventivo con questa configurazione:\n' +
-          bits.join('\n') + '\n\nGrazie.';
+        var body = EN
+          ? 'Hello,\nI would like a quote for this configuration:\n' + bits.join('\n') + '\n\nThank you.'
+          : 'Buongiorno,\nvorrei un preventivo con questa configurazione:\n' + bits.join('\n') + '\n\nGrazie.';
         quote.href = 'mailto:vailfabio05@gmail.com?subject=' +
-          encodeURIComponent('Preventivo') + '&body=' + encodeURIComponent(body);
+          encodeURIComponent(EN ? 'Quote' : 'Preventivo') + '&body=' + encodeURIComponent(body);
       }
       if (updateHash && window.history.replaceState) {
         window.history.replaceState(null, '', '#' + hash.join('&'));
@@ -259,13 +271,13 @@
 
       function load() {
         if (loading) return loading;
-        status.textContent = 'Caricamento del modello 3D…';
+        status.textContent = window.GH_I18N.loading;
         loading = import('./viewer3d.js').then(function (mod) {
           if (!mod.supported()) throw new Error('webgl');
           return mod.mount(stage, {
-            modelUrl: 'assets/model/sally.glb',
+            modelUrl: ROOT + 'assets/model/sally.glb',
             colors: colors,
-            label: 'Modello 3D: ' + (desc ? desc.textContent : '')
+            label: window.GH_I18N.model + (desc ? desc.textContent : '')
           });
         }).then(function (v) {
           viewer = v;
@@ -274,7 +286,7 @@
           if (group.querySelector('[data-view="3d"]').getAttribute('aria-pressed') !== 'true') viewer.stop();
         }).catch(function () {
           loading = null;
-          status.textContent = 'Non è stato possibile mostrare il modello 3D su questo dispositivo. Il disegno resta disponibile.';
+          status.textContent = window.GH_I18N.failed;
         });
         return loading;
       }
