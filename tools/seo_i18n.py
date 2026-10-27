@@ -6,7 +6,7 @@ The Italian pages in the repo root are the source of truth. This script
   1. (re)writes the SEO block of each Italian page (title, description,
      canonical, hreflang, Open Graph, JSON-LD) between the markers
      <!-- seo:start --> and <!-- seo:end -->, adds the language switch to the
-     header and the FAQ section to the home page (all idempotent);
+     header (all idempotent);
   2. generates en/*.html from the Italian pages: translated text, assets
      re-rooted with "../", page links mapped to the English file names;
   3. writes sitemap.xml and robots.txt.
@@ -63,41 +63,6 @@ BREADCRUMB = {
     'gallery':   {'it': 'Galleria', 'en': 'Gallery'},
     'configure': {'it': 'Configura', 'en': 'Configure'},
     'contact':   {'it': 'Contatti', 'en': 'Contact'},
-}
-
-FAQ = {
-    'it': [
-        ('Che cos’è Techs Garden House?',
-         'Una casetta da giardino di design, con struttura in alluminio e pannelli coibentati, per giardini, terrazze, bordo piscina, hospitality e spazi privati. Il progetto è registrato presso l’ADI (prot. n. 3880).'),
-        ('Com’è isolata e si può usare tutto l’anno?',
-         'I pannelli sono in poliuretano espanso da 4 cm, leggeri, rigidi e isolanti, e i serramenti in alluminio hanno il doppio vetro camera termica. È pensata per essere vissuta 365 giorni l’anno.'),
-        ('Serve manutenzione?',
-         'No. Non ci sono vernici da rinnovare né legno da trattare, stagione dopo stagione.'),
-        ('Quali colori e finiture posso scegliere?',
-         'Sedici finiture per i pannelli (lisce, goffrate o Polygrain e due essenze di noce, con doga centrale o a piano unico) e una vasta gamma di colori RAL per la struttura. Le provi nel configuratore 3D.'),
-        ('Quanto è alta e come arriva?',
-         'L’altezza è di 2,5 metri. Arriva in kit, pronta da montare, con istruzioni chiare.'),
-        ('A cosa può servire?',
-         'Studio, relax, hobby, deposito o ospitalità: lo spazio è sfruttabile a 360° e lo decidi tu.'),
-        ('Come chiedo un preventivo?',
-         'Configura la casetta nel configuratore e premi «Richiedi preventivo», oppure scrivici dalla pagina Contatti: dimensioni, accessori e altre tinte si definiscono insieme.'),
-    ],
-    'en': [
-        ('What is Techs Garden House?',
-         'A designer garden house with an aluminium structure and insulated panels, for gardens, terraces, poolsides, hospitality and private spaces. The design is registered with ADI (no. 3880).'),
-        ('How is it insulated, and can I use it all year?',
-         'The panels are 4 cm expanded polyurethane, light, rigid and insulating, and the aluminium windows are double-glazed with a thermal cavity. It is made to be lived in 365 days a year.'),
-        ('Does it need maintenance?',
-         'No. There is no paint to renew and no wood to treat, season after season.'),
-        ('Which colours and finishes can I choose?',
-         'Sixteen panel finishes (smooth, embossed or Polygrain, plus two walnut woods, with a central groove or a single flat face) and a wide range of RAL colours for the frame. Try them in the 3D configurator.'),
-        ('How tall is it and how does it arrive?',
-         'It is 2.5 metres high. It arrives as a kit, ready to assemble, with clear instructions.'),
-        ('What can I use it for?',
-         'Studio, relaxing, hobbies, storage or hospitality: the space can be used for any purpose, and you decide.'),
-        ('How do I ask for a quote?',
-         'Set up your garden house in the configurator and press “Request a quote”, or write to us from the Contact page: sizes, accessories and other colours are defined together.'),
-    ],
 }
 
 # ------------------------------------------------------------------ English
@@ -217,9 +182,6 @@ TR = {
         'The dark-grey garden house with a steel frame, the lit glazed door and the vertical light window, at night on rocky ground under the Milky Way',
     'Oltre la porta,': 'Beyond the door,', 'nuovi spazi': 'new spaces',
     'Parla con noi': 'Talk to us',
-    # faq chrome
-    '>Domande frequenti<': '>Frequently asked questions<',
-    'Prima di <strong>scegliere</strong>': 'Before you <strong>choose</strong>',
     # gallery
     'Dentro</span> e fuori': 'Inside</span> and out',
     'Bordo piscina, in giardino, sul patio di casa. Apri ogni foto per vederla a tutto schermo.':
@@ -327,10 +289,7 @@ def graph(key, lang):
             'material': 'Alluminio, poliuretano espanso' if lang == 'it' else 'Aluminium, expanded polyurethane',
             'manufacturer': {'@id': SITE + '/#org'},
         })
-    if key == 'index':
-        nodes.append({'@type': 'FAQPage', 'inLanguage': lang, 'mainEntity': [
-            {'@type': 'Question', 'name': q, 'acceptedAnswer': {'@type': 'Answer', 'text': a}} for q, a in FAQ[lang]]})
-    else:
+    if key != 'index':
         home = SITE + PAGES['index'][2 if lang == 'it' else 3]
         nodes.append({'@type': 'BreadcrumbList', 'itemListElement': [
             {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': home},
@@ -390,25 +349,6 @@ HERO_LEAD_NEW = ('Casetta da giardino coibentata, in alluminio e pannelli da 4 c
                  'tecnologia, comfort e integrazione con l’ambiente. Per giardini')
 
 
-def faq_section():
-    items = '\n'.join(
-        '          <details class="faq__item"%s>\n            <summary>%s</summary>\n            <p>%s</p>\n          </details>'
-        % (' open' if i == 0 else '', q, a) for i, (q, a) in enumerate(FAQ['it']))
-    return ('''    <section class="faq" data-theme="dark" id="faq" aria-labelledby="faq-title">
-      <div class="container faq__inner">
-        <div class="faq__head">
-          <p class="eyebrow">Domande frequenti</p>
-          <h2 class="section-title" id="faq-title">Prima di <strong>scegliere</strong></h2>
-        </div>
-        <div class="faq__list">
-%s
-        </div>
-      </div>
-    </section>
-
-''' % items)
-
-
 def lang_switch(href, label_lang):
     name, lang, aria = (('EN', 'en', 'English version') if label_lang == 'en' else ('IT', 'it', 'Versione italiana'))
     return ('          <li class="site-nav__item site-nav__item--lang"><a class="site-nav__link" href="%s" hreflang="%s" lang="%s" aria-label="%s">%s</a></li>\n'
@@ -421,8 +361,7 @@ def italian(key):
     html = put_seo(html, key, 'it')
     if key == 'index':
         html = html.replace(HERO_LEAD_OLD, HERO_LEAD_NEW)
-        html = re.sub(r'    <section class="faq".*?</section>\n\n', '', html, flags=re.S)
-        html = html.replace('    <section class="finale"', faq_section() + '    <section class="finale"', 1)
+        html = re.sub(r'    <section class="faq".*?</section>\n\n', '', html, flags=re.S)  # no FAQ section on the page
     html = re.sub(r'          <li class="site-nav__item site-nav__item--lang">.*\n', '', html)
     en_href = 'en/' if key == 'index' else 'en/' + Path(PAGES[key][1]).name
     html = html.replace('          <li class="site-nav__item site-nav__item--cta">',
@@ -432,11 +371,7 @@ def italian(key):
 
 
 def english(key, it_html):
-    html = it_html
-    # FAQ text first: its sentences contain phrases the general table would rewrite
-    for (qi, ai), (qe, ae) in zip(FAQ['it'], FAQ['en']):
-        html = html.replace(qi, qe).replace(ai, ae)
-    html = translate(html)
+    html = translate(it_html)
     html = html.replace('<html lang="it">', '<html lang="en" data-root="../">', 1)
     html = put_seo(html, key, 'en')
     # page links -> English file names, then re-root assets
