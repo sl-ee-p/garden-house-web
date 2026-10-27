@@ -211,8 +211,14 @@ export async function mount(host, { modelUrl, colors, label, turntable = false, 
   controls.enablePan = false;
   controls.minDistance = size.length() * 0.9;
   controls.maxDistance = size.length() * 3;
-  controls.minPolarAngle = MathUtils.degToRad(15);
   controls.maxPolarAngle = MathUtils.degToRad(88); // never below the ground
+  // Never above the roof: the camera stays under the roof plane at every zoom
+  // (so the roof itself is never visible). Horizontal rotation stays free.
+  const maxRise = size.y * 0.97 - target.y;
+  function limitElevation() {
+    const dist = camera.position.distanceTo(controls.target);
+    controls.minPolarAngle = Math.acos(Math.min(1, maxRise / dist));
+  }
   controls.autoRotateSpeed = 0.55;
   const setTurntable = (on) => { controls.autoRotate = on && !reduceMotion.matches; };
   setTurntable(turntable);
@@ -225,6 +231,7 @@ export async function mount(host, { modelUrl, colors, label, turntable = false, 
       target.z + distance * Math.cos(elevation) * Math.cos(azimuth),
     );
     camera.lookAt(target);
+    limitElevation();
     controls.update();
   }
   placeCamera(START_AZIMUTH, START_ELEVATION, startDistance);
@@ -268,6 +275,7 @@ export async function mount(host, { modelUrl, colors, label, turntable = false, 
       if (t === 1) spin = null;
       dirty = true;
     }
+    limitElevation();
     if (controls.update() || dirty) {
       renderer.render(scene, camera);
       reportAnchors();
@@ -311,6 +319,8 @@ export async function mount(host, { modelUrl, colors, label, turntable = false, 
 
   const api = {
     canvas,
+    camera,
+    roofY: size.y,
     // `panelTexture` (optional) is the URL of the finish's texture; `panel` stays
     // the flat fallback colour while it loads or if it fails.
     setColors({ structure, panel, panelTexture }) {

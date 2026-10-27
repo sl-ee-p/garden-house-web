@@ -247,7 +247,7 @@
       if (!group || !stage || !('ResizeObserver' in window)) return;
       var buttons = group.querySelectorAll('[data-view]');
       var loading = null;
-      var hint = 'Trascina per ruotare, usa la rotellina o due dita per lo zoom.';
+      var hint = '';
 
       function show(view) {
         buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.view === view)); });
@@ -265,7 +265,7 @@
           return mod.mount(stage, {
             modelUrl: 'assets/model/sally.glb',
             colors: colors,
-            label: 'Modello 3D: ' + (desc ? desc.textContent : '') + ' Trascina per ruotarlo.'
+            label: 'Modello 3D: ' + (desc ? desc.textContent : '')
           });
         }).then(function (v) {
           viewer = v;

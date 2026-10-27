@@ -4,6 +4,7 @@
       rendering while off screen.
    2. Configurator: switches to the 3D model at the first interaction when
       WebGL2 works.
+   3. Home: the page turns from white to black as the 3D model scrolls in.
    Runs after js/main.js (both deferred, in order). */
 (function () {
   'use strict';
@@ -68,7 +69,7 @@
         return mod.mount(host, {
           modelUrl: 'assets/model/sally.glb',
           colors: { structure: '#F5F5F5', panel: '#e9e4db' },
-          label: 'Modello 3D, telaio e pannelli bianchi, con porta vetrata e finestra verticale. Trascinalo per ruotarlo.',
+          label: 'Modello 3D, telaio e pannelli bianchi, con porta vetrata e punto luce verticale.',
           turntable: !reduceMotion.matches,
           onRender: place
         });
@@ -112,6 +113,31 @@
     events.forEach(function (e) { window.addEventListener(e, go, { capture: true, passive: true }); });
   }
 
+  // --t (0 white, 1 black) is a pure function of the scroll position, so the
+  // transition runs the same way up and down. It starts when the top of the
+  // 3D section reaches 85% of the viewport and ends at 35%.
+  function initThemeScroll() {
+    var section = document.querySelector('[data-theme-turn]');
+    if (!section) return;
+    var root = document.documentElement;
+    var queued = false;
+    var last = -1;
+    function update() {
+      queued = false;
+      var vh = window.innerHeight;
+      var top = section.getBoundingClientRect().top;
+      var t = Math.min(1, Math.max(0, (vh * 0.85 - top) / (vh * 0.5)));
+      t = Math.round(t * 1000) / 1000;
+      if (t !== last) { last = t; root.style.setProperty('--t', String(t)); }
+    }
+    function queue() { if (!queued) { queued = true; window.requestAnimationFrame(update); } }
+    update();
+    root.classList.add('theme-scroll');
+    window.addEventListener('scroll', queue, { passive: true });
+    window.addEventListener('resize', queue);
+  }
+
+  initThemeScroll();
   initShowcase();
   initConfigurator3d();
 })();
