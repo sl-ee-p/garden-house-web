@@ -15,6 +15,7 @@ Run from anywhere:  python3 tools/seo_i18n.py
 """
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -394,17 +395,22 @@ def english(key, it_html):
     out.write_text(html, encoding='utf-8')
 
 
+def lastmod(rel):
+    out = subprocess.run(['git', 'log', '-1', '--format=%cs', '--', rel], cwd=ROOT, capture_output=True, text=True).stdout.strip()
+    return '\n    <lastmod>%s</lastmod>' % out if out else ''
+
+
 def crawl_files():
     urls = []
-    for key, (_, _, it_url, en_url) in PAGES.items():
+    for key, (it_file, en_file, it_url, en_url) in PAGES.items():
         urls.append('  <url>\n    <loc>%s%s</loc>\n    <xhtml:link rel="alternate" hreflang="it" href="%s%s"/>\n'
                     '    <xhtml:link rel="alternate" hreflang="en" href="%s%s"/>\n'
-                    '    <xhtml:link rel="alternate" hreflang="x-default" href="%s%s"/>\n    <priority>%s</priority>\n  </url>'
-                    % (SITE, it_url, SITE, it_url, SITE, en_url, SITE, it_url, '1.0' if key == 'index' else '0.7'))
+                    '    <xhtml:link rel="alternate" hreflang="x-default" href="%s%s"/>%s\n    <priority>%s</priority>\n  </url>'
+                    % (SITE, it_url, SITE, it_url, SITE, en_url, SITE, it_url, lastmod(it_file), '1.0' if key == 'index' else '0.7'))
         urls.append('  <url>\n    <loc>%s%s</loc>\n    <xhtml:link rel="alternate" hreflang="it" href="%s%s"/>\n'
                     '    <xhtml:link rel="alternate" hreflang="en" href="%s%s"/>\n'
-                    '    <xhtml:link rel="alternate" hreflang="x-default" href="%s%s"/>\n    <priority>%s</priority>\n  </url>'
-                    % (SITE, en_url, SITE, it_url, SITE, en_url, SITE, it_url, '0.9' if key == 'index' else '0.6'))
+                    '    <xhtml:link rel="alternate" hreflang="x-default" href="%s%s"/>%s\n    <priority>%s</priority>\n  </url>'
+                    % (SITE, en_url, SITE, it_url, SITE, en_url, SITE, it_url, lastmod(en_file), '0.9' if key == 'index' else '0.6'))
     (ROOT / 'sitemap.xml').write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
         'xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' + '\n'.join(urls) + '\n</urlset>\n', encoding='utf-8')
