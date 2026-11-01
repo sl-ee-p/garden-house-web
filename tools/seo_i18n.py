@@ -400,20 +400,39 @@ def lastmod(rel):
     return '\n    <lastmod>%s</lastmod>' % out if out else ''
 
 
+def page_images(rel):
+    """Largest webp/jpg variant of every content image on a page (for the image sitemap)."""
+    html = (ROOT / rel).read_text(encoding='utf-8')
+    best = {}
+    for path in set(re.findall(r'assets/img/[\w./-]+\.(?:webp|jpg)', html)):
+        if '/marchi/' in path or '/tex/' in path:
+            continue
+        m = re.match(r'(.*?)(?:-(\d+))?\.(?:webp|jpg)$', path)
+        width = int(m.group(2) or 0)
+        if m.group(1) not in best or width > best[m.group(1)][0]:
+            best[m.group(1)] = (width, path)
+    return sorted(p for _, p in best.values())
+
+
+def image_tags(rel):
+    return ''.join('\n    <image:image><image:loc>%s/%s</image:loc></image:image>' % (SITE, p) for p in page_images(rel))
+
+
 def crawl_files():
     urls = []
     for key, (it_file, en_file, it_url, en_url) in PAGES.items():
         urls.append('  <url>\n    <loc>%s%s</loc>\n    <xhtml:link rel="alternate" hreflang="it" href="%s%s"/>\n'
                     '    <xhtml:link rel="alternate" hreflang="en" href="%s%s"/>\n'
-                    '    <xhtml:link rel="alternate" hreflang="x-default" href="%s%s"/>%s\n    <priority>%s</priority>\n  </url>'
-                    % (SITE, it_url, SITE, it_url, SITE, en_url, SITE, it_url, lastmod(it_file), '1.0' if key == 'index' else '0.7'))
+                    '    <xhtml:link rel="alternate" hreflang="x-default" href="%s%s"/>%s%s\n    <priority>%s</priority>\n  </url>'
+                    % (SITE, it_url, SITE, it_url, SITE, en_url, SITE, it_url, lastmod(it_file), image_tags(it_file), '1.0' if key == 'index' else '0.7'))
         urls.append('  <url>\n    <loc>%s%s</loc>\n    <xhtml:link rel="alternate" hreflang="it" href="%s%s"/>\n'
                     '    <xhtml:link rel="alternate" hreflang="en" href="%s%s"/>\n'
-                    '    <xhtml:link rel="alternate" hreflang="x-default" href="%s%s"/>%s\n    <priority>%s</priority>\n  </url>'
-                    % (SITE, en_url, SITE, it_url, SITE, en_url, SITE, it_url, lastmod(en_file), '0.9' if key == 'index' else '0.6'))
+                    '    <xhtml:link rel="alternate" hreflang="x-default" href="%s%s"/>%s%s\n    <priority>%s</priority>\n  </url>'
+                    % (SITE, en_url, SITE, it_url, SITE, en_url, SITE, it_url, lastmod(en_file), image_tags(it_file), '0.9' if key == 'index' else '0.6'))
     (ROOT / 'sitemap.xml').write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
-        'xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' + '\n'.join(urls) + '\n</urlset>\n', encoding='utf-8')
+        'xmlns:xhtml="http://www.w3.org/1999/xhtml" '
+        'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n' + '\n'.join(urls) + '\n</urlset>\n', encoding='utf-8')
     (ROOT / 'robots.txt').write_text('User-agent: *\nAllow: /\n\nSitemap: %s/sitemap.xml\n' % SITE, encoding='utf-8')
 
 

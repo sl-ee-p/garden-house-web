@@ -1,0 +1,63 @@
+# Weekly health check of the live site. Fails (and GitHub emails the repo admins)
+# if a Lighthouse category drops below the threshold or a key SEO/security
+# feature disappears from the live response. Reports are kept as an artifact.
+name: Live site check
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    env:
+      SITE: https://www.techs-gardenhouse.com
+      MIN_SCORE: "0.9"
+    steps:
+      - name: Lighthouse (mobile) on the main pages
+        run: |
+          set -u
+          mkdir -p reports
+          fail=0
+          nc=$(date +%s)   # cache-buster: test what the origin serves, not Aruba's edge copy
+          for page in "" en/ configura.html galleria.html contatti.html; do
+            name=${page%/}; name=${name%.html}; name=${name:-home}; name=${name//\//-}
+            npx --yes lighthouse@12.6.1 "$SITE/${page}?nc=$nc" \
+              --chrome-flags="--headless=new --no-sandbox" \
+              --only-categories=performance,accessibility,best-practices,seo \
+              --output=json --output-path="reports/$name.json" --quiet || { echo "::error::lighthouse failed on /$page"; fail=1; continue; }
+            jq -r --arg p "/$page" '.categories | to_entries[] | "\($p) \(.key) \(.value.score*100|floor)"' "reports/$name.json"
+            low=$(jq -r --argjson m "$MIN_SCORE" '[.categories[] | select(.score < $m)] | length' "reports/$name.json")
+            if [ "$low" != "0" ]; then echo "::error::/$page has a Lighthouse category below ${MIN_SCORE}"; fail=1; fi
+          done
+          exit $fail
+
+      - name: Live response checks (headers, structured data, sitemap)
+        run: |
+          set -u
+          fail=0
+          ok() { echo "ok:   $1"; }
+          bad() { echo "::error::$1"; fail=1; }
+          nc=$(date +%s)
+          h=$(curl -sI "$SITE/?nc=$nc")
+          for hdr in strict-transport-security content-security-policy x-content-type-options referrer-policy; do
+            echo "$h" | grep -qi "^$hdr:" && ok "header $hdr" || bad "missing header $hdr"
+          done
+          body=$(curl -s "$SITE/?nc=$nc")
+          echo "$body" | grep -q '"offers"' && ok "Product offers in JSON-LD" || bad "Product offers missing on home page"
+          echo "$body" | grep -q 'rel="canonical"' && ok "canonical" || bad "canonical missing"
+          [ "$(curl -s -o /dev/null -w '%{http_code}' "$SITE/sitemap.xml")" = 200 ] && ok "sitemap.xml" || bad "sitemap.xml not reachable"
+          [ "$(curl -s -o /dev/null -w '%{http_code}' "$SITE/this-page-does-not-exist-$nc")" = 404 ] && ok "404 status" || bad "unknown URL does not return 404"
+          [ "$(curl -s -o /dev/null -w '%{http_code}' "http://techs-gardenhouse.com/")" = 301 ] && ok "http to https redirect" || bad "http redirect broken"
+          exit $fail
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lighthouse-reports
+          path: reports
+          if-no-files-found: ignore
