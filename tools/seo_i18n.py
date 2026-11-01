@@ -279,16 +279,8 @@ def graph(key, lang):
     page_type = {'contact': 'ContactPage', 'gallery': 'ImageGallery'}.get(key, 'WebPage')
     nodes.append({'@type': page_type, '@id': url + '#page', 'url': url, 'name': title, 'description': desc,
                   'inLanguage': lang, 'isPartOf': {'@id': SITE + '/#site'}, 'primaryImageOfPage': {'@type': 'ImageObject', 'url': OG_IMAGE}})
-    if key in ('index', 'configure'):
-        nodes.append({
-            '@type': 'Product', '@id': SITE + '/#product',
-            'name': 'Techs Garden House',
-            'description': META['index'][lang][1],
-            'image': [OG_IMAGE], 'brand': {'@type': 'Brand', 'name': 'Techs Garden House'},
-            'category': 'Casette da giardino' if lang == 'it' else 'Garden houses',
-            'material': 'Alluminio, poliuretano espanso' if lang == 'it' else 'Aluminium, expanded polyurethane',
-            'manufacturer': {'@id': SITE + '/#org'},
-        })
+    # No Product node: the house is sold on quote, so there is no price/offers/review for Google's
+    # product snippet requirements, and the markup was flagged as a critical error in Search Console.
     if key != 'index':
         home = SITE + PAGES['index'][2 if lang == 'it' else 3]
         nodes.append({'@type': 'BreadcrumbList', 'itemListElement': [
