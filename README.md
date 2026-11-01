@@ -1,6 +1,6 @@
 # Garden House — redesign
 
-Redesign of [techs-gardenhouse.com](https://www.techs-gardenhouse.com/) for the Sally garden house, using the original site's content, photos and 3D model.
+Redesign of [techs-gardenhouse.com](https://www.techs-gardenhouse.com/) for the garden house, using the original site's content, photos and 3D model.
 
 ## Live versions
 

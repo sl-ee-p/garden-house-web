@@ -150,6 +150,17 @@
   }
 
   /* ---------- Configurator ---------- */
+  /* ---------- Language: strings and asset root of the English pages (/en/) ---------- */
+  var EN = document.documentElement.lang === 'en';
+  var ROOT = document.documentElement.getAttribute('data-root') || '';
+  window.GH_I18N = {
+    root: ROOT,
+    loading: EN ? 'Loading the 3D model…' : 'Caricamento del modello 3D…',
+    model: EN ? '3D model: ' : 'Modello 3D: ',
+    failed: EN ? 'The 3D model could not be shown on this device. The drawing is still available.'
+               : 'Non è stato possibile mostrare il modello 3D su questo dispositivo. Il disegno resta disponibile.'
+  };
+
   function initConfigurator() {
     var form = document.querySelector('[data-configurator]');
     var house = document.querySelector('[data-house]');
@@ -158,7 +169,7 @@
     var desc = document.querySelector('[data-house-desc]');
     var summary = document.querySelector('[data-summary]');
     var quote = form.querySelector('[data-quote]');
-    var parts = { struttura: 'Struttura', pannelli: 'Pannelli' };
+    var parts = EN ? { struttura: 'Frame', pannelli: 'Panels' } : { struttura: 'Struttura', pannelli: 'Pannelli' };
     var cssVar = { struttura: '--house-structure', pannelli: '--house-panel' };
     var colorKey = { struttura: 'structure', pannelli: 'panel' };
     var colors = {};
@@ -196,23 +207,24 @@
       });
       if (viewer) {
         viewer.setColors(colors);
-        viewer.canvas.setAttribute('aria-label', 'Modello 3D di Sally: ' + bits.join(', ') + '.');
+        viewer.canvas.setAttribute('aria-label', window.GH_I18N.model + bits.join(', ') + '.');
       }
       var text = bits.join(' · ');
       if (summary) summary.textContent = text;
       if (desc) desc.textContent = bits.join(', ') + '.';
       if (quote) {
-        var body = 'Buongiorno,\nvorrei un preventivo per Sally con questa configurazione:\n' +
-          bits.join('\n') + '\n\nGrazie.';
+        var body = EN
+          ? 'Hello,\nI would like a quote for this configuration:\n' + bits.join('\n') + '\n\nThank you.'
+          : 'Buongiorno,\nvorrei un preventivo con questa configurazione:\n' + bits.join('\n') + '\n\nGrazie.';
         quote.href = 'mailto:vailfabio05@gmail.com?subject=' +
-          encodeURIComponent('Preventivo Sally') + '&body=' + encodeURIComponent(body);
+          encodeURIComponent(EN ? 'Quote' : 'Preventivo') + '&body=' + encodeURIComponent(body);
       }
       if (updateHash && window.history.replaceState) {
         window.history.replaceState(null, '', '#' + hash.join('&'));
       }
     }
 
-    // Restore a shared configuration from the URL hash, e.g. #struttura=verde&pannelli=bianco
+    // Restore a shared configuration from the URL hash, e.g. #struttura=ral-6018&pannelli=bianco
     function applyHash() {
       window.location.hash.replace(/^#/, '').split('&').forEach(function (pair) {
         var kv = pair.split('=');
@@ -239,7 +251,7 @@
     initViewSwitch();
 
     /* 2D drawing / interactive 3D model. The 3D viewer (three.js + the
-       original Sally model) is only downloaded when the visitor asks for it. */
+       original model) is only downloaded when the visitor asks for it. */
     function initViewSwitch() {
       var group = document.querySelector('[data-view-switch]');
       var stage = document.querySelector('[data-viewer-stage]');
@@ -247,7 +259,7 @@
       if (!group || !stage || !('ResizeObserver' in window)) return;
       var buttons = group.querySelectorAll('[data-view]');
       var loading = null;
-      var hint = 'Trascina per ruotare, usa la rotellina o due dita per lo zoom.';
+      var hint = '';
 
       function show(view) {
         buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.view === view)); });
@@ -259,13 +271,13 @@
 
       function load() {
         if (loading) return loading;
-        status.textContent = 'Caricamento del modello 3D…';
+        status.textContent = window.GH_I18N.loading;
         loading = import('./viewer3d.js').then(function (mod) {
           if (!mod.supported()) throw new Error('webgl');
           return mod.mount(stage, {
-            modelUrl: 'assets/model/sally.glb',
+            modelUrl: ROOT + 'assets/model/sally.glb',
             colors: colors,
-            label: 'Modello 3D di Sally: ' + (desc ? desc.textContent : '') + ' Trascina per ruotarlo.'
+            label: window.GH_I18N.model + (desc ? desc.textContent : '')
           });
         }).then(function (v) {
           viewer = v;
@@ -274,7 +286,7 @@
           if (group.querySelector('[data-view="3d"]').getAttribute('aria-pressed') !== 'true') viewer.stop();
         }).catch(function () {
           loading = null;
-          status.textContent = 'Non è stato possibile mostrare il modello 3D su questo dispositivo. Il disegno resta disponibile.';
+          status.textContent = window.GH_I18N.failed;
         });
         return loading;
       }
@@ -294,6 +306,103 @@
     }
   }
 
+  /* ---------- Pillars: horizontal track (buttons, drag, progress) ---------- */
+  function initPillars() {
+    var track = document.querySelector('[data-pillars-track]');
+    if (!track) return;
+    var cards = Array.prototype.slice.call(track.querySelectorAll('.pillar'));
+    var nav = document.querySelector('[data-pillars-nav]');
+    var bar = document.querySelector('[data-pillars-bar]');
+    var count = document.querySelector('[data-pillars-current]');
+    var prev = document.querySelector('[data-pillars-prev]');
+    var next = document.querySelector('[data-pillars-next]');
+    var active = -1;
+
+    function update() {
+      var max = track.scrollWidth - track.clientWidth;
+      var ratio = max > 0 ? track.scrollLeft / max : 1;
+      var left = track.scrollLeft + parseFloat(getComputedStyle(track).paddingLeft || 0);
+      var best = 0;
+      cards.forEach(function (card, i) {
+        if (Math.abs(card.offsetLeft - left) < Math.abs(cards[best].offsetLeft - left)) best = i;
+      });
+      if (ratio > .98) best = cards.length - 1;
+      if (bar) bar.style.transform = 'scaleX(' + Math.max(ratio, 1 / cards.length).toFixed(3) + ')';
+      if (best !== active) {
+        active = best;
+        cards.forEach(function (card, i) { card.classList.toggle('is-active', i === best); });
+        if (count) count.textContent = '0' + (best + 1);
+      }
+      if (prev) prev.disabled = ratio <= .01;
+      if (next) next.disabled = ratio >= .99;
+    }
+
+    function go(dir) {
+      var target = Math.min(Math.max(active + dir, 0), cards.length - 1);
+      var pad = parseFloat(getComputedStyle(track).paddingLeft || 0);
+      track.scrollTo({ left: cards[target].offsetLeft - pad, behavior: 'smooth' });
+    }
+
+    if (nav) nav.hidden = false;
+    if (prev) prev.addEventListener('click', function () { go(-1); });
+    if (next) next.addEventListener('click', function () { go(1); });
+    track.addEventListener('scroll', function () { window.requestAnimationFrame(update); }, { passive: true });
+    window.addEventListener('resize', update);
+    track.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
+    });
+
+    // pointer spotlight on the cards
+    cards.forEach(function (card) {
+      card.addEventListener('pointermove', function (e) {
+        var r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    });
+
+    // mouse drag (touch and trackpads already scroll natively)
+    var startX = 0, startLeft = 0, down = false, moved = false;
+    track.addEventListener('pointerdown', function (e) {
+      if (e.pointerType !== 'mouse' || e.button !== 0) return;
+      down = true; moved = false; startX = e.clientX; startLeft = track.scrollLeft;
+    });
+    window.addEventListener('pointermove', function (e) {
+      if (!down) return;
+      var dx = e.clientX - startX;
+      if (!moved && Math.abs(dx) > 5) { moved = true; track.classList.add('is-dragging'); }
+      if (moved) track.scrollLeft = startLeft - dx;
+    });
+    window.addEventListener('pointerup', function () {
+      if (!down) return;
+      down = false;
+      if (moved) {
+        track.classList.remove('is-dragging');
+        var left = track.scrollLeft + parseFloat(getComputedStyle(track).paddingLeft || 0);
+        var best = 0;
+        cards.forEach(function (card, i) {
+          if (Math.abs(card.offsetLeft - left) < Math.abs(cards[best].offsetLeft - left)) best = i;
+        });
+        go(best - active);
+      }
+    });
+    update();
+  }
+
+  /* ---------- Back to top (the #top target is the fixed header, which never scrolls) ---------- */
+  function initToTop() {
+    document.querySelectorAll('.site-footer__top').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        var smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: 0, behavior: smooth ? 'smooth' : 'auto' });
+        var skip = document.querySelector('.skip-link');
+        if (skip) skip.focus({ preventScroll: true });
+      });
+    });
+  }
+
   /* ---------- Footer year ---------- */
   function initYear() {
     document.querySelectorAll('[data-year]').forEach(function (el) {
@@ -306,5 +415,7 @@
   initReveal();
   initLightbox();
   initConfigurator();
+  initPillars();
+  initToTop();
   initYear();
 })();
