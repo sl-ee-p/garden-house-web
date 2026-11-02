@@ -67,3 +67,18 @@ jobs:
           name: lighthouse-reports
           path: reports
           if-no-files-found: ignore
+
+  integrity:
+    runs-on: ubuntu-latest
+    env:
+      SITE: https://www.techs-gardenhouse.com
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: TLS, links/assets, sitemap, hreflang, deploy drift, headers
+        run: python3 -I .github/scripts/site_check.py "$SITE" --live
+
+      - name: Console / CSP errors in a real browser
+        run: |
+          cd "$RUNNER_TEMP" && npm init -y >/dev/null && npm i playwright-core@1.48.2 >/dev/null
+          NODE_PATH="$RUNNER_TEMP/node_modules" node "$GITHUB_WORKSPACE/.github/scripts/console_check.js" "$SITE"

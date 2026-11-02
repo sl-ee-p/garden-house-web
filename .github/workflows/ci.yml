@@ -1,0 +1,45 @@
+# Pre-merge checks: serve the branch locally and run the same link/sitemap/console
+# checks and Lighthouse as the live monitor, so problems are caught before the FTP deploy.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches-ignore: [main, "design/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    env:
+      BASE: http://localhost:8080
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Serve the site
+        run: |
+          python3 -m http.server 8080 >/dev/null 2>&1 &
+          sleep 2
+
+      - name: Links, assets, sitemap, hreflang, content
+        run: python3 -I .github/scripts/site_check.py "$BASE"
+
+      - name: Console / CSP errors in a real browser
+        run: |
+          cd "$RUNNER_TEMP" && npm init -y >/dev/null && npm i playwright-core@1.48.2 >/dev/null
+          NODE_PATH="$RUNNER_TEMP/node_modules" node "$GITHUB_WORKSPACE/.github/scripts/console_check.js" "$BASE"
+
+      - name: Lighthouse (mobile), home page, with retries
+        run: |
+          pass=0
+          for try in 1 2 3; do
+            npx --yes lighthouse@12.6.1 "$BASE/" --chrome-flags="--headless=new --no-sandbox" \
+              --only-categories=accessibility,best-practices,seo --output=json --output-path=lh.json --quiet || continue
+            low=$(jq '[.categories[] | select(.score < 0.9)] | length' lh.json)
+            [ "$low" = 0 ] && { pass=1; break; }
+          done
+          jq -r '.categories[] | "\(.id) \(.score*100|floor)"' lh.json
+          [ "$pass" = 1 ] || { echo "::error::Lighthouse category below 0.9"; exit 1; }
