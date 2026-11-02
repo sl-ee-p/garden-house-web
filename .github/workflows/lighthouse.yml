@@ -1,11 +1,11 @@
-# Weekly health check of the live site. Fails (and GitHub emails the repo admins)
+# Daily health check of the live site. Fails (and GitHub emails the repo admins)
 # if a Lighthouse category drops below the threshold or a key SEO/security
 # feature disappears from the live response. Reports are kept as an artifact.
 name: Live site check
 
 on:
   schedule:
-    - cron: "0 6 * * 1"
+    - cron: "23 5 * * *"
   workflow_dispatch:
 
 permissions:
