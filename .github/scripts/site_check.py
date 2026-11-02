@@ -70,7 +70,7 @@ class P(HTMLParser):
                 s.refs.append(a[k])
         for k in ("srcset", "imagesrcset"):
             if a.get(k): s.refs += [x.strip().split()[0] for x in a[k].split(",") if x.strip()]
-        if tag == "meta" and a.get("name") == "robots": s.robots = a.get("content", "")
+        if tag == "meta" and a.get("name") == "robots": s.robots += " " + a.get("content", "")
         if tag == "meta" and a.get("property") == "og:image" and a.get("content"): s.refs.append(a["content"])
         if tag == "link" and a.get("rel") == "alternate" and a.get("hreflang"): s.alts[a["hreflang"]] = a["href"]
     def handle_endtag(s, tag):
