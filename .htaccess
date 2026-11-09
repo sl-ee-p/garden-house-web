@@ -35,5 +35,5 @@ ErrorDocument 404 /404.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteCond %{THE_REQUEST} \s/+(en/)?index\.html[\s?] [NC]
-  RewriteRule ^(en/)?index\.html$ /$1 [R=301,L]
+  RewriteRule ^(en/)?index\.html$ https://www.techs-gardenhouse.com/$1 [R=301,L]
 </IfModule>
